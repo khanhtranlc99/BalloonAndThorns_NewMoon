@@ -50,7 +50,7 @@ public class MusicManagerGameBase : SerializedMonoBehaviour
     [SerializeField] private AudioClip BGMusic;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private AudioClip startLevel;
-
+    [SerializeField] private List<AudioClip> lsBallon;
     private AudioClip _currentMusic;
 
     public float MasterVolume
@@ -233,6 +233,10 @@ public class MusicManagerGameBase : SerializedMonoBehaviour
         // PlayerPrefs.SetFloat(SOUND_KEY, volume);
     }
 
+
+
+
+
     #region === Play Sound ===
     public void PlayWinSound()
     {
@@ -296,6 +300,13 @@ public class MusicManagerGameBase : SerializedMonoBehaviour
             }
         }
     }
+
+    public void PlayRandomBallon()
+    {
+        var temp = Random.RandomRange(0, lsBallon.Count);
+        PlayOneShot(lsBallon[temp]);
+    }
+        
 
     public void PlayOneShot(NameMusic name, AudioClip clip, AudioSource source)
     {

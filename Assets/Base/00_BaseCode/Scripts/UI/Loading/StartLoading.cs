@@ -27,14 +27,15 @@ public class StartLoading : MonoBehaviour
         yield return new WaitForSeconds(1);
         progressBar.fillAmount = 0f;
         string name = "";
-        if (!UseProfile.FirstLoading)
-        {
-            name = SceneName.GAME_PLAY;
-        }
-        else
-        {
-            name = SceneName.HOME_SCENE;
-        }
+        //if (!UseProfile.FirstLoading)
+        //{
+        //    name = SceneName.GAME_PLAY;
+        //}
+        //else
+        //{
+        //    name = SceneName.HOME_SCENE;
+        //}
+        name = SceneName.GAME_PLAY;
         var _asyncOperation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
        
         while (!_asyncOperation.isDone)

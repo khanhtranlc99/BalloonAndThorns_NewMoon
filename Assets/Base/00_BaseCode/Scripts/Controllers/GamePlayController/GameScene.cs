@@ -13,12 +13,13 @@ public class GameScene : BaseScene
  
     public Text tvLevel;
     public Button settinBtn;
-    public Transform canvas;
+    public Button reStartBtn;
  
     public void Init(LevelData levelData)
     {
-    
-     
+        settinBtn.onClick.AddListener(delegate { SettingBox.Setup(false).Show(); });
+        reStartBtn.onClick.AddListener(delegate { Initiate.Fade("GamePlay", Color.black, 2f); });
+        tvLevel.text = "Level " + UseProfile.CurrentLevel;
     }
 
     public override void OnEscapeWhenStackBoxEmpty()
