@@ -7,13 +7,14 @@ public class HitVfx : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        Invoke(nameof(DeSpawn), 1);
+        StartCoroutine(DeSpawn());
+
     }
   
 
-    private void DeSpawn()
+    private IEnumerator  DeSpawn()
     {
-        Debug.LogError("DeSpawn");
+        yield return new WaitForSeconds(1);
         SimplePool2.Despawn(this.gameObject);
     }    
   

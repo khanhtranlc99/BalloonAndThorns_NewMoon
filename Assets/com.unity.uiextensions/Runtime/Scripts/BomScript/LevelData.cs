@@ -18,30 +18,38 @@ public enum Difficult
 
 public class LevelData : SerializedMonoBehaviour
 {
-
-    public List<Ballon> lsBallons;
+    public InputThone inputThone;
+    public List<BarrialAir> lsBallons;
     int countBallon = 0;
     public int limitTouch;
     public TMP_Text tvShowLimit;
-    public ThoneDemo thoneDemo;
+    public int numbTarget;
 
 
     public void Init()
     {
 
         countBallon = 0;
-        tvShowLimit.text = "" + limitTouch;
+        tvShowLimit.text = "x" + limitTouch;
+        foreach (var item in lsBallons)
+        {
+
+            item.Init();
+
+        }
 
     }
 
 
-    public void CountWin()
+    public void CountWin(Transform param)
     {
+    
         countBallon += 1;
-        if(countBallon >= lsBallons.Count )
+        if(countBallon >= numbTarget)
         {
             if(GamePlayController.Instance.stateGame == StateGame.Playing)
             {
+                GamePlayController.Instance.playerContain.cameraFollow.HandleZoom(param);
                 GamePlayController.Instance.HandleWin();
             }    
 
@@ -53,21 +61,40 @@ public class LevelData : SerializedMonoBehaviour
     public void HandleCheckLose()
     {
     
-        if(limitTouch < 1)
+        if(limitTouch < 1 && countBallon < numbTarget && GamePlayController.Instance.playerContain.inputThone.AllDestoy)
         {
             if (GamePlayController.Instance.stateGame == StateGame.Playing)
             {
-                GamePlayController.Instance.playerContain.inputThone.currentBallController.rigidbody2D.velocity = Vector2.zero;
+    
                 GamePlayController.Instance.stateGame = StateGame.Lose;
                 LoseBox.Setup().Show();
             }
         }    
-        else
-        {
-            limitTouch -= 1;
-            tvShowLimit.text = "" + limitTouch;
-        }    
+     
    
     }
 
+    public void HandleSubtrack()
+    {
+        limitTouch -= 1;
+        tvShowLimit.text = "x" + limitTouch;
+    }    
+
+    public void PlusBall()
+    {
+        limitTouch *= 2;
+        tvShowLimit.text = "x" + limitTouch;
+    }
+    public void AllBallHit()
+    {
+        foreach(var item in lsBallons)
+        {
+            item.TakeDameSpike();
+        }    
+    }
+    public void PlusBallBallon()
+    {
+        limitTouch += 1;
+        tvShowLimit.text = "x" + limitTouch;
+    }
 }
