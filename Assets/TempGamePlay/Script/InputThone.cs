@@ -62,7 +62,7 @@ public class InputThone : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if(GamePlayController.Instance.playerContain.levelData.limitTouch > 0)
+            if(GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && GamePlayController.Instance.stateGame == StateGame.Playing)
             {
                 wasDraw = true;
             }    
@@ -222,12 +222,15 @@ public class InputThone : MonoBehaviour
                 }
                 lineRenderer.positionCount = 0;
                 // Khởi tạo bóng và gán vị trí ban đầu của nó
-                var temp = SimplePool2.Spawn(ballMovement);
-                temp.transform.position = postFireSpike.transform.position;
-                // Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
-                temp.Init(initialDirection);
-                lsBallMovement.Add(temp);
-                GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
+              
+                    var temp = SimplePool2.Spawn(ballMovement);
+                    temp.transform.position = postFireSpike.transform.position;
+                    // Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
+                    temp.Init(initialDirection);
+                    lsBallMovement.Add(temp);
+                    GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
+              
+          
             }
         }
          

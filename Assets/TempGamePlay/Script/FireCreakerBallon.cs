@@ -30,7 +30,7 @@ public class FireCreakerBallon : Ballon
         if (!isOff)
         {
             isOff = true;
-            //GameController.Instance.musicManager.PlayRandomBallon();
+            GameController.Instance.musicManager.PlayRandomBallon();
             GamePlayController.Instance.gameScene.HandleSubtrackBallon();
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             demoSpike.gameObject.SetActive(false);

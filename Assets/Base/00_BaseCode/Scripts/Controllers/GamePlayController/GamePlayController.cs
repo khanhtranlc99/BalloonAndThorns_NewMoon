@@ -37,14 +37,15 @@ public class GamePlayController : Singleton<GamePlayController>
     public void Init()
     {
 
-        HandleSetPostWall();
+       
         playerContain.Init();
         gameScene.Init(playerContain.levelData);
         SimplePool2.ClearPool();
         SimplePool2.Preload(hitVfx.gameObject, 40, null);
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
-
+        StartCoroutine(HandleSetPostWall());
+    
     }
    
     public void HandleWin()
@@ -62,8 +63,9 @@ public class GamePlayController : Singleton<GamePlayController>
     }    
 
     [Button]
-    private void HandleSetPostWall()
+    private IEnumerator HandleSetPostWall()
     {
+        yield return new WaitForEndOfFrame();
         foreach(var item in testPosts)
         {
             item.workPost.position = item.uiPost.position;

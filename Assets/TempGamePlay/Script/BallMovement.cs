@@ -12,6 +12,7 @@ public class BallMovement : MonoBehaviour
     public bool activeMove;
     public HitVfx vfxTouch;
     public bool wasTouch;
+    public AudioSource audioSource;
     public void Init(Vector2 param)
     {
         wasTouch = false;
@@ -38,6 +39,7 @@ public class BallMovement : MonoBehaviour
             {
                 if (hit.collider != null && !hit.collider.isTrigger)
                 {
+                    audioSource.Play();
                     // Tính toán hướng phản chiếu bằng cách sử dụng pháp tuyến của bề mặt va chạm
                     direction = Vector2.Reflect(direction, hit.normal);
 
@@ -79,7 +81,14 @@ public class BallMovement : MonoBehaviour
     }
     private void OnDisable()
     {
-        GamePlayController.Instance.playerContain.levelData.HandleCheckLose();
+        try
+        {
+            GamePlayController.Instance.playerContain.levelData.HandleCheckLose();
+        }    
+      catch
+        {
+
+        }
     }
 
 }

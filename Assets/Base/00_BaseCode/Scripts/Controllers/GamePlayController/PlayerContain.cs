@@ -35,7 +35,7 @@ public class PlayerContain : MonoBehaviour
 
     public void Test_3()
     {
-     
+        levelData.inputThone.postFireSpike.HandleBooster();
     }
 
     public void Test_4()

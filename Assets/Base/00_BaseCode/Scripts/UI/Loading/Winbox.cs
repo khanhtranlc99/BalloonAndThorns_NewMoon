@@ -41,7 +41,7 @@ public class Winbox : BaseBox
 
 
         UseProfile.CurrentLevel += 1;
-        if (UseProfile.CurrentLevel > 5)
+        if (UseProfile.CurrentLevel > 25)
         {
             UseProfile.CurrentLevel = 1;
         }    

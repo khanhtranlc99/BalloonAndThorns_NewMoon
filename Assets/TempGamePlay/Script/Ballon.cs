@@ -26,7 +26,7 @@ public class Ballon : BarrialAir
         if (!isOff)
         {
             isOff = true;
-            //GameController.Instance.musicManager.PlayRandomBallon();
+            GameController.Instance.musicManager.PlayRandomBallon();
             GamePlayController.Instance.gameScene.HandleSubtrackBallon();
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             GamePlayController.Instance.HandlSpawnItemInGameBallon(1, this.transform.position);
