@@ -36,8 +36,8 @@ public class Ballon : BarrialAir
 
     public override void Init()
     {
-        positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0);
-        positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 0);
+        positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 1);
+        positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 1);
         speed = Random.RandomRange(0.1f, 0.5f);
         isInit = true;
     }

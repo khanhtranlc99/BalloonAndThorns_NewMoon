@@ -41,8 +41,8 @@ public class SuggetBox : BaseBox
         currentGift = giftType;
         switch (giftType)
         {
-            case GiftType.TNT_Booster:
-                tvTitler.text = "TNT BOOM";
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
+                tvTitler.text = "MOVE SIGHTING POINT BOOSTER";
                 tvContent.text = "Create a 3x3 wide explosion";
                 price = 150;
                 tvPrive.text = price.ToString();
@@ -52,8 +52,8 @@ public class SuggetBox : BaseBox
                 iconAds.SetActive(true);
                 tvCountNumbAds.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
                 break;
-            case GiftType.Rocket_Booster:
-                tvTitler.text = "Rocket";
+            case GiftType.SNIPER_BOOSTER:
+                tvTitler.text = "Sniper";
                 tvContent.text = "Shoots 1 random slime";
                 price = 200;
                 tvPrive.text = price.ToString();
@@ -63,8 +63,8 @@ public class SuggetBox : BaseBox
                 iconAds.SetActive(true);
                 tvCountNumbAds.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
                 break;
-            case GiftType.Freeze_Booster:
-                tvTitler.text = "Freeze";
+            case GiftType.CLONE_BALLS_BOOSTER:
+                tvTitler.text = "Clone balls";
                 tvContent.text = "Freeze all slimes";
                 price = 300;
                 tvPrive.text = price.ToString();
@@ -74,7 +74,7 @@ public class SuggetBox : BaseBox
                 iconAds.SetActive(false);
                 tvCountNumbAds.text =  "Shop";
                 break;
-            case GiftType.Atom_Booster:
+            case GiftType.ROCKET_BOOSTER:
                 tvTitler.text = "Atom";
                 tvContent.text = "Create a Big explosion";
                 price = 700;
@@ -113,7 +113,7 @@ public class SuggetBox : BaseBox
                      {
                          switch (currentGift)
                          {
-                             case GiftType.TNT_Booster:
+                             case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
                                  UseProfile.NumbWatchAdsTNT -= 1;
                                  if (UseProfile.NumbWatchAdsTNT <= 0)
                                  {
@@ -123,7 +123,7 @@ public class SuggetBox : BaseBox
                                  }
                                  tvCountNumbAds.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
                                  break;
-                             case GiftType.Rocket_Booster:
+                             case GiftType.SNIPER_BOOSTER:
 
                                  UseProfile.NumbWatchAdsRocket -= 1;
                                  if (UseProfile.NumbWatchAdsRocket <= 0)

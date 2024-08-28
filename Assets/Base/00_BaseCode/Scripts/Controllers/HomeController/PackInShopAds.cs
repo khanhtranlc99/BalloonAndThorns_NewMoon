@@ -34,12 +34,12 @@ public class PackInShopAds : PackInShop
     {
         switch (currentGift)
         {
-            case GiftType.TNT_Booster:
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
 
                 tvBuy.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
                 tvBuy_2.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
                 break;
-            case GiftType.Rocket_Booster:
+            case GiftType.SNIPER_BOOSTER:
                 tvBuy.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
                 tvBuy_2.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
 
@@ -60,7 +60,7 @@ public class PackInShopAds : PackInShop
     {
         switch (currentGift)
         {
-            case GiftType.TNT_Booster:
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
                 UseProfile.NumbWatchAdsTNT -= 1;
                 if (UseProfile.NumbWatchAdsTNT <= 0)
                 {
@@ -69,7 +69,7 @@ public class PackInShopAds : PackInShop
 
 
                 break;
-            case GiftType.Rocket_Booster:
+            case GiftType.SNIPER_BOOSTER:
                 UseProfile.NumbWatchAdsRocket -= 1;
                 if (UseProfile.NumbWatchAdsRocket <= 0)
                 {
@@ -102,19 +102,19 @@ public class PackInShopAds : PackInShop
     {
         switch (currentGift)
         {
-            case GiftType.TNT_Booster:
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
 
                 actionWatchVideo = ActionWatchVideo.TNT_Booster;
                 break;
-            case GiftType.Rocket_Booster:
+            case GiftType.SNIPER_BOOSTER:
 
                 actionWatchVideo = ActionWatchVideo.Rocket_Booster;
                 break;
-            case GiftType.Freeze_Booster:
+            case GiftType.CLONE_BALLS_BOOSTER:
 
                 actionWatchVideo = ActionWatchVideo.Freeze_Booster;
                 break;
-            case GiftType.Atom_Booster:
+            case GiftType.ROCKET_BOOSTER:
 
                 actionWatchVideo = ActionWatchVideo.Atom_Booste;
                 break;

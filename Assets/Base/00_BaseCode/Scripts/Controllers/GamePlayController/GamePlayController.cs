@@ -24,6 +24,11 @@ public class GamePlayController : Singleton<GamePlayController>
     public List<TestPost> testPosts;
     public ItemInGameBallon itemInGameBallon;
 
+    public TutorialFunController TutGameplay;
+    public TutorialFunController TutSpinerBooster;
+    public TutorialFunController TutMoveSightingPointBooster;
+    public TutorialFunController TutCloneBallsBooster;
+    public TutorialFunController TutRocketBooster;
     protected override void OnAwake()
     {
         stateGame = StateGame.Playing;
@@ -36,8 +41,12 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void Init()
     {
+        TutGameplay.Init();
+        TutSpinerBooster.Init();
+        TutMoveSightingPointBooster.Init();
+        TutCloneBallsBooster.Init();
+        TutRocketBooster.Init();
 
-       
         playerContain.Init();
         gameScene.Init(playerContain.levelData);
         SimplePool2.ClearPool();
@@ -45,7 +54,7 @@ public class GamePlayController : Singleton<GamePlayController>
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
         StartCoroutine(HandleSetPostWall());
-    
+
     }
    
     public void HandleWin()

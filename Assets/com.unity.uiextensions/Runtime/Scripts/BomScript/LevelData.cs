@@ -33,7 +33,7 @@ public class LevelData : SerializedMonoBehaviour
         tvShowLimit.text = "x" + limitTouch;
         foreach (var item in lsBallons)
         {
-
+            item.gameObject.transform.position = new Vector3(item.gameObject.transform.position.x, item.gameObject.transform.position.y,1);
             item.Init();
 
         }

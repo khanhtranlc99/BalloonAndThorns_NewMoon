@@ -62,10 +62,10 @@ public static class StringHelper
     public const string NUMBER_REWARD_SHOWED = "number_reward_showed";
     public const string NUMBER_INTER_SHOWED = "number_inter_showed";
 
-    public const string TNT_BOOSTER = "tnt_booster";
+    public const string MOVE_SIGHTING_POINT_BOOSTER = "move_sighting_point_booster";
+    public const string SNIPER_BOOSTER = "sniper_booster";
+    public const string CLONE_BALLS_BOOSTER = "clone_balls_booster";
     public const string ROCKET_BOOSTER = "rocket_booster";
-    public const string FREE_BOOSTER = "free_booster";
-    public const string ATOM_BOOSTER = "atom_booster";
 
     public const string FLAMEUP_ITEM = "flameup_item";
     public const string FASTBOOM_ITEM = "fastboom_item";

@@ -50,53 +50,26 @@ public class GiftDatabase : SerializedScriptableObject
                 GameController.Instance.useProfile.IsRemoveAds = true;
            
                 break;
-            case GiftType.TNT_Booster:
-                UseProfile.TNT_Booster += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ATOM_BOOSTER);
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
+                UseProfile.MoveSightingPointBooster += amount;
+                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.MOVE_SIGHTING_POINT_BOOSTER);
 
                 break;
-            case GiftType.Rocket_Booster:
-                UseProfile.Roket_Booster += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ROCKET_BOOSTER);
+            case GiftType.SNIPER_BOOSTER:
+                UseProfile.SniperBooster += amount;
+                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SNIPER_BOOSTER);
                 break;
-            case GiftType.Freeze_Booster:
-                UseProfile.Freeze_Booster += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_FREEZE_BOOSTER);
-                break;
-
-            case GiftType.Atom_Booster:
-                UseProfile.Atom_Booster += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ATOM_BOOSTER);
+            case GiftType.CLONE_BALLS_BOOSTER:
+                UseProfile.CloneBallsBooster += amount;
+                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CLONE_BALLS_BOOSTER);
                 break;
 
-            case GiftType.FlameUp_Item:
-                UseProfile.FlameUp_Item += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.FLAMEUP_ITEM);
+            case GiftType.ROCKET_BOOSTER:
+                UseProfile.RocketBooster += amount;
+                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.ROCKET_BOOSTER);
                 break;
-            case GiftType.FastBoom_Item:
-                UseProfile.FastBoom_Item += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.FASTBOOM_ITEM);
-                break;
-            case GiftType.TimeBoom_Item:
-                UseProfile.TimeBoom_Item += amount;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.TIMEBOOM_ITEM);
-                break;
-            case GiftType.Fire_Start:
-                UseProfile.Fire_Start = true;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SHOP_CHECK);
-                break;
-            case GiftType.Boom_Start:
-                UseProfile.Boom_Start = true;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SHOP_CHECK);
-                break;
-            case GiftType.Heart_Unlimit:
-            
-                UseProfile.TimeUnlimitHeart = DateTime.Now.AddHours(1);
-                UseProfile.Heart = 5;
-                UseProfile.isUnlimitHeart = true;
-                UseProfile.WasBoughtUnlimitTime = true;
-                EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SHOP_CHECK);
-                break;
+
+          
         }
     }
 
@@ -126,10 +99,10 @@ public enum GiftType
     RemoveAds = 1,
     Coin = 2,
     Heart = 3,
-    TNT_Booster = 4,
-    Rocket_Booster = 5,
-    Freeze_Booster = 6,
-    Atom_Booster = 7,
+    MOVE_SIGHTING_POINT_BOOSTER = 4,
+    SNIPER_BOOSTER = 5,
+    CLONE_BALLS_BOOSTER = 6,
+    ROCKET_BOOSTER = 7,
     FlameUp_Item = 8,
     FastBoom_Item = 9,
     TimeBoom_Item = 10,

@@ -294,20 +294,47 @@ public class UseProfile : MonoBehaviour
 
         }
     }
-    public static int TNT_Booster
+    public static int MoveSightingPointBooster
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.TNT_BOOSTER, 3);
+            return PlayerPrefs.GetInt(StringHelper.MOVE_SIGHTING_POINT_BOOSTER, 3);
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.TNT_BOOSTER, value);
+            PlayerPrefs.SetInt(StringHelper.MOVE_SIGHTING_POINT_BOOSTER, value);
             PlayerPrefs.Save();
-            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_TNT_BOOSTER);
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.MOVE_SIGHTING_POINT_BOOSTER);
         }
     }
-    public static int Roket_Booster
+    public static int SniperBooster
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.SNIPER_BOOSTER, 3);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.SNIPER_BOOSTER, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.SNIPER_BOOSTER);
+        }
+    }
+    public static int CloneBallsBooster
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.CLONE_BALLS_BOOSTER, 3);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.CLONE_BALLS_BOOSTER, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CLONE_BALLS_BOOSTER);
+
+        }
+    }
+    public static int RocketBooster
     {
         get
         {
@@ -317,34 +344,7 @@ public class UseProfile : MonoBehaviour
         {
             PlayerPrefs.SetInt(StringHelper.ROCKET_BOOSTER, value);
             PlayerPrefs.Save();
-            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ROCKET_BOOSTER);
-        }
-    }
-    public static int Freeze_Booster
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.FREE_BOOSTER, 3);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.FREE_BOOSTER, value);
-            PlayerPrefs.Save();
-            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_FREEZE_BOOSTER);
-
-        }
-    }
-    public static int Atom_Booster
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.ATOM_BOOSTER, 3);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.ATOM_BOOSTER, value);
-            PlayerPrefs.Save();
-            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ATOM_BOOSTER);
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.ROCKET_BOOSTER);
         }
     }
     public static int WinStreak

@@ -65,8 +65,8 @@ public class InputThone : MonoBehaviour
             if(GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && GamePlayController.Instance.stateGame == StateGame.Playing)
             {
                 wasDraw = true;
-            }    
-        
+            }
+            GamePlayController.Instance.TutGameplay.NextTut();
         }    
         if (wasDraw)
         {
@@ -214,6 +214,7 @@ public class InputThone : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
+                GamePlayController.Instance.TutCloneBallsBooster.StartTut();
                 wasDraw = false;
             
                 foreach (var item in lsThoneDemos)
