@@ -18,6 +18,7 @@ public class SpinerBooster : MonoBehaviour
     PlayerContain playerContain;
     public void Init(PlayerContain param)
     {
+     
         playerContain = param;
         wasUseTNT_Booster = false;
         if (UseProfile.CurrentLevel >= 3)//5
@@ -38,7 +39,10 @@ public class SpinerBooster : MonoBehaviour
             //Debug.LogError("HandleLock");
         }
 
-
+           if (UseProfile.UnlimitScope)
+        {
+            sniper_Btn.gameObject.SetActive(false);
+        }    
         void HandleUnlock()
         {
 
@@ -95,6 +99,7 @@ public class SpinerBooster : MonoBehaviour
         else
         {
             SuggetBox.Setup(GiftType.SNIPER_BOOSTER).Show();
+
         }
 
 

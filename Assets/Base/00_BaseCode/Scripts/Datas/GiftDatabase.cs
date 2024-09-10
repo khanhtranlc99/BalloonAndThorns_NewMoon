@@ -43,8 +43,8 @@ public class GiftDatabase : SerializedScriptableObject
                 UseProfile.Coin += amount;
                 EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_COIN);
                 break;
-            case GiftType.Heart:
-                UseProfile.Heart += amount;
+            case GiftType.SPIKE_IN_GAME:
+              
                 break;
             case GiftType.RemoveAds:
                 GameController.Instance.useProfile.IsRemoveAds = true;
@@ -69,7 +69,15 @@ public class GiftDatabase : SerializedScriptableObject
                 EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.ROCKET_BOOSTER);
                 break;
 
-          
+            case GiftType.UnlimitSniper:
+
+                UseProfile.UnlimitScope = true;
+                GamePlayController.Instance.playerContain.levelData.inputThone.numOfReflect = 4;
+                break;
+            case GiftType.UnlimitSpike:
+                UseProfile.UnlimitSpike = true;
+                GamePlayController.Instance.playerContain.levelData.HandleUnlimitSpike();
+                break;
         }
     }
 
@@ -98,22 +106,16 @@ public enum GiftType
     None = 0,
     RemoveAds = 1,
     Coin = 2,
-    Heart = 3,
+ 
     MOVE_SIGHTING_POINT_BOOSTER = 4,
     SNIPER_BOOSTER = 5,
     CLONE_BALLS_BOOSTER = 6,
     ROCKET_BOOSTER = 7,
-    FlameUp_Item = 8,
-    FastBoom_Item = 9,
-    TimeBoom_Item = 10,
-    Boom_Normal = 11,
-    Boom_Start = 12,
-    Fire_Start = 13,
-    Heart_Unlimit = 14,
-
-
-
-
+ 
+    SPIKE_IN_GAME = 8,
+    
+    UnlimitSniper = 9,
+    UnlimitSpike = 10,
 }
 
 public enum Reason

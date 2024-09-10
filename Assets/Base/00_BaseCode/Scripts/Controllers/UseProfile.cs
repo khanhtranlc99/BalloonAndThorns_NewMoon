@@ -67,54 +67,57 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-    public static int NumbWatchAdsTNT
+    public static int NumbWatchAdsSniper
     {
         get
         {
-            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_TNT, 3) <= 0)
+            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_SNIPER, 3) <= 0)
             {
                 return 0;
             }
-            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_TNT, 3);
+            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_SNIPER, 3);
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_TNT, value);
+            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_SNIPER, value);
             PlayerPrefs.Save();
         }
     }
-    public static int NumbWatchAdsRocket
+    public static int NumbWatchAdsMoveSighPoin
     {
         get
         {
-            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_ROCKET, 3) <= 0)
+            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_MOVESIGHPOIN, 3) <= 0)
             {
                 return 0;
             }
-            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_ROCKET, 3);
+            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_MOVESIGHPOIN, 3);
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_ROCKET, value);
+            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_MOVESIGHPOIN, value);
             PlayerPrefs.Save();
         }
     }
-    public static int NumbWatchAdsHeart
+    public static int NumbWatchCloneBall
     {
         get
         {
-            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_HEART, 3) <= 0)
+            if (PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_CLONEBALL, 3) <= 0)
             {
                 return 0;
             }
-            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_HEART, 3);
+            return PlayerPrefs.GetInt(StringHelper.NUMB_WATCH_ADS_CLONEBALL, 3);
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_HEART, value);
+            PlayerPrefs.SetInt(StringHelper.NUMB_WATCH_ADS_CLONEBALL, value);
             PlayerPrefs.Save();
         }
     }
+
+
+
     public static int NumbWatchAdsCoin
     {
         get
@@ -131,18 +134,7 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-    public static int EggRanking
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.SCORE_RANKING, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.SCORE_RANKING, value);
-            PlayerPrefs.Save();
-        }
-    }
+   
     public static DateTime TimeLastOverHealth
     {
         get
@@ -166,82 +158,7 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-    #region ChestDataKey
-    public static int EggChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.EGG_CHEST, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.EGG_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int LevelEggChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.LEVEL_EGG_CHEST, 1);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.LEVEL_EGG_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int LevelOfLevelChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.LEVEL_OF_LEVEL_CHEST, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.LEVEL_OF_LEVEL_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int LevelOfBirdChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.LEVEL_OF_BIRD_CHEST, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.LEVEL_OF_BIRD_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-
-    public static int CurrentLevelOfLevelChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_OF_LEVEL_CHEST, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_OF_LEVEL_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int CurrentLevelOfBirdChest
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_OF_BIRD_CHEST, 0);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_OF_BIRD_CHEST, value);
-            PlayerPrefs.Save();
-        }
-    }
-    #endregion
-
+ 
     public static int Coin
     {
         get
@@ -408,27 +325,27 @@ public class UseProfile : MonoBehaviour
         }
     }
 
-    public static bool Fire_Start
+    public static bool UnlimitScope
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.FIRE_START, 0) == 1;
+            return PlayerPrefs.GetInt(StringHelper.UNLIMIT_SCOPE, 0) == 1;
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.FIRE_START, value ? 1 : 0);
+            PlayerPrefs.SetInt(StringHelper.UNLIMIT_SCOPE, value ? 1 : 0);
             PlayerPrefs.Save();
         }
     }
-    public static bool Boom_Start
+    public static bool UnlimitSpike
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.BOOM_START, 0) == 1;
+            return PlayerPrefs.GetInt(StringHelper.UNLIMIT_SPIKE, 0) == 1;
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.BOOM_START, value ? 1 : 0);
+            PlayerPrefs.SetInt(StringHelper.UNLIMIT_SPIKE, value ? 1 : 0);
             PlayerPrefs.Save();
         }
     }

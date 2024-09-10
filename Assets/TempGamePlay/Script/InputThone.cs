@@ -44,7 +44,32 @@ public class InputThone : MonoBehaviour
             return true;
         }    
     }    
-
+    public BallMovement GetBallMovementWithID(int id)
+    {
+        foreach (var item in lsBallMovement)
+        {
+            if (item.id == id)
+            {
+                return item;
+            }
+        }
+        return null;
+    }
+    public bool HasBallInGame
+    {
+        get
+            {
+            foreach (var item in lsBallMovement)
+            {
+                if (item.gameObject.activeSelf == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+   
+    }
     void Start()
     {
         // Thiết lập LineRenderer
@@ -53,7 +78,15 @@ public class InputThone : MonoBehaviour
         lineRenderer.endWidth = 0.15f;
         lineMaterial.SetFloat("width", 0.75f);
         lineMaterial.SetFloat("heigth", 0.1f);
-        numOfReflect = 1;
+        if (UseProfile.UnlimitScope)
+        {
+            numOfReflect = 4;
+        }
+        else
+        {
+            numOfReflect = 1;
+        }
+
         lsBallMovement = new List<BallMovement>();
         SimplePool2.Preload(ballMovement.gameObject, 5);
     }
@@ -223,12 +256,14 @@ public class InputThone : MonoBehaviour
                 }
                 lineRenderer.positionCount = 0;
                 // Khởi tạo bóng và gán vị trí ban đầu của nó
-              
+
+            
                     var temp = SimplePool2.Spawn(ballMovement);
                     temp.transform.position = postFireSpike.transform.position;
-                    // Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
-                    temp.Init(initialDirection);
-                    lsBallMovement.Add(temp);
+                // Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
+                lsBallMovement.Add(temp);
+                temp.Init(initialDirection, lsBallMovement.Count);
+                
                     GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
               
           

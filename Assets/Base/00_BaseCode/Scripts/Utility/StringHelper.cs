@@ -75,12 +75,12 @@ public static class StringHelper
 
     public const string TIME_UNLIMIT_HEART = "time_unlimit_heart";
     public const string IS_UNLIMIT_HEART = "is_unlimit_heart";
-    public const string FIRE_START = "fire_start";
-    public const string BOOM_START = "boom_start";
+    public const string UNLIMIT_SCOPE = "unlimit_scope";
+    public const string UNLIMIT_SPIKE = "unlimit_spike";
 
-    public const string NUMB_WATCH_ADS_TNT = "numb_watch_ads_tnt";
-    public const string NUMB_WATCH_ADS_HEART = "numb_watch_ads_heart";
-    public const string NUMB_WATCH_ADS_ROCKET = "numb_watch_ads_rocket";
+    public const string NUMB_WATCH_ADS_SNIPER = "numb_watch_ads_tnt";
+    public const string NUMB_WATCH_ADS_CLONEBALL = "numb_watch_ads_heart";
+    public const string NUMB_WATCH_ADS_MOVESIGHPOIN = "numb_watch_ads_rocket";
     public const string NUMB_WATCH_ADS_COIN = "numb_watch_ads_coin";
     public const string WAS_BOUGHT_UNLIMIT_TIME = "was_bought_unlimit_time";
     public const string NEED_CHECK_SHOP = "need_check_shop";

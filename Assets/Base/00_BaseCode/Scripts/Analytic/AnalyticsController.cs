@@ -530,10 +530,10 @@ public enum ActionWatchVideo
     Daily = 7,
     UnlockPic = 9,
     RewardEndGame = 10,
-    TNT_Booster =11,
+    MOVE_SIGHTING_POINT_BOOSTER = 11,
     Rocket_Booster =12,
-    Freeze_Booster = 13,
-    Atom_Booste = 14,
+    CloneBall_Booster = 13,
+    Sniper_Booster = 14,
     ReviveFreeLoseBox = 15,
     HeartInHearPopup = 16,
     WinBox_Claim_Coin = 17

@@ -30,7 +30,15 @@ public class LevelData : SerializedMonoBehaviour
     {
 
         countBallon = 0;
-        tvShowLimit.text = "x" + limitTouch;
+        if (UseProfile.UnlimitSpike)
+        {
+            tvShowLimit.text = "";
+        }
+        else
+        {
+            tvShowLimit.text = "x" + limitTouch;
+        }    
+
         foreach (var item in lsBallons)
         {
             item.gameObject.transform.position = new Vector3(item.gameObject.transform.position.x, item.gameObject.transform.position.y,1);
@@ -73,22 +81,28 @@ public class LevelData : SerializedMonoBehaviour
      
    
     }
+    
 
     public void HandleSubtrack()
     {
+        if (UseProfile.UnlimitSpike)
+        {
+            return;
+        }    
         limitTouch -= 1;
         tvShowLimit.text = "x" + limitTouch;
     }    
 
     public void PlusBall()
     {
-        limitTouch *= 2;
+        limitTouch += 5;
         tvShowLimit.text = "x" + limitTouch;
     }
     public void AllBallHit()
     {
         foreach(var item in lsBallons)
         {
+            
             item.TakeDameSpike();
         }    
     }
@@ -96,5 +110,11 @@ public class LevelData : SerializedMonoBehaviour
     {
         limitTouch += 1;
         tvShowLimit.text = "x" + limitTouch;
+    }
+
+    public void HandleUnlimitSpike()
+    {
+
+        tvShowLimit.text = "";
     }
 }

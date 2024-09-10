@@ -50,7 +50,7 @@ public class HeartBox : BaseBox
             btnBuy.interactable = false;
             btnADS.interactable = false;
         }
-        tvCountHeart.text =  UseProfile.NumbWatchAdsHeart.ToString() + "/3";
+        tvCountHeart.text =  UseProfile.NumbWatchCloneBall.ToString() + "/3";
     }
     private void checkHeart()
     {
@@ -73,16 +73,16 @@ public class HeartBox : BaseBox
                      {
                          
 
-                         UseProfile.NumbWatchAdsHeart -= 1;
-                         tvCountHeart.text = UseProfile.NumbWatchAdsHeart.ToString() + "/3";
-                         if (UseProfile.NumbWatchAdsHeart <= 0)
+                         UseProfile.NumbWatchCloneBall -= 1;
+                         tvCountHeart.text = UseProfile.NumbWatchCloneBall.ToString() + "/3";
+                         if (UseProfile.NumbWatchCloneBall <= 0)
                          {
-                             UseProfile.NumbWatchAdsHeart = 3;
+                             UseProfile.NumbWatchCloneBall = 3;
                              UseProfile.Heart++;
                              checkHeart();
                              InitState();
                              List<GiftRewardShow> giftRewardShows = new List<GiftRewardShow>();
-                             giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = GiftType.Heart });
+                             giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = GiftType.CLONE_BALLS_BOOSTER });
                              PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { });
                          }
 
@@ -116,7 +116,7 @@ public class HeartBox : BaseBox
         InitState();
 
         List<GiftRewardShow> giftRewardShows = new List<GiftRewardShow>();
-        giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = GiftType.Heart });
+        giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = GiftType.CLONE_BALLS_BOOSTER });
         PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { });
 
     }

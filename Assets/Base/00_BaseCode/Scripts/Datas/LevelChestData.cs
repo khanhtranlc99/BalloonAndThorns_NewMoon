@@ -10,22 +10,14 @@ public class LevelChestData : ScriptableObject
     {
         get
         {
-            if (UseProfile.LevelOfLevelChest > lsLevelChest.Count - 1)
-            {
-                return null;
-            }
-            return lsLevelChest[UseProfile.LevelOfLevelChest];
+            return null;
 
         }
     }
 
     public void PlusLevelOfLevelChest()
     {
-        UseProfile.LevelOfLevelChest += 1;
-        if (UseProfile.LevelOfLevelChest > lsLevelChest[lsLevelChest.Count - 1].level)
-        {
-            UseProfile.LevelOfLevelChest = 0;
-        }
+     
     }
 
 

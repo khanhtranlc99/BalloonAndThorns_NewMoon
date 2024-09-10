@@ -40,6 +40,9 @@ public class ShopBox : BaseBox
     public CoinHeartBar coinHeartBar;
     public Button btnClose;
     public  GameObject paramPost;
+
+   
+
     private void Init(ButtonShopType buttonShopType)
     {
         shopController.Init(buttonShopType);
@@ -53,7 +56,10 @@ public class ShopBox : BaseBox
         }
         
         coinHeartBar.Init();
-        btnClose.onClick.AddListener(delegate { GameController.Instance.musicManager.PlayClickSound(); Close(); });
+        btnClose.onClick.AddListener(delegate {
+            GameController.Instance.musicManager.PlayClickSound();
+            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+            Close(); });
         EventDispatcher.EventDispatcher.Instance.RegisterListener(EventID.SHOP_CHECK, CheckOffPack);
     }
     private void InitState()
@@ -102,43 +108,43 @@ public class ShopBox : BaseBox
 
     public void CheckOffPack()
     {
-        if(UseProfile.Boom_Start)
+        if(UseProfile.UnlimitScope)
         {
-            GetPackShop(TypePackIAP.BoomPacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.SniperPacks).btnBuy.interactable = false;
 
         }
-        if (UseProfile.Fire_Start)
+        if (UseProfile.UnlimitSpike)
         {
-            GetPackShop(TypePackIAP.FirePacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.SpikePacks).btnBuy.interactable = false;
         }
-        if (UseProfile.Fire_Start && UseProfile.Fire_Start)
+        if (GameController.Instance.useProfile.IsRemoveAds)
         {
-            GetPackShop(TypePackIAP.PremiumPacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.RemoveAdsPacks).btnBuy.interactable = false;
         }
-        if (UseProfile.WasBoughtUnlimitTime)
+        if (UseProfile.UnlimitScope && UseProfile.UnlimitSpike)
         {
-            GetPackShop(TypePackIAP.ImmortalPacks).btnBuy.interactable = false;
+           
+            GetPackShop(TypePackIAP.VipPacks).btnBuy.interactable = false;
         }
+     
     }
     public void CheckOffPack(object param)
     {
-        if (UseProfile.Boom_Start)
+        if (UseProfile.UnlimitScope)
         {
-            GetPackShop(TypePackIAP.BoomPacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.SniperPacks).btnBuy.interactable = false;
         }
-        if (UseProfile.Fire_Start)
+        if (UseProfile.UnlimitSpike)
         {
-            GetPackShop(TypePackIAP.FirePacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.SpikePacks).btnBuy.interactable = false;
         }
-        if (UseProfile.Fire_Start && UseProfile.Fire_Start)
+        if (UseProfile.UnlimitScope && UseProfile.UnlimitSpike)
         {
-            GetPackShop(TypePackIAP.PremiumPacks).btnBuy.interactable = false;
+            GetPackShop(TypePackIAP.VipPacks).btnBuy.interactable = false;
         }
-        if (UseProfile.WasBoughtUnlimitTime)
-        {
-            GetPackShop(TypePackIAP.ImmortalPacks).btnBuy.interactable = false;
-        }    
+       
     }
+   
     private void OnDestroy()
     {
         EventDispatcher.EventDispatcher.Instance.RemoveListener(EventID.SHOP_CHECK, CheckOffPack);

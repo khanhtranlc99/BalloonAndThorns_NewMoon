@@ -29,6 +29,9 @@ public class GamePlayController : Singleton<GamePlayController>
     public TutorialFunController TutMoveSightingPointBooster;
     public TutorialFunController TutCloneBallsBooster;
     public TutorialFunController TutRocketBooster;
+
+    public Transform limitLeft;
+    public Transform limitRight;
     protected override void OnAwake()
     {
         stateGame = StateGame.Playing;
@@ -68,7 +71,14 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void HandleShowWin()
     {
-        Winbox.Setup().Show();
+        if (UseProfile.CurrentLevel == 4)
+        {
+            DialogueRate.Setup().Show();
+        }
+        else
+        {
+            Winbox.Setup().Show();
+        }
     }    
 
     [Button]

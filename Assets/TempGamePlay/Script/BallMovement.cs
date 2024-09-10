@@ -14,11 +14,13 @@ public class BallMovement : MonoBehaviour
     public bool wasTouch;
     public AudioSource audioSource;
     public BallMovement ballMovementPrefab;
-    public void Init(Vector2 param)
+    public int id;
+    public void Init(Vector2 param, int idParam)
     {
+        id = idParam;
         wasTouch = false;
-         direction = param;
-        speed = 20;
+        direction = param.normalized;
+        speed = 10;
         radius = 0.4f;
      
         activeMove = true;
@@ -53,26 +55,25 @@ public class BallMovement : MonoBehaviour
                     if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
                     {
                         hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike();
+                        hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(this);
                     }
                     if (hit.collider.gameObject.tag == "Broad")
                     {
-                        //if(wasTouch)
-                        //{
-                            SimplePool2.Despawn(this.gameObject);
-                        //}            
+
+                        GamePlayController.Instance.gameScene.HandleWarning ();
+                        SimplePool2.Despawn(this.gameObject);
+                             
                     }
-                    //else
-                    //{
-                    //    wasTouch = true;
-                    //}    
-                }
-                else if (hit.collider != null && hit.collider.isTrigger)
-                {
+                  
+                    }
+                     else if (hit.collider != null && hit.collider.isTrigger)
+                     {
                     if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
-                    {
+                       {
                         hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike();
+                        hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(this);
                     }
-                }
+                      }
             }
 
             // Di chuyển quả bóng
@@ -104,7 +105,8 @@ public class BallMovement : MonoBehaviour
 
         // Xoay hướng ban đầu 45 độ quanh trục Z
         Vector3 direction1 = Quaternion.Euler(0, 0, 45) * initialDirection;
-        temp1.Init(direction1);
+        GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp1);
+        temp1.Init(direction1, GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Count);
 
         // Spawn và khởi tạo temp2 với hướng -45 độ
         var temp2 = SimplePool2.Spawn(ballMovementPrefab);
@@ -112,11 +114,12 @@ public class BallMovement : MonoBehaviour
 
         // Xoay hướng ban đầu -45 độ quanh trục Z
         Vector3 direction2 = Quaternion.Euler(0, 0, -45) * initialDirection;
-        temp2.Init(direction2);
-
-
-        GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp1);
         GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp2);
+        temp2.Init(direction2, GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Count);
+
+
+
+
         SimplePool2.Despawn(this.gameObject);
     }    
 

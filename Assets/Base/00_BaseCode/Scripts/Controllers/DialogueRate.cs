@@ -44,8 +44,8 @@ public class DialogueRate : BaseBox
         for (int i = 0; i < lstBtnStar.Count; i++)
         {
             int index = i + 1;
-         
-            lstImgStar[i].sprite = lstSprStar[0];
+
+            lstImgStar[i].color = new Color32(86, 66, 66,255) ;
         }
         countStar = 0;
     
@@ -55,11 +55,11 @@ public class DialogueRate : BaseBox
         countStar = index;
         for (int i = 0; i < lstImgStar.Count; i++)
         {
-            lstImgStar[i].sprite = lstSprStar[0];
+            lstImgStar[i].color = new Color32(86, 66, 66, 255);
         }
         for (int i = 0; i < index; i++)
         {
-            lstImgStar[i].sprite = lstSprStar[1];
+            lstImgStar[i].color = new Color32(255, 255, 255, 255);
         }
         btnConfirm.interactable = true;
         //GameController.Instance.musicManager.Pla();

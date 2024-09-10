@@ -23,7 +23,7 @@ public class PlayerContain : MonoBehaviour
         levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
         levelData.Init();
         inputThone = levelData.inputThone;
-        levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y,0);
+    
 
         spinerBooster.Init(this);
         moveSightingPointBooster.Init(this);
@@ -34,11 +34,21 @@ public class PlayerContain : MonoBehaviour
         GamePlayController.Instance.TutMoveSightingPointBooster.StartTut();
  
         GamePlayController.Instance.TutRocketBooster.StartTut();
+        StartCoroutine(SetPost());
+
+        GameController.Instance.AnalyticsController.LoadingComplete();
+        GameController.Instance.AnalyticsController.StartLevel(UseProfile.CurrentLevel);
+    }
+    private IEnumerator SetPost()
+    {
+        yield return new WaitForSeconds(0.1f);
+        levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y, 0);
     }
 
     public void HandleSpinerBooster()
     {
         inputThone.numOfReflect = 4;
+      
     }
 
     public void HandleMoveSightingPointBooster()
@@ -74,7 +84,14 @@ public class PlayerContain : MonoBehaviour
         temp.transform.localScale = new Vector3(-1,1,1);
         temp.transform.DOMove(Vector3.zero, 1).OnComplete(delegate {
 
-            levelData.AllBallHit();
+            try
+            {
+                levelData.AllBallHit();
+            }
+          catch
+            {
+
+            }
             //GamePlayController.Instance.playerContain.levelData.CountWin(null);
             testc1 = true;
             if(param!=null)
@@ -85,5 +102,16 @@ public class PlayerContain : MonoBehaviour
         });
         
     }
+
+    public void NextLevel()
+    {
+        UseProfile.CurrentLevel += 1;
+        if (UseProfile.CurrentLevel > 70)
+        {
+            UseProfile.CurrentLevel = 70;
+        }
+
+        Initiate.Fade("GamePlay", Color.black, 2f);
+    }    
 
 }

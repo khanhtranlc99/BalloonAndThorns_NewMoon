@@ -29,7 +29,7 @@ public class Ballon : BarrialAir
             GameController.Instance.musicManager.PlayRandomBallon();
             GamePlayController.Instance.gameScene.HandleSubtrackBallon();
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
-            GamePlayController.Instance.HandlSpawnItemInGameBallon(1, this.transform.position);
+            GamePlayController.Instance.HandlSpawnItemInGameBallon(GameController.Instance.dataContain.giftDatabase.GetIconItem(GiftType.Coin), this.transform.position);
        
         }
     }
@@ -142,6 +142,11 @@ public class Ballon : BarrialAir
         var temp = Random.RandomRange(0, lsDataBallon.Count);
         spriteRenderer.sprite = lsDataBallon[temp].ballon;
         eplosionBallon = lsDataBallon[temp].eplosionBallon;
+    }
+
+    public override void TakeDameSpikeEffect(BallMovement paramBall)
+    {
+    
     }
 }
 

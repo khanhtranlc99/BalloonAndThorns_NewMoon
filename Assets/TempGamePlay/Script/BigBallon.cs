@@ -36,7 +36,7 @@ public class BigBallon : BarrialAir
                 item.ballon.gameObject.transform.DOMove(item.post.position, 0.5f).OnComplete(delegate {
 
                     item.ballon.Init();
-
+                    GamePlayController.Instance.playerContain.levelData.lsBallons.Add(item.ballon);
                 });
             }    
 
@@ -50,7 +50,7 @@ public class BigBallon : BarrialAir
         foreach (var item in lsBallons)
         {
             item.ballon.gameObject.transform.position = new Vector3(item.ballon.gameObject.transform.position.x, item.ballon.gameObject.transform.position.y, 1);
-          
+     
 
         }
 
@@ -148,7 +148,10 @@ public class BigBallon : BarrialAir
             outLine.SetActive(false);
         }
     }
+    public override void TakeDameSpikeEffect(BallMovement paramBall)
+    {
 
+    }
     [Button]
     private void HandleRandom()
     {

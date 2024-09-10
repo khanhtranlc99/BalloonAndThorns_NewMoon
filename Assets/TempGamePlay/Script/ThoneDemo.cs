@@ -27,6 +27,16 @@ public class ThoneDemo : MonoBehaviour
         {
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z));
             parent.transform.position = new Vector3(worldPosition.x, parent.transform.position.y, 0);
+            if (parent.transform.position.x <= GamePlayController.Instance.limitLeft.position.x)
+            {
+                parent.transform.position = new Vector3(GamePlayController.Instance.limitLeft.position.x, parent.transform.position.y, 0);
+
+            }
+            if (parent.transform.position.x >= GamePlayController.Instance.limitRight.position.x)
+            {
+                parent.transform.position = new Vector3(GamePlayController.Instance.limitRight.position.x, parent.transform.position.y, 0);
+
+            }
         }    
      
     }

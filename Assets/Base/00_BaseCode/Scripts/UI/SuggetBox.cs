@@ -29,57 +29,62 @@ public class SuggetBox : BaseBox
     public Text tvNum;
     public Text tvCountNumbAds;
     public GameObject iconAds;
+    public CoinHeartBar coinHeartBar;
     public void Init()
     {
-        btnClose.onClick.AddListener(delegate { GameController.Instance.musicManager.PlayClickSound(); Close(); });
+     
+        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true; GameController.Instance.musicManager.PlayClickSound(); Close(); });
    
         payByCoinBtn.onClick.AddListener(delegate { HandlePayByCoin(); });
     }
 
     public void InitState(GiftType giftType, bool isTut)
     {
+        coinHeartBar.Init();
+        Debug.LogError(giftType);
+        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
         currentGift = giftType;
         switch (giftType)
         {
             case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
                 tvTitler.text = "MOVE SIGHTING POINT BOOSTER";
-                tvContent.text = "Create a 3x3 wide explosion";
-                price = 150;
+                tvContent.text = "Move the aiming point left and right ";
+                price = 200;
                 tvPrive.text = price.ToString();
-                actionWatchVideo = ActionWatchVideo.TNT_Booster;
+                actionWatchVideo = ActionWatchVideo.MOVE_SIGHTING_POINT_BOOSTER;
                 payByAdsBtn.onClick.RemoveAllListeners();
                 payByAdsBtn.onClick.AddListener(delegate { HandlePayByAds(); });
                 iconAds.SetActive(true);
-                tvCountNumbAds.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
+                tvCountNumbAds.text = UseProfile.NumbWatchAdsMoveSighPoin.ToString() + "/3";
                 break;
             case GiftType.SNIPER_BOOSTER:
                 tvTitler.text = "Sniper";
-                tvContent.text = "Shoots 1 random slime";
-                price = 200;
+                tvContent.text = "Increases visibility by 4 times";
+                price = 150;
                 tvPrive.text = price.ToString();
-                actionWatchVideo = ActionWatchVideo.Rocket_Booster;
+                actionWatchVideo = ActionWatchVideo.Sniper_Booster;
                 payByAdsBtn.onClick.RemoveAllListeners();
                 payByAdsBtn.onClick.AddListener(delegate { HandlePayByAds(); });
                 iconAds.SetActive(true);
-                tvCountNumbAds.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
+                tvCountNumbAds.text = UseProfile.NumbWatchAdsSniper.ToString() + "/3";
                 break;
             case GiftType.CLONE_BALLS_BOOSTER:
                 tvTitler.text = "Clone balls";
-                tvContent.text = "Freeze all slimes";
+                tvContent.text = "Duplicate all spikes";
                 price = 300;
                 tvPrive.text = price.ToString();
-                actionWatchVideo = ActionWatchVideo.Freeze_Booster;
+                actionWatchVideo = ActionWatchVideo.CloneBall_Booster;
                 payByAdsBtn.onClick.RemoveAllListeners();
-                payByAdsBtn.onClick.AddListener(delegate { ShopBox.Setup(ButtonShopType.Gold).Show(); });
-                iconAds.SetActive(false);
-                tvCountNumbAds.text =  "Shop";
+                payByAdsBtn.onClick.AddListener(delegate { HandlePayByAds(); });
+                iconAds.SetActive(true);
+                tvCountNumbAds.text = UseProfile.NumbWatchCloneBall.ToString() + "/3";
                 break;
             case GiftType.ROCKET_BOOSTER:
-                tvTitler.text = "Atom";
+                tvTitler.text = "Rocket";
                 tvContent.text = "Create a Big explosion";
                 price = 700;
                 tvPrive.text = price.ToString();
-                actionWatchVideo = ActionWatchVideo.Atom_Booste;
+                actionWatchVideo = ActionWatchVideo.Rocket_Booster;
                 payByAdsBtn.onClick.RemoveAllListeners();
                 payByAdsBtn.onClick.AddListener(delegate { ShopBox.Setup(ButtonShopType.Gold).Show(); });
                 iconAds.SetActive(false);
@@ -114,25 +119,38 @@ public class SuggetBox : BaseBox
                          switch (currentGift)
                          {
                              case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
-                                 UseProfile.NumbWatchAdsTNT -= 1;
-                                 if (UseProfile.NumbWatchAdsTNT <= 0)
+                          
+
+                                 UseProfile.NumbWatchAdsMoveSighPoin -= 1;
+                                 if (UseProfile.NumbWatchAdsMoveSighPoin <= 0)
                                  {
-                                     UseProfile.NumbWatchAdsTNT = 3;
+                                     UseProfile.NumbWatchAdsMoveSighPoin = 3;
                                      HandleClaimGiftX1();
-                                   
+
                                  }
-                                 tvCountNumbAds.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
+                                 tvCountNumbAds.text = UseProfile.NumbWatchAdsMoveSighPoin.ToString() + "/3";
                                  break;
                              case GiftType.SNIPER_BOOSTER:
-
-                                 UseProfile.NumbWatchAdsRocket -= 1;
-                                 if (UseProfile.NumbWatchAdsRocket <= 0)
+                                 UseProfile.NumbWatchAdsSniper -= 1;
+                                 if (UseProfile.NumbWatchAdsSniper <= 0)
                                  {
-                                     UseProfile.NumbWatchAdsRocket = 3;
+                                     UseProfile.NumbWatchAdsSniper = 3;
                                      HandleClaimGiftX1();
 
                                  }
-                                 tvCountNumbAds.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
+                                 tvCountNumbAds.text = UseProfile.NumbWatchAdsSniper.ToString() + "/3";
+
+                                 break;
+                             case GiftType.CLONE_BALLS_BOOSTER:
+
+                                 UseProfile.NumbWatchCloneBall -= 1;
+                                 if (UseProfile.NumbWatchCloneBall <= 0)
+                                 {
+                                     UseProfile.NumbWatchCloneBall = 3;
+                                     HandleClaimGiftX1();
+
+                                 }
+                                 tvCountNumbAds.text = UseProfile.NumbWatchCloneBall.ToString() + "/3";
                                  break;
                          }
                             
@@ -167,6 +185,17 @@ public class SuggetBox : BaseBox
         else
         {
             ShopBox.Setup(ButtonShopType.Gold).Show();
+
+            
+            //GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp_UI
+            //              (
+            //                 payByCoinBtn.transform
+            //                 ,
+            //              payByCoinBtn.transform.position,
+            //              "Not enough coin",
+            //              Color.white,
+            //              isSpawnItemPlayer: true
+            //              );
         }    
 
 
@@ -180,7 +209,10 @@ public class SuggetBox : BaseBox
         GameController.Instance.dataContain.giftDatabase.Claim(currentGift, 1);
         List<GiftRewardShow> giftRewardShows = new List<GiftRewardShow>();
         giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = currentGift });
-        PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { });
+        PopupRewardBase.Setup(false).Show(giftRewardShows, delegate {
+
+            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true  ;
+        });
 
     }
     public void HandleClaimGiftX1()
@@ -191,7 +223,11 @@ public class SuggetBox : BaseBox
         GameController.Instance.dataContain.giftDatabase.Claim(currentGift, 1);
         List<GiftRewardShow> giftRewardShows = new List<GiftRewardShow>();
         giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = currentGift });
-        PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { });
+        PopupRewardBase.Setup(false).Show(giftRewardShows, delegate {
+
+
+            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+        });
 
     }
 }

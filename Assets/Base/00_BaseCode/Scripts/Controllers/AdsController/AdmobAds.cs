@@ -25,9 +25,9 @@ public class AdmobAds : MonoBehaviour
     public bool showingMREC;
 #if UNITY_ANDROID
     private const string MaxSdkKey = "izbW4oEiJA_cdTh6wc0r6Cqyel80b8VaLe1pL0pAKx7TvV9BoLk4F29V4R3OUqiynDPwowsUIsszEb66mbssOZ";
-    private const string InterstitialAdUnitId = "046ee05ba30fcde2";
-    private const string RewardedAdUnitId = "1e308facd5cc01c1";
-    private const string BanerAdUnitId = "42afee22aa89924a";
+    private const string InterstitialAdUnitId = "12cba4c7ccc515b2";
+    private const string RewardedAdUnitId = "e3a512f3b1d365cd";
+    private const string BanerAdUnitId = "cf16d1454e49a5b7";
     //private string AppOpenId = "45fa180466aff54e";
     //private const string MREC_Id = "9569f2b411b0eddf";
 
@@ -161,8 +161,7 @@ public class AdmobAds : MonoBehaviour
 
             if (UseProfile.CurrentLevel >= RemoteConfigController.GetFloatConfig(FirebaseConfig.LEVEL_START_SHOW_INITSTIALL, 1))
             {
-
-                Debug.LogError("ShowInterstitialHandle_" + RemoteConfigController.GetFloatConfig(FirebaseConfig.DELAY_SHOW_INITSTIALL, 90));
+               
                 if (countdownAds > RemoteConfigController.GetFloatConfig(FirebaseConfig.DELAY_SHOW_INITSTIALL, 90))
                 {
                     ShowInterstitialHandle(isShowImmediatly, actionWatchLog, actionIniterClose, level);

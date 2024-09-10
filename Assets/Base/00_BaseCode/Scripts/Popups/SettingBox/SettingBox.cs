@@ -53,7 +53,7 @@ public class SettingBox : BaseBox
     #endregion
     private void Init()
     {
-        btnClose.onClick.AddListener(delegate { OnClickButtonClose(); }); 
+        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true; OnClickButtonClose(); }); 
         btnVibration.onClick.AddListener(delegate { OnClickBtnVibration(); });
         btnMusic.onClick.AddListener(delegate { OnClickBtnMusic(); });
         btnSound.onClick.AddListener(delegate { OnClickBtnSound(); });
@@ -83,7 +83,7 @@ public class SettingBox : BaseBox
         }    
     
         SetUpBtn();
-       
+        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
     }
 
     public void OffBtn()
@@ -178,11 +178,7 @@ public class SettingBox : BaseBox
 
         void Next()
         {
-            if(isGameplay)
-            {
-      
              
-            }    
         
             Close();
 
@@ -211,16 +207,15 @@ public class SettingBox : BaseBox
     }
     public void HandleBtnRestart()
     {
-        //GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "Restart");
-        //void Next()
-        //{
-        //    Close();
-        //    Initiate.Fade("GamePlay", Color.black, 1.5f);
-        //}
-        //Close();
-        GameController.Instance.musicManager.PlayClickSound();
-        BackHomeBox.Setup(TypeBackHOme.ResetLevel).Show();
+        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "Restart");
+        void Next()
+        {
+            GameController.Instance.musicManager.PlayClickSound();
+            Initiate.Fade("GamePlay", Color.black, 2f);
+        }
+        Close();
 
+        //BackHomeBox.Setup(TypeBackHOme.ResetLevel).Show();
 
     }
     private void OnClickRestorePurchase()

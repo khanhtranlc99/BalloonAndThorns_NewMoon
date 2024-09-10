@@ -36,23 +36,22 @@ public class PackInShopAds : PackInShop
         {
             case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
 
-                tvBuy.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
-                tvBuy_2.text = UseProfile.NumbWatchAdsTNT.ToString() + "/3";
+                tvBuy.text = UseProfile.NumbWatchAdsMoveSighPoin.ToString() + "/3";
+         
                 break;
             case GiftType.SNIPER_BOOSTER:
-                tvBuy.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
-                tvBuy_2.text = UseProfile.NumbWatchAdsRocket.ToString() + "/3";
-
+                tvBuy.text = UseProfile.NumbWatchAdsSniper.ToString() + "/3";
+         
                 break;
-            case GiftType.Heart:
-                tvBuy.text = UseProfile.NumbWatchAdsHeart.ToString() + "/3";
-                tvBuy_2.text = UseProfile.NumbWatchAdsHeart.ToString() + "/3";
+            case GiftType.CLONE_BALLS_BOOSTER:
+                tvBuy.text = UseProfile.NumbWatchCloneBall.ToString() + "/3";
+  
 
                 break;
             case GiftType.Coin:
 
                 tvBuy.text = UseProfile.NumbWatchAdsCoin.ToString() + "/3";
-                tvBuy_2.text = UseProfile.NumbWatchAdsCoin.ToString() + "/3";
+        
                 break;
         }
     }    
@@ -60,28 +59,28 @@ public class PackInShopAds : PackInShop
     {
         switch (currentGift)
         {
-            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
-                UseProfile.NumbWatchAdsTNT -= 1;
-                if (UseProfile.NumbWatchAdsTNT <= 0)
+            case GiftType.SNIPER_BOOSTER:
+                UseProfile.NumbWatchAdsSniper -= 1;
+                if (UseProfile.NumbWatchAdsSniper <= 0)
                 {
-                    Claim(delegate { UseProfile.NumbWatchAdsTNT = 3; ShowCount();   });
+                    Claim(delegate { UseProfile.NumbWatchAdsSniper = 3; ShowCount();   });
                 }    
 
 
                 break;
-            case GiftType.SNIPER_BOOSTER:
-                UseProfile.NumbWatchAdsRocket -= 1;
-                if (UseProfile.NumbWatchAdsRocket <= 0)
+            case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
+                UseProfile.NumbWatchAdsMoveSighPoin -= 1;
+                if (UseProfile.NumbWatchAdsMoveSighPoin <= 0)
                 {
-                    Claim(delegate { UseProfile.NumbWatchAdsRocket = 3; ShowCount(); });
+                    Claim(delegate { UseProfile.NumbWatchAdsMoveSighPoin = 3; ShowCount(); });
                 }
 
                 break;
-            case GiftType.Heart:
-                UseProfile.NumbWatchAdsHeart -= 1;
-                if (UseProfile.NumbWatchAdsHeart <= 0)
+            case GiftType.CLONE_BALLS_BOOSTER:
+                UseProfile.NumbWatchCloneBall -= 1;
+                if (UseProfile.NumbWatchCloneBall <= 0)
                 {
-                    Claim(delegate { UseProfile.NumbWatchAdsHeart = 3; ShowCount(); });
+                    Claim(delegate { UseProfile.NumbWatchCloneBall = 3; ShowCount(); });
                 }
 
                 break;
@@ -104,19 +103,19 @@ public class PackInShopAds : PackInShop
         {
             case GiftType.MOVE_SIGHTING_POINT_BOOSTER:
 
-                actionWatchVideo = ActionWatchVideo.TNT_Booster;
+                actionWatchVideo = ActionWatchVideo.MOVE_SIGHTING_POINT_BOOSTER;
                 break;
             case GiftType.SNIPER_BOOSTER:
 
-                actionWatchVideo = ActionWatchVideo.Rocket_Booster;
+                actionWatchVideo = ActionWatchVideo.Sniper_Booster;
                 break;
             case GiftType.CLONE_BALLS_BOOSTER:
 
-                actionWatchVideo = ActionWatchVideo.Freeze_Booster;
+                actionWatchVideo = ActionWatchVideo.CloneBall_Booster;
                 break;
             case GiftType.ROCKET_BOOSTER:
 
-                actionWatchVideo = ActionWatchVideo.Atom_Booste;
+                actionWatchVideo = ActionWatchVideo.Rocket_Booster;
                 break;
         }
         GameController.Instance.musicManager.PlayClickSound();
