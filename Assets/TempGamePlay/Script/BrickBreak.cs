@@ -35,4 +35,8 @@ public class BrickBreak : BarrialAir
     {
 
     }
+    public override void HandleColorBallon()
+    {
+       
+    }
 }

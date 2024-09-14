@@ -18,7 +18,7 @@ public class BigBallon : BarrialAir
     public float speed = 2f;  // Speed of movement
     private bool movingUp = true;
     public List<PostSmallBall> lsBallons;
-
+    public Color colorBallon;
     public void Explosion()
     {
         spriteRenderer.sprite = eplosionBallon;
@@ -158,6 +158,15 @@ public class BigBallon : BarrialAir
         var temp = Random.RandomRange(0, lsDataBallon.Count);
         spriteRenderer.sprite = lsDataBallon[temp].ballon;
         eplosionBallon = lsDataBallon[temp].eplosionBallon;
+        colorBallon = lsDataBallon[temp].color;
+        foreach (var item in vfxExprosion)
+        {
+            item.startColor = colorBallon;
+        }
+    }
+    public override void HandleColorBallon()
+    {
+        HandleRandom();
     }
 }
 

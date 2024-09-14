@@ -28,7 +28,7 @@ public class ItemInGameBallon : MonoBehaviour
         spriteRenderer.sprite = param;
         spriteRenderer.color = Color.white;
         this.transform.localScale = Vector3.zero;
-        this.transform.DOScale(new Vector3(1, 1, 1), 0.5f).OnComplete(delegate {
+        this.transform.DOScale(new Vector3(0.75f, 0.75f, 0.75f), 0.5f).OnComplete(delegate {
 
             this.transform.DOMoveY(this.transform.position.y + 0.3f, 0.5f).OnComplete(delegate {
 

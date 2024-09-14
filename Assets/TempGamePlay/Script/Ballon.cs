@@ -18,6 +18,7 @@ public class Ballon : BarrialAir
     public float speed = 2f;  // Speed of movement
     private bool movingUp = true;
     public bool isInit;
+    public Color colorBallon;
 
     public virtual void Explosion()
     {
@@ -30,7 +31,10 @@ public class Ballon : BarrialAir
             GamePlayController.Instance.gameScene.HandleSubtrackBallon();
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             GamePlayController.Instance.HandlSpawnItemInGameBallon(GameController.Instance.dataContain.giftDatabase.GetIconItem(GiftType.Coin), this.transform.position);
-       
+            foreach (var item in vfxExprosion)
+            {
+                item.Play();
+            }
         }
     }
 
@@ -142,11 +146,23 @@ public class Ballon : BarrialAir
         var temp = Random.RandomRange(0, lsDataBallon.Count);
         spriteRenderer.sprite = lsDataBallon[temp].ballon;
         eplosionBallon = lsDataBallon[temp].eplosionBallon;
+        colorBallon = lsDataBallon[temp].color;
+        foreach(var item in vfxExprosion)
+        {
+            item.startColor = colorBallon;
+        }    
+     
+    
     }
 
     public override void TakeDameSpikeEffect(BallMovement paramBall)
     {
     
+    }
+
+    public override void HandleColorBallon()
+    {
+        HandleRandom();
     }
 }
 
@@ -155,5 +171,6 @@ public class DataBallon
 {
     public Sprite ballon;
     public Sprite eplosionBallon;
+    public Color color;
 
 }

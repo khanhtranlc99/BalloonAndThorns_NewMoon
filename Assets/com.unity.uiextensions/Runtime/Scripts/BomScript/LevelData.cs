@@ -117,4 +117,13 @@ public class LevelData : SerializedMonoBehaviour
 
         tvShowLimit.text = "";
     }
+    [Button]
+    private void HandleColor()
+    {
+        foreach (var item in lsBallons)
+        {
+
+            item.HandleColorBallon();
+        }
+    }    
 }
