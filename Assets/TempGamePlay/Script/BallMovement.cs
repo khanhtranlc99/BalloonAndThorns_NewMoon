@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallMovement : MonoBehaviour
+public class BallMovement : BarrialAir 
 {
     private float speed = 5f;
     private float radius = 0.4f;
@@ -13,18 +13,43 @@ public class BallMovement : MonoBehaviour
     public HitVfx vfxTouch;
     public bool wasTouch;
     public AudioSource audioSource;
-    public void Init(Vector2 param)
+    public SpriteRenderer spriteRenderer;
+    public Sprite explosionSprite;
+
+    public bool isStanding;
+    public CircleCollider2D collider2D;
+
+    public  void Init(DataBallon param)
+    {
+        spriteRenderer.sprite = param.ballon;
+        explosionSprite  = param.eplosionBallon;
+        id = param.id;
+        isStanding = false;
+    }
+    public override void Init()
+    {
+
+    }
+    public override void TakeDameSpike()
+    {
+        collider2D.enabled = false;
+        spriteRenderer.sprite = explosionSprite;
+        activeMove = false;
+        isStanding = false;
+
+    }
+    public void ShootBallon(Vector2 param)
     {
         wasTouch = false;
          direction = param;
         speed = 20;
-        radius = 0.4f;
-     
+        radius = 0.4f;   
         activeMove = true;
-
     }
 
-
+    public Vector3 positionX; // Target position X
+    public Vector3 positionY; // Target position X
+    private bool movingUp = true;
     void FixedUpdate()
     {
         if (activeMove)
@@ -57,7 +82,8 @@ public class BallMovement : MonoBehaviour
                     {
                         //if(wasTouch)
                         //{
-                            SimplePool2.Despawn(this.gameObject);
+
+                        Destroy(this.gameObject);
                         //}            
                     }
                     //else
@@ -69,15 +95,53 @@ public class BallMovement : MonoBehaviour
                 {
                     if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
                     {
-                        hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike();
+
+                        if (hit.collider.gameObject.GetComponent<BarrialAir>().id != this.id)
+                        {
+                            positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 0);
+                            positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 0);
+                            //this.transform.position = hit.transform.position;
+                            collider2D.enabled = true;
+                            activeMove = false;
+                            speed = Random.RandomRange(0.1f, 0.5f);
+                            isStanding = true;
+                        }
+                        else
+                        {
+                            TakeDameSpike();
+                            hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike();
+                            Debug.LogError("BarrialAirBarrialAir");
+                        }
+
                     }
                 }
             }
 
             // Di chuyển quả bóng
             transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
+            //this.transform.localEulerAngles -= new Vector3(0, 0, 5);
         }
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+        if(isStanding)
+        {
+            if (movingUp)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, positionX, speed * Time.fixedDeltaTime);
+                if (Vector3.Distance(transform.position, positionX) < 0.01f)
+                {
+                    movingUp = false;
+                }
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, positionY, speed * Time.fixedDeltaTime);
+                if (Vector3.Distance(transform.position, positionY) < 0.01f)
+                {
+                    movingUp = true;
+                }
+            }
+
+
+        }
     }
     private void OnDisable()
     {
@@ -90,5 +154,7 @@ public class BallMovement : MonoBehaviour
 
         }
     }
+
+
 
 }

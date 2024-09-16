@@ -18,8 +18,9 @@ public class PlayerContain : MonoBehaviour
         string pathLevel = StringHelper.PATH_CONFIG_LEVEL_TEST;
         levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
         levelData.Init();
-        inputThone = levelData.inputThone;
-        levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y,0);
+        inputThone.Init(levelData);
+
+
     }
 
     public void Test_1()
@@ -35,7 +36,7 @@ public class PlayerContain : MonoBehaviour
 
     public void Test_3()
     {
-        levelData.inputThone.postFireSpike.HandleBooster();
+        //levelData.inputThone.postFireSpike.HandleBooster();
     }
 
     public void Test_4()

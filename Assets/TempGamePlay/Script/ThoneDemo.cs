@@ -15,7 +15,7 @@ public class ThoneDemo : MonoBehaviour
     }    
     private void FixedUpdate()
     {
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+       
     }
 
     private void OnMouseDrag()

@@ -24,13 +24,24 @@ public class LevelData : SerializedMonoBehaviour
     public int limitTouch;
     public TMP_Text tvShowLimit;
     public int numbTarget;
+    public List<DataBallon> lsDataBallon;
 
-
+    public BarrialAir GetBallon(int id)
+    {
+        foreach(var item in lsBallons)
+        {
+            if(item.idInLevelT == id)
+            {
+                return item;
+            }    
+        }
+        return null;
+    }
     public void Init()
     {
 
         countBallon = 0;
-        tvShowLimit.text = "x" + limitTouch;
+        //tvShowLimit.text = "x" + limitTouch;
         foreach (var item in lsBallons)
         {
 
@@ -96,5 +107,36 @@ public class LevelData : SerializedMonoBehaviour
     {
         limitTouch += 1;
         tvShowLimit.text = "x" + limitTouch;
+    }
+
+    [Button]
+    private void HandleFillId()
+    {
+         for(int i = 0; i < lsBallons.Count; i ++)
+        {
+            lsBallons[i].idInLevelT = i;
+        }    
+    }
+
+    [Button]
+    private void HandleSave()
+    {
+        for (int i = 0; i < lsBallons.Count; i++)
+        {
+            lsBallons[i].GetComponent<Ballon>().HandleSave();
+        }
+    }
+    [Button]
+    private void HandleLoad()
+    {
+        for (int i = 0; i < lsBallons.Count; i++)
+        {
+            lsBallons[i].GetComponent<Ballon>().HandleLoad();
+        }
+    }
+
+    public void HandleExplosion()
+    {
+        
     }
 }

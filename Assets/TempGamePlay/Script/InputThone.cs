@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 [System.Serializable]
 public class RaycastPoint
 {
@@ -12,19 +13,25 @@ public class RaycastPoint
 public class InputThone : MonoBehaviour
 {
 
-    public ThoneDemo postFireSpike;
-    public BallMovement ballMovement;
+    public Transform transformFirstBall;
+    public Transform transformSecondBall;
+    public BallMovement firstBalls;
+    public BallMovement secondBalls;
+
     RaycastHit2D hit;
     Vector2 initialDirection;
- 
     public LineRenderer lineRenderer;
     public LayerMask hitLayers;
     public List<GameObject> lsThoneDemos;
     public Material lineMaterial;
     public int numOfReflect;
+
+    public BallMovement ballMovement;
     public List<BallMovement> lsBallMovement;
     public  List<RaycastPoint> lsRaycastPoints;
     public  bool wasDraw;
+
+    public LevelData levelData;
 
     public bool AllDestoy
     {
@@ -44,10 +51,9 @@ public class InputThone : MonoBehaviour
             return true;
         }    
     }    
-
-    void Start()
+    public void Init(LevelData param)
     {
-        // Thiết lập LineRenderer
+        levelData = param;
         lineRenderer.positionCount = 0; // Khởi tạo với không điểm
         lineRenderer.startWidth = 0.15f;
         lineRenderer.endWidth = 0.15f;
@@ -55,19 +61,78 @@ public class InputThone : MonoBehaviour
         lineMaterial.SetFloat("heigth", 0.1f);
         numOfReflect = 1;
         lsBallMovement = new List<BallMovement>();
-        SimplePool2.Preload(ballMovement.gameObject, 5);
+        SimplePool2.Preload(ballMovement.gameObject, 20);
+        HandleSetUpBall();
     }
 
+    List<DataBallon> lsIdRemain;
+    int random;
+
+    DataBallon GetDataBallon
+    {
+
+        get
+        {
+            lsIdRemain = new List<DataBallon>();
+            foreach (var item in levelData.lsDataBallon)
+            {
+                lsIdRemain.Add(item);
+            }
+            random = Random.RandomRange(0, lsIdRemain.Count);
+            return lsIdRemain[random];
+        }    
+    }    
+
+
+    private void HandleSetUpBall()
+    {
+
+      
+        if (firstBalls == null && secondBalls == null)
+        {
+    
+
+            var temp = Instantiate(ballMovement);
+            temp.transform.position = transformFirstBall.position;
+            temp.Init(GetDataBallon);
+            firstBalls = temp;
+
+            var temp2 = Instantiate(ballMovement);
+            temp2.transform.position = transformSecondBall.position;
+            temp2.Init(GetDataBallon);
+            secondBalls = temp2;
+            wasDraw = true;
+        }    
+        else
+        {
+            wasDraw = false;
+            secondBalls.transform.DOMove(transformFirstBall.position,0.5f).OnComplete(delegate {
+
+                wasDraw = true;
+                firstBalls = secondBalls;
+                secondBalls = null;
+                var temp2 = Instantiate(ballMovement);
+                temp2.transform.position = transformSecondBall.position;
+                temp2.Init(GetDataBallon);
+                secondBalls = temp2;
+            });
+
+        }    
+
+
+
+    }    
+  
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            if(GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && GamePlayController.Instance.stateGame == StateGame.Playing)
-            {
-                wasDraw = true;
-            }    
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    if(GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && GamePlayController.Instance.stateGame == StateGame.Playing)
+        //    {
+        //         = true;
+        //    }    
         
-        }    
+        //}    
         if (wasDraw)
         {
             if (Input.GetMouseButton(0))
@@ -78,21 +143,21 @@ public class InputThone : MonoBehaviour
 
                 // Chuyển đổi vị trí chuột từ màn hình sang thế giới
                 Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.z));
-                if(worldPosition.y <= postFireSpike.transform.position.y)
+                if(worldPosition.y <= transformFirstBall.transform.position.y)
                 {
                     HandleMouseEndLimit();
                     return;
                     
                 }    
                 // Tạo một Ray bắn từ vị trí của thoneDemo qua vị trí người dùng chạm
-                Vector3 direction = (worldPosition - postFireSpike.transform.position).normalized;
+                Vector3 direction = (worldPosition - transformFirstBall.transform.position).normalized;
 
                 // Lưu hướng của raycast để sử dụng khi khởi tạo bóng
                 initialDirection = direction;
 
                 // Sử dụng CircleCast thay cho Raycast, với bán kính hình tròn là 0.4f
                 Vector3 currentDirection = direction;
-                Vector3 currentOrigin = postFireSpike.transform.position;
+                Vector3 currentOrigin = transformFirstBall.transform.position;
 
                 // Khởi tạo LineRenderer
                 lineRenderer.positionCount = 1;
@@ -223,13 +288,19 @@ public class InputThone : MonoBehaviour
                 lineRenderer.positionCount = 0;
                 // Khởi tạo bóng và gán vị trí ban đầu của nó
               
-                    var temp = SimplePool2.Spawn(ballMovement);
-                    temp.transform.position = postFireSpike.transform.position;
-                    // Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
-                    temp.Init(initialDirection);
-                    lsBallMovement.Add(temp);
-                    GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
-              
+                    //var temp = SimplePool2.Spawn(ballMovement);
+                    //temp.transform.position = firstBalls.transform.position;
+                    //// Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
+                    //temp.ShootBallon(initialDirection);
+                    //lsBallMovement.Add(temp);
+                    //GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
+              if(firstBalls != null)
+                {
+                    firstBalls.ShootBallon(initialDirection);
+                    firstBalls = null;
+                    HandleSetUpBall();
+               
+                }    
           
             }
         }
@@ -240,7 +311,7 @@ public class InputThone : MonoBehaviour
 
     private void HandleMouseEndLimit()
     {
-        wasDraw = false;
+       
         foreach (var item in lsThoneDemos)
         {
             item.gameObject.SetActive(false);
