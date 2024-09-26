@@ -14,7 +14,7 @@ public class InputThone : MonoBehaviour
 {
 
     public ThoneDemo postFireSpike;
-    public BallMovement ballMovement;
+    public BallController ballMovement;
  
     RaycastHit2D hit;
     Vector2 initialDirection;
@@ -74,8 +74,13 @@ public class InputThone : MonoBehaviour
 
     public SpriteRenderer outlineLimit;
     public GameObject objText;
+ 
 
-    void Start()
+    public int numberOfPoints = 50; // Number of points to draw the trajectory
+    public float timeBetweenPoints = 0.1f; // Time interval between points
+    public LayerMask collisionMask;
+  
+    public void Init()
     {
         // Thiết lập LineRenderer
         wasDraw = false;
@@ -100,11 +105,15 @@ public class InputThone : MonoBehaviour
             lineRenderer.SetColors(Color.black, Color.black);
         }
         firstPost = postFireSpike.transform.position;
+        collisionMask = LayerMask.GetMask("Default");
+        collisionMask = LayerMask.GetMask("Layer_2");
     }
+
+   
 
     void Update()
     {
-      
+
         if (Input.GetMouseButtonDown(0))
         {
             if (GamePlayController.Instance.playerContain.levelData.limitTouch > 0)
@@ -112,15 +121,15 @@ public class InputThone : MonoBehaviour
                 outlineLimit.gameObject.SetActive(true);
                 wasDraw = true;
             }
-              objText.gameObject.SetActive(true);
-          
+            objText.gameObject.SetActive(true);
+
         }
         if (wasDraw)
         {
             if (Input.GetMouseButton(0))
             {
                 secondPost = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-             
+
                 if (secondPost.x < leftPost.position.x)
                 {
                     secondPost = new Vector3(leftPost.position.x, secondPost.y);
@@ -138,14 +147,16 @@ public class InputThone : MonoBehaviour
                 {
                     secondPost = new Vector3(secondPost.x, upPost.position.y);
                 }
-                lineRenderer.positionCount = 2;
-                lineRenderer.SetPosition(0, new Vector3(firstPost.x, firstPost.y, 0));
-                lineRenderer.SetPosition(1, new Vector3(secondPost.x, secondPost.y, 0));
-              
+
+
+               
+
                 postFireSpike.transform.position = new Vector3(secondPost.x, secondPost.y, 0);
-                objText.transform.position = new Vector3(secondPost.x+0.5f, secondPost.y+0.5f, 0);
+                objText.transform.position = new Vector3(secondPost.x + 0.5f, secondPost.y + 0.5f, 0);
 
-
+                initialDirection = (firstPost - postFireSpike.transform.position).normalized * 1.5f ;
+                DrawTrajectory(ballMovement.rigidbody2D, postFireSpike.transform.position, initialDirection);
+           
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -159,39 +170,121 @@ public class InputThone : MonoBehaviour
                 {
                     item.gameObject.SetActive(false);
                 }
-                lineRenderer.positionCount = 0;
+               
                 postFireSpike.transform.localScale = Vector3.zero;
                 postFireSpike.transform.position = firstPost;
                 objText.transform.position = new Vector3(firstPost.x + 0.5f, firstPost.y + 0.5f, 0);
-                // Khởi tạo bóng và gán vị trí ban đầu của nó
 
 
-                //    var temp = SimplePool2.Spawn(ballMovement);
-                //    temp.transform.position = postFireSpike.transform.position;
-                //// Sử dụng hướng của raycast đầu tiên để khởi tạo bóng
-            
-                //temp.Init(initialDirection, lsBallMovement.Count);
-                initialDirection = firstPost - secondPost;
-                Debug.LogError("initialDirection" + initialDirection);
-                var temp = SimplePool2.Spawn(GamePlayController.Instance.ballController);
+             
+                var temp = SimplePool2.Spawn(ballMovement);
+
                 temp.transform.position = postFireSpike.transform.position;
-
                 temp.AddForceBall(initialDirection);
+           
+                lineRenderer.positionCount = 0;
+
                 lsBallMovement.Add(temp);
 
                 GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
-        
+
                 StartCoroutine(StartAgain());
                 outlineLimit.gameObject.SetActive(false);
                 objText.gameObject.SetActive(false);
             }
 
         }
-    
-       
-         
 
-   
+
+
+
+
+    }
+    int tempList;
+    public float distanceStartEnd;
+    void DrawTrajectory(Rigidbody2D rb, Vector2 start, Vector2 initialForce)
+    {
+        Vector2 currentPosition = start;
+        Vector2 initialVelocity = initialForce / rb.mass;
+
+        float gravity = Physics2D.gravity.y * rb.gravityScale;
+        float timeStep = timeBetweenPoints;
+
+        lineRenderer.positionCount = numberOfPoints;
+
+        for (int i = 0; i < numberOfPoints; i++)
+        {
+            float t = i * timeStep;
+            Vector2 displacement = initialVelocity * t + 0.5f * new Vector2(0, gravity) * t * t;
+            Vector2 newPoint = currentPosition + displacement;
+
+            if (newPoint.y < -10)
+            {
+                lineRenderer.positionCount = i;
+                break;
+            }
+
+            // Set the position of each point in the LineRenderer
+ 
+            lineRenderer.SetPosition(i, newPoint);
+
+            if (i > 0)
+            {
+                //Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
+                Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
+                float distance = Vector2.Distance(lineRenderer.GetPosition(i), lineRenderer.GetPosition(i - 1));
+
+                // Perform a raycast from the previous point to the current point
+                RaycastHit2D hit = Physics2D.CircleCast(lineRenderer.GetPosition(i - 1), 0.5f, direction, distance, collisionMask);
+
+                if (hit.collider != null)
+                {
+                    // Calculate the reflection direction
+                    Vector2 reflectDirection = Vector2.Reflect(direction, hit.normal);
+
+                    // Update the position to the collision point
+                    Vector2 collisionPoint = hit.point + hit.normal * 0.5f;
+                    lineRenderer.SetPosition(i, collisionPoint);
+                    lineRenderer.positionCount = i + 1;
+
+                    // Start drawing the reflected trajectory
+                
+                    break; // Exit the loop after handling the first collision
+                }
+
+                Debug.DrawRay(lineRenderer.GetPosition(i - 1), direction * distance, Color.green, 0.1f);
+            }
+        }
+        distanceStartEnd = Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+       
+    }
+
+    void DrawReflectedTrajectory(Rigidbody2D rb, Vector2 start, Vector2 reflectDirection)
+    {
+        Vector2 currentPosition = start;
+        Vector2 initialVelocity = reflectDirection * 10f; // Adjust the speed after reflection if necessary
+
+        float gravity = Physics2D.gravity.y * rb.gravityScale;
+        float timeStep = timeBetweenPoints;
+
+        int reflectedPoints = numberOfPoints / 2; // Limit the number of points for reflected trajectory
+        lineRenderer.positionCount += reflectedPoints; // Increase the lineRenderer point count for the reflected trajectory
+
+        for (int i = 0; i < reflectedPoints; i++)
+        {
+            float t = i * timeStep;
+            Vector2 displacement = initialVelocity * t + 0.5f * new Vector2(0, gravity) * t * t;
+            Vector2 newPoint = currentPosition + displacement;
+
+            if (newPoint.y < -10)
+            {
+                lineRenderer.positionCount -= (reflectedPoints - i); // Adjust the position count to stop at the ground
+                break;
+            }
+
+            // Set the position of each reflected point in the LineRenderer
+            lineRenderer.SetPosition(lineRenderer.positionCount - reflectedPoints + i, newPoint);
+        }
     }
     private IEnumerator StartAgain()
     {

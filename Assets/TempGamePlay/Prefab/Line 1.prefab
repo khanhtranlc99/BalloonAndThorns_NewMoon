@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postFireSpike: {fileID: 771442368093785257}
-  ballMovement: {fileID: 3368367723875134208, guid: ef695b4866bee064580d30178c79cde7, type: 3}
+  ballMovement: {fileID: 2329205516789350755, guid: 192c477a3c66f9649b59c988c7bff87e, type: 3}
   lineRenderer: {fileID: 7757015555719457660}
   hitLayers:
     serializedVersion: 2
@@ -1025,13 +1025,17 @@ MonoBehaviour:
   wasDraw: 0
   firstPost: {x: 0, y: 0, z: 0}
   secondPost: {x: 0, y: 0, z: 0}
-  thirdPost: {x: 0, y: 0, z: 0}
   leftPost: {fileID: 167233297260153824}
   rightPost: {fileID: 8350432091290106631}
   upPost: {fileID: 2616194165559634909}
   botPost: {fileID: 9033992728418559300}
   outlineLimit: {fileID: 632284547128380427}
   objText: {fileID: 1551290615347498091}
+  numberOfPoints: 50
+  timeBetweenPoints: 0.1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!120 &7757015555719457660
 LineRenderer:
   serializedVersion: 2

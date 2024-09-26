@@ -18,6 +18,8 @@ public class BallController : MonoBehaviour
 
     public void AddForceBall( Vector2 param)
     {
+        
+     
         rigidbody2D.AddForce(param  , ForceMode2D.Impulse);
     }
 

@@ -6,15 +6,17 @@ public class DrawPredictedTrajectory : MonoBehaviour
     public Vector3 firstPost;
     public Vector3 secondPost;
     public LineRenderer lineRenderer;
-    public BallTest prefapBall;
-    public int numberOfPoints = 50; // Number of points to draw the trajectory
-    public float timeBetweenPoints = 0.1f; // Time interval between points
+   
+    public BallController prefapBall;
+    public int numberOfPoints = 50; // Số điểm để vẽ quỹ đạo
+    public float timeBetweenPoints = 0.1f; // Khoảng thời gian giữa các điểm
     public LayerMask collisionMask;
+    public float distanceStartEnd;
 
-    private void Start()
+    public void Init()
     {
         firstPost = post.position;
-        // Set the number of points for LineRenderer
+        // Thiết lập số điểm cho LineRenderer
         lineRenderer.positionCount = numberOfPoints;
     }
 
@@ -25,16 +27,16 @@ public class DrawPredictedTrajectory : MonoBehaviour
             secondPost = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             post.transform.position = new Vector3(secondPost.x, secondPost.y, 0);
 
-            // Calculate direction and initial force (initialDirection)
-            Vector2 initialDirection = (firstPost - secondPost).normalized * 10f;
+            // Tính toán hướng và lực ban đầu (initialDirection)
+            Vector2 initialDirection = (firstPost - secondPost).normalized * 10;
 
-            // Draw predicted trajectory
+            // Vẽ quỹ đạo dự đoán
             DrawTrajectory(prefapBall.rigidbody2D, post.position, initialDirection);
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            Vector2 initialDirection = (firstPost - secondPost).normalized * 10f;
+            Vector2 initialDirection = (firstPost - secondPost).normalized * 10;
             var temp = SimplePool2.Spawn(prefapBall);
             temp.transform.position = post.transform.position;
             temp.AddForceBall(initialDirection);
@@ -66,7 +68,10 @@ public class DrawPredictedTrajectory : MonoBehaviour
             }
 
             // Set the position of each point in the LineRenderer
+           
             lineRenderer.SetPosition(i, newPoint);
+
+            Debug.LogError("distanceStartEnd_" + distanceStartEnd);
 
             if (i > 0)
             {
@@ -83,53 +88,26 @@ public class DrawPredictedTrajectory : MonoBehaviour
 
                     // Update the position to the collision point
                     Vector2 collisionPoint = hit.point + hit.normal * 0.5f;
-                    lineRenderer.SetPosition(i, collisionPoint);
-                    lineRenderer.positionCount = i + 1;
+                  
+                        lineRenderer.SetPosition(i, collisionPoint);
+                        lineRenderer.positionCount = i + 1;
+                 
 
                     // Start drawing the reflected trajectory
-                    DrawReflectedTrajectory(rb, collisionPoint, reflectDirection);
+                
+
                     break; // Exit the loop after handling the first collision
                 }
 
                 Debug.DrawRay(lineRenderer.GetPosition(i - 1), direction * distance, Color.green, 0.1f);
             }
         }
-    }
-
-    void DrawReflectedTrajectory(Rigidbody2D rb, Vector2 start, Vector2 reflectDirection)
-    {
-        Vector2 currentPosition = start;
-
-        // Calculate the initial velocity after reflection considering bounciness
-        Vector2 initialVelocity = reflectDirection * (10f * 0.98f); // Adjust speed based on bounciness
-        initialVelocity /= rb.mass; // Adjust for mass
-
-        float gravity = Physics2D.gravity.y * rb.gravityScale;
-        float timeStep = timeBetweenPoints;
-
-        int reflectedPoints = numberOfPoints / 2; // Limit the number of points for reflected trajectory
-        lineRenderer.positionCount += reflectedPoints; // Increase the lineRenderer point count for the reflected trajectory
-
-        for (int i = 0; i < reflectedPoints; i++)
+        distanceStartEnd = Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
+        if (distanceStartEnd > 1)
         {
-            float t = i * timeStep;
-            Vector2 displacement = initialVelocity * t + 0.5f * new Vector2(0, gravity) * t * t;
-            Vector2 newPoint = currentPosition + displacement;
-
-            if (newPoint.y < -10)
-            {
-                lineRenderer.positionCount -= (reflectedPoints - i); // Adjust the position count to stop at the ground
-                break;
-            }
-
-            // Set the position of each reflected point in the LineRenderer
-            lineRenderer.SetPosition(lineRenderer.positionCount - reflectedPoints + i, newPoint);
-
-            // Update the current position for the next iteration
-            currentPosition = newPoint;
-
-            // Apply friction effect
-            initialVelocity *= (1 - 0); // Decrease the velocity by the friction factor
+            lineRenderer.positionCount = lineRenderer.positionCount / 2;
         }
     }
+
+   
 }

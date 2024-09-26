@@ -23,7 +23,7 @@ public class PlayerContain : MonoBehaviour
         levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
         levelData.Init();
         inputThone = levelData.inputThone;
-    
+        inputThone.Init();
 
         spinerBooster.Init(this);
         moveSightingPointBooster.Init(this);
