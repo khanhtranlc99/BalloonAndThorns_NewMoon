@@ -32,6 +32,24 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public Transform limitLeft;
     public Transform limitRight;
+    public GameObject backGround_1;
+    public GameObject backGround_2;
+
+    public List<RockWall> lsIdWallOffInGame;
+
+    public BallController ballController;
+    public RockWall GetRockWall(int id)
+    {
+        foreach(var item in lsIdWallOffInGame)
+        {
+            if(item.id == id)
+            {
+                return item;
+            }    
+        }
+        return null;
+    }    
+
     protected override void OnAwake()
     {
         stateGame = StateGame.Playing;
@@ -57,6 +75,16 @@ public class GamePlayController : Singleton<GamePlayController>
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
         StartCoroutine(HandleSetPostWall());
+        if(RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 1)
+        {
+            backGround_1.SetActive(true);
+            backGround_2.SetActive(false);
+        }
+        if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
+        {
+            backGround_1.SetActive(false);
+            backGround_2.SetActive(true);
+        }
 
     }
    
@@ -71,6 +99,12 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void HandleShowWin()
     {
+        if (Time.timeScale == 2)
+        {
+            Time.timeScale = 1;
+            gameScene.HandleChangeNormal();
+        }
+     
         if (UseProfile.CurrentLevel == 4)
         {
             DialogueRate.Setup().Show();
@@ -81,7 +115,7 @@ public class GamePlayController : Singleton<GamePlayController>
         }
     }    
 
-    [Button]
+  
     private IEnumerator HandleSetPostWall()
     {
         yield return new WaitForEndOfFrame();
@@ -89,6 +123,14 @@ public class GamePlayController : Singleton<GamePlayController>
         {
             item.workPost.position = item.uiPost.position;
         }    
+    }
+    [Button]
+    private void Test()
+    {
+        foreach (var item in testPosts)
+        {
+            item.workPost.position = item.uiPost.position;
+        }
     }    
 
     public void HandlSpawnItemInGameBallon(int param, Vector3 post)
@@ -105,7 +147,15 @@ public class GamePlayController : Singleton<GamePlayController>
         temp.Init(param);
     }
 
-
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.K))
+        {
+            Winbox.Setup().Show();
+            Debug.LogError("Winbox");
+        }
+      
+    }
 }
 [System.Serializable]
 public class TestPost

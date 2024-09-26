@@ -84,6 +84,11 @@ public class SettingBox : BaseBox
     
         SetUpBtn();
         GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+        if (Time.timeScale == 2)
+        {
+            Time.timeScale = 1;
+            GamePlayController.Instance.gameScene.HandleChangeNormal();
+        }
     }
 
     public void OffBtn()

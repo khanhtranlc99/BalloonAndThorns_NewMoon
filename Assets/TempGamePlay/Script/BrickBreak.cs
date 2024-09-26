@@ -31,7 +31,7 @@ public class BrickBreak : BarrialAir
         }
         partycale.Play();
     }
-    public override void TakeDameSpikeEffect(BallMovement paramBall)
+    public override void TakeDameSpikeEffect(BallMovement paramBall, BallController ballController)
     {
 
     }

@@ -24,7 +24,8 @@ public class LevelData : SerializedMonoBehaviour
     public int limitTouch;
     public TMP_Text tvShowLimit;
     public int numbTarget;
-
+    public List<int> lsIdWallOff;
+ 
 
     public void Init()
     {
@@ -43,6 +44,14 @@ public class LevelData : SerializedMonoBehaviour
         {
             item.gameObject.transform.position = new Vector3(item.gameObject.transform.position.x, item.gameObject.transform.position.y,1);
             item.Init();
+
+        }
+
+        foreach (var item in lsIdWallOff)
+        {
+
+            GamePlayController.Instance.GetRockWall(item).HandleDieWall();
+             
 
         }
 

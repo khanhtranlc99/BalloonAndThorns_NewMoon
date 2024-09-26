@@ -191,7 +191,7 @@ public class KeyPref
 
 public class FirebaseConfig
 {
-
+    public const string ID_BACK_GROUND = "id_back_ground";
     public const string LINK_RATE = "link_rate_game";
     public const string SHOW_OPEN_ADS = "show_open_ads";
     public const string SHOW_OPEN_ADS_FIRST_OPEN = "show_open_ads_first_open";

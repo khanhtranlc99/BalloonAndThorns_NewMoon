@@ -34,8 +34,14 @@ public class LoseBox : BaseBox
     }   
     public void InitState()
     {
+        if (Time.timeScale == 2)
+        {
+            Time.timeScale = 1;
+          GamePlayController.Instance.gameScene.HandleChangeNormal();
+        }
         GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
         GameController.Instance.AnalyticsController.LoseLevel(UseProfile.CurrentLevel);
+     
     }
     private void HandleRetry()
     {

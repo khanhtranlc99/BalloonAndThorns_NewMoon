@@ -148,7 +148,7 @@ public class BigBallon : BarrialAir
             outLine.SetActive(false);
         }
     }
-    public override void TakeDameSpikeEffect(BallMovement paramBall)
+    public override void TakeDameSpikeEffect(BallMovement paramBall,  BallController ballController)
     {
 
     }

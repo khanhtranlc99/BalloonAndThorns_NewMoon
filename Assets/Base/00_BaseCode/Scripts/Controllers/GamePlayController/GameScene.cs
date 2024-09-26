@@ -21,7 +21,13 @@ public class GameScene : BaseScene
 
     public Image warningPanel;
     public Button shopButton;
+    public Button resetButton;
     public bool wasOpenShop;
+
+    public GameObject toolsPanel;
+
+    public GameObject panelX1;
+    public GameObject panelX2;
     public void Init(LevelData levelData)
     {
         wasOpenShop = false;
@@ -47,22 +53,46 @@ public class GameScene : BaseScene
         if(UseProfile.CurrentLevel == 1)
         {
             shopButton.interactable = false;
-        }    
+        }
+        resetButton.onClick.AddListener(OnReset);
     }
 
     private void HandleSpeedBtn()
     {
-
-        if(Time.timeScale == 1)
+        //GamePlayController.Instance.TutGameplay.NextTut();
+        if (Time.timeScale == 1)
         {
             Time.timeScale = 2;
+            panelX2.SetActive(false);
+            panelX1.SetActive(true);
         }    
         else
         {
             Time.timeScale = 1;
-        }    
-    }    
+            panelX2.SetActive(true);
+            panelX1.SetActive(false);
+        }
+    
+    }
 
+    public void HandleChangeNormal()
+    {
+
+        panelX2.SetActive(true);
+        panelX1.SetActive(false);
+
+    }
+
+    public  void OnPanel()
+    {
+        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+
+    }
+    public void OffPanel()
+    {
+        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+
+    }
 
     private void HandleBtnAdsBall()
     {
@@ -125,4 +155,21 @@ public class GameScene : BaseScene
             warningPanel.DOFade(0, 0.5f);
         });
     }    
+    private void OnReset()
+    {
+        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "Restart");
+        void Next()
+        {
+            GameController.Instance.musicManager.PlayClickSound();
+            Initiate.Fade("GamePlay", Color.black, 2f);
+        }
+    }
+    public void OnPanelTools()
+    {
+        toolsPanel.SetActive(true);
+    }
+    public void OffPanelTools()
+    {
+        toolsPanel.SetActive(false);
+    }
 }

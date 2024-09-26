@@ -53,9 +53,9 @@ public class Winbox : BaseBox
                 GameController.Instance.musicManager.PlayClickSound();
                 UseProfile.Coin += GamePlayController.Instance.playerContain.levelData.numbTarget;
                 UseProfile.CurrentLevel += 1;
-                if (UseProfile.CurrentLevel > 70)
+                if (UseProfile.CurrentLevel > 80)
                 {
-                    UseProfile.CurrentLevel = 70;
+                    UseProfile.CurrentLevel = 80;
                 }
                 Initiate.Fade("GamePlay", Color.black, 2f);
 

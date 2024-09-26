@@ -29,7 +29,7 @@ public class PlayerContain : MonoBehaviour
         moveSightingPointBooster.Init(this);
         cloneBallsBooster.Init(this);
         roketBooster.Init(this);
-        GamePlayController.Instance.TutGameplay.StartTut();
+        //GamePlayController.Instance.TutGameplay.StartTut();
         GamePlayController.Instance.TutSpinerBooster.StartTut();
         GamePlayController.Instance.TutMoveSightingPointBooster.StartTut();
  
@@ -42,7 +42,7 @@ public class PlayerContain : MonoBehaviour
     private IEnumerator SetPost()
     {
         yield return new WaitForSeconds(0.1f);
-        levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y, 0);
+        //levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y, 0);
     }
 
     public void HandleSpinerBooster()
@@ -60,7 +60,7 @@ public class PlayerContain : MonoBehaviour
 
     public void HandleCloneBallsBooster()
     {
-        var temp = new List<BallMovement>();
+        var temp = new List<BallController>();
         foreach (var item in levelData.inputThone.lsBallMovement)
         {
             if (item.gameObject.activeSelf)
@@ -106,9 +106,9 @@ public class PlayerContain : MonoBehaviour
     public void NextLevel()
     {
         UseProfile.CurrentLevel += 1;
-        if (UseProfile.CurrentLevel > 70)
+        if (UseProfile.CurrentLevel > 80)
         {
-            UseProfile.CurrentLevel = 70;
+            UseProfile.CurrentLevel = 80;
         }
 
         Initiate.Fade("GamePlay", Color.black, 2f);

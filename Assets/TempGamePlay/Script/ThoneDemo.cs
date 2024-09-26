@@ -9,6 +9,7 @@ public class ThoneDemo : MonoBehaviour
     // Update is called once per frame
     public bool isBooster = false;
     public GameObject vfxBooster;
+    public InputThone inputThone;
 
     public void HandleBooster()
     {
@@ -49,7 +50,7 @@ public class ThoneDemo : MonoBehaviour
             vfxBooster.SetActive(false);
         }
     }
-
+ 
     public void HandleScale()
     {
         ScaleIcon();

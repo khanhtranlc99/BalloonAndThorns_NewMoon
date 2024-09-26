@@ -13,7 +13,7 @@ public class CloneSpikeBallon : Ballon
        
 
     }
-    public override void TakeDameSpikeEffect(BallMovement paramBall)
+    public override void TakeDameSpikeEffect(BallMovement paramBall, BallController ballController)
     {
         spriteRenderer.sprite = eplosionBallon;
 
@@ -25,7 +25,7 @@ public class CloneSpikeBallon : Ballon
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             demoSpike.gameObject.SetActive(false);
 
-            paramBall.HandleBoosterX2();
+            ballController.HandleBoosterX2();
 
             //GamePlayController.Instance.HandlSpawnItemInGameBallon(sprite, this.transform.position);
 

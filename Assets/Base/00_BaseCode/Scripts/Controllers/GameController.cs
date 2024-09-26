@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public SceneType currentScene;
  
     public StartLoading startLoading;
+    public float idBackground;
 
     protected void Awake()
     {
@@ -72,7 +73,7 @@ public class GameController : MonoBehaviour
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);
         startLoading.Init();
         heartGame.Init();
- 
+        idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
     }
 
     public void LoadScene(string sceneName)
