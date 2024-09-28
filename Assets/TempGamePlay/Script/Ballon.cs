@@ -73,71 +73,71 @@ public class Ballon : BarrialAir
                     movingUp = true;
                 }
             }
-        }    
-        //if (GamePlayController.Instance.playerContain.inputThone.wasDraw)
-        //{
-        //    Vector2 circleCenter = circleCollider.transform.position;
-        //    float radius = circleCollider.radius * circleCollider.transform.localScale.x; // Bao gồm scale nếu có
+        }
+        if (GamePlayController.Instance.playerContain.inputThone.wasDraw)
+        {
+            Vector2 circleCenter = circleCollider.transform.position;
+            float radius = circleCollider.radius * circleCollider.transform.localScale.x; // Bao gồm scale nếu có
 
-        //    bool isRaycastPassingThrough = false; // Cờ để theo dõi nếu có raycast nào thỏa mãn điều kiện
+            bool isRaycastPassingThrough = false; // Cờ để theo dõi nếu có raycast nào thỏa mãn điều kiện
 
-        //    foreach (RaycastPoint raycastPoint in GamePlayController.Instance.playerContain.inputThone.lsRaycastPoints)
-        //    {
-        //        Vector2 startPoint = raycastPoint.startPoint;
-        //        Vector2 endPoint = raycastPoint.endPoint;
+            foreach (RaycastPoint raycastPoint in GamePlayController.Instance.playerContain.inputThone.lsRaycastPoints)
+            {
+                Vector2 startPoint = raycastPoint.startPoint;
+                Vector2 endPoint = raycastPoint.endPoint;
 
-        //        // Vector chỉ phương của đoạn thẳng từ startPoint đến endPoint
-        //        Vector2 direction = (endPoint - startPoint).normalized;
+                // Vector chỉ phương của đoạn thẳng từ startPoint đến endPoint
+                Vector2 direction = (endPoint - startPoint).normalized;
 
-        //        // Tính vector từ điểm đầu đến tâm hình tròn
-        //        Vector2 startToCenter = circleCenter - startPoint;
+                // Tính vector từ điểm đầu đến tâm hình tròn
+                Vector2 startToCenter = circleCenter - startPoint;
 
-        //        // Chiếu vector từ startPoint đến center lên direction để tìm điểm gần nhất trên đoạn thẳng
-        //        float projectionLength = Vector2.Dot(startToCenter, direction);
-        //        Vector2 closestPoint;
+                // Chiếu vector từ startPoint đến center lên direction để tìm điểm gần nhất trên đoạn thẳng
+                float projectionLength = Vector2.Dot(startToCenter, direction);
+                Vector2 closestPoint;
 
-        //        if (projectionLength < 0)
-        //        {
-        //            // Điểm gần nhất là startPoint
-        //            closestPoint = startPoint;
-        //        }
-        //        else if (projectionLength > Vector2.Distance(startPoint, endPoint))
-        //        {
-        //            // Điểm gần nhất là endPoint
-        //            closestPoint = endPoint;
-        //        }
-        //        else
-        //        {
-        //            // Điểm gần nhất nằm trên đoạn thẳng
-        //            closestPoint = startPoint + direction * projectionLength;
-        //        }
+                if (projectionLength < 0)
+                {
+                    // Điểm gần nhất là startPoint
+                    closestPoint = startPoint;
+                }
+                else if (projectionLength > Vector2.Distance(startPoint, endPoint))
+                {
+                    // Điểm gần nhất là endPoint
+                    closestPoint = endPoint;
+                }
+                else
+                {
+                    // Điểm gần nhất nằm trên đoạn thẳng
+                    closestPoint = startPoint + direction * projectionLength;
+                }
 
-        //        // Tính khoảng cách từ điểm gần nhất đến tâm hình tròn
-        //        float distanceToCircle = Vector2.Distance(closestPoint, circleCenter);
+                // Tính khoảng cách từ điểm gần nhất đến tâm hình tròn
+                float distanceToCircle = Vector2.Distance(closestPoint, circleCenter);
 
-        //        // Kiểm tra nếu khoảng cách này nhỏ hơn hoặc bằng bán kính hình tròn
-        //        if (distanceToCircle <= radius)
-        //        {
-                
-        //            isRaycastPassingThrough = true; // Cập nhật cờ nếu có raycast thỏa mãn
-        //            break; // Có thể dừng vòng lặp nếu tìm thấy một raycast thỏa mãn
-        //        }
-        //    }
+                // Kiểm tra nếu khoảng cách này nhỏ hơn hoặc bằng bán kính hình tròn
+                if (distanceToCircle <= radius)
+                {
 
-        //    // Cập nhật màu của spriteRenderer dựa trên giá trị của cờ
-        //    if (isRaycastPassingThrough && !isOff)
-        //    {
-        //        outLine.SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        outLine.SetActive(false);
-        //    }
-        //}
-        //else
-        //{
-        //    outLine.SetActive(false);
-        //}
+                    isRaycastPassingThrough = true; // Cập nhật cờ nếu có raycast thỏa mãn
+                    break; // Có thể dừng vòng lặp nếu tìm thấy một raycast thỏa mãn
+                }
+            }
+
+            // Cập nhật màu của spriteRenderer dựa trên giá trị của cờ
+            if (isRaycastPassingThrough && !isOff)
+            {
+                outLine.SetActive(true);
+            }
+            else
+            {
+                outLine.SetActive(false);
+            }
+        }
+        else
+        {
+            outLine.SetActive(false);
+        }
     }
 
     [Button]

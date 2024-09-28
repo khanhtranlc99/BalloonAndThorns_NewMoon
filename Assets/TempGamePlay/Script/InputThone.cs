@@ -20,6 +20,7 @@ public class InputThone : MonoBehaviour
     Vector2 initialDirection;
  
     public LineRenderer lineRenderer;
+    public LineRenderer lineRenderer_Demo;
     public LayerMask hitLayers;
     public List<GameObject> lsThoneDemos;
     public Material lineMaterial;
@@ -106,7 +107,7 @@ public class InputThone : MonoBehaviour
         }
         firstPost = postFireSpike.transform.position;
         collisionMask = LayerMask.GetMask("Default");
-        collisionMask = LayerMask.GetMask("Layer_2");
+
     }
 
    
@@ -156,7 +157,10 @@ public class InputThone : MonoBehaviour
 
                 initialDirection = (firstPost - postFireSpike.transform.position).normalized * 1.5f ;
                 DrawTrajectory(ballMovement.rigidbody2D, postFireSpike.transform.position, initialDirection);
-           
+                lineRenderer_Demo.positionCount = 2;
+                lineRenderer_Demo.SetPosition(0, new Vector3(firstPost.x,firstPost.y,-10));
+                lineRenderer_Demo.SetPosition(1, new Vector3(postFireSpike.transform.position.x, postFireSpike.transform.position.y, -10));
+
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -171,8 +175,7 @@ public class InputThone : MonoBehaviour
                     item.gameObject.SetActive(false);
                 }
                
-                postFireSpike.transform.localScale = Vector3.zero;
-                postFireSpike.transform.position = firstPost;
+          
                 objText.transform.position = new Vector3(firstPost.x + 0.5f, firstPost.y + 0.5f, 0);
 
 
@@ -191,6 +194,9 @@ public class InputThone : MonoBehaviour
                 StartCoroutine(StartAgain());
                 outlineLimit.gameObject.SetActive(false);
                 objText.gameObject.SetActive(false);
+                postFireSpike.transform.localScale = Vector3.zero;
+                postFireSpike.transform.position = firstPost;
+                lineRenderer_Demo.positionCount = 0;
             }
 
         }
@@ -228,8 +234,12 @@ public class InputThone : MonoBehaviour
  
             lineRenderer.SetPosition(i, newPoint);
 
+
+  
+
             if (i > 0)
             {
+              
                 //Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
                 Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
                 float distance = Vector2.Distance(lineRenderer.GetPosition(i), lineRenderer.GetPosition(i - 1));
@@ -247,8 +257,14 @@ public class InputThone : MonoBehaviour
                     lineRenderer.SetPosition(i, collisionPoint);
                     lineRenderer.positionCount = i + 1;
 
+                    RaycastPoint raycastPoint = new RaycastPoint
+                    {
+                        startPoint = lineRenderer.GetPosition(i - 1),
+                        endPoint = (Vector3)newPoint
+                    };
+                    lsRaycastPoints.Add(raycastPoint);
                     // Start drawing the reflected trajectory
-                
+
                     break; // Exit the loop after handling the first collision
                 }
 

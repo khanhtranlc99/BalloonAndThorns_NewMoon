@@ -59,7 +59,7 @@ public class BallController : MonoBehaviour
         // Spawn và khởi tạo temp1 với hướng 45 độ
         var temp1 = SimplePool2.Spawn(ballMovementPrefab);
         temp1.transform.position = this.transform.position;
-        Debug.LogError("temp1"+ temp1.gameObject.name);
+   
 
         // Xoay hướng ban đầu 45 độ quanh trục Z
         Vector3 direction1 = Quaternion.Euler(0, 0, 45) * transform.right;
@@ -71,10 +71,10 @@ public class BallController : MonoBehaviour
         temp2.transform.position = this.transform.position;
 
         // Xoay hướng ban đầu -45 độ quanh trục Z
-        Vector3 direction2 = Quaternion.Euler(0, 0, -45) * transform.up;
+        Vector3 direction2 = Quaternion.Euler(0, 0, -90) * transform.up;
  
         temp2.AddForceBall(direction2 * 1.8f);
-        Debug.LogError("temp2" + temp2.gameObject.name);
+      
   
         GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp2);
 
