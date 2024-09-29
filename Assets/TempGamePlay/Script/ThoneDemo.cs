@@ -15,11 +15,16 @@ public class ThoneDemo : MonoBehaviour
     {
         isBooster = true;
         vfxBooster.SetActive(true);
-        Debug.LogError("wasUseMoveSightingPointBooster");
+ 
     }    
     private void FixedUpdate()
     {
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+        if(!GamePlayController.Instance.playerContain.spinerBooster.wasUseSniperBooster)
+        {
+            this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+        }    
+    
+
     }
 
     private void OnMouseDrag()

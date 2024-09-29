@@ -72,7 +72,7 @@ public class GiftDatabase : SerializedScriptableObject
             case GiftType.UnlimitSniper:
 
                 UseProfile.UnlimitScope = true;
-                GamePlayController.Instance.playerContain.levelData.inputThone.numOfReflect = 4;
+          
                 break;
             case GiftType.UnlimitSpike:
                 UseProfile.UnlimitSpike = true;

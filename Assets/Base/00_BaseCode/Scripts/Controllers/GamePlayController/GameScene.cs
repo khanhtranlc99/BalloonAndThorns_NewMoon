@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +7,7 @@ using DG.Tweening;
 using System;
 using MoreMountains.NiceVibrations;
 using UnityEngine.Events;
-
+using UnityEngine.EventSystems;
 public class GameScene : BaseScene
 {
     public Transform iconBallon;
@@ -28,6 +28,34 @@ public class GameScene : BaseScene
 
     public GameObject panelX1;
     public GameObject panelX2;
+    public GraphicRaycaster graphicRaycaster; // Tham chiếu đến GraphicRaycaster
+    private EventSystem eventSystem;
+
+    public bool IsMouseClickingOnImage
+    {
+        get
+        {
+            PointerEventData pointerData = new PointerEventData(eventSystem)
+            {
+                position = Input.mousePosition // Vị trí chuột
+            };
+
+            // Danh sách các kết quả raycast
+            var results = new List<RaycastResult>();
+            graphicRaycaster.Raycast(pointerData, results);
+
+            // Kiểm tra xem có `Image` nào được nhấn không
+            foreach (var result in results)
+            {
+                if (result.gameObject.GetComponent<Image>() != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }    
+     
+    }
     public void Init(LevelData levelData)
     {
         wasOpenShop = false;
@@ -85,13 +113,13 @@ public class GameScene : BaseScene
 
     public  void OnPanel()
     {
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+         
 
     }
     public void OffPanel()
     {
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
-
+  
+  
     }
 
     private void HandleBtnAdsBall()

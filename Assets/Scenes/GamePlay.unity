@@ -184,8 +184,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -214,7 +222,7 @@ GameObject:
   - component: {fileID: 75801537}
   - component: {fileID: 75801538}
   - component: {fileID: 75801539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (27)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,8 +538,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -558,6 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118561998}
   - component: {fileID: 118561999}
+  - component: {fileID: 118562000}
   m_Layer: 0
   m_Name: SpinerBooster
   m_TagString: Untagged
@@ -598,8 +615,119 @@ MonoBehaviour:
   parentTvCoin: {fileID: 148503891}
   lockIcon: {fileID: 148503890}
   unLockIcon: {fileID: 148503888}
-  wasUseTNT_Booster: 0
-  post: {fileID: 0}
+  wasUseSniperBooster: 0
+  numOfReflect: 0
+  postFireSpike: {fileID: 0}
+  lineRenderer: {fileID: 118562000}
+  lsRaycastPoints: []
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  fireCreaker: {fileID: 21300000, guid: d0d35369aaac54646a362235c1351bea, type: 3}
+  normalSprite: {fileID: 21300000, guid: df6434a8848bfd149aa2b07f7dd1e143, type: 3}
+  ballMovement: {fileID: 3368367723875134208, guid: ef695b4866bee064580d30178c79cde7, type: 3}
+--- !u!120 &118562000
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118561997}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 44aa5ba403dc18d49ac3453efe7e968a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions: []
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.09999275
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0.9852941}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 1
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 1
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
 --- !u!1 &128739836
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128739837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,6 +975,14 @@ PrefabInstance:
       value: 111
       objectReference: {fileID: 0}
     - target: {fileID: 5721804516094033938, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721804516094033938, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721804516094033938, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.92001
       objectReference: {fileID: 0}
@@ -857,10 +993,10 @@ PrefabInstance:
     - target: {fileID: 6193544320360885058, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 39a7a4fb16a3ebe4daaff972469067fd, type: 3}
+      objectReference: {fileID: 21300000, guid: d0d35369aaac54646a362235c1351bea, type: 3}
     - target: {fileID: 6193544320360885058, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
       propertyPath: m_PreserveAspect
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6657806556384745980, guid: 2a255004760a7a24a974a30dea5c81b9, type: 3}
       propertyPath: m_Text
@@ -1028,8 +1164,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1162,8 +1306,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1192,7 +1344,7 @@ GameObject:
   - component: {fileID: 187242435}
   - component: {fileID: 187242437}
   - component: {fileID: 187242438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,8 +1741,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2185,7 +2345,7 @@ GameObject:
   - component: {fileID: 331016204}
   - component: {fileID: 331016205}
   - component: {fileID: 331016206}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2796,7 +2956,7 @@ GameObject:
   - component: {fileID: 454615953}
   - component: {fileID: 454615954}
   - component: {fileID: 454615955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2992,8 +3152,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3252,7 +3420,7 @@ GameObject:
   - component: {fileID: 560570799}
   - component: {fileID: 560570800}
   - component: {fileID: 560570801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3682,8 +3850,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3889,7 +4065,7 @@ GameObject:
   - component: {fileID: 682306314}
   - component: {fileID: 682306315}
   - component: {fileID: 682306316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4068,7 +4244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707235385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4133,7 +4309,7 @@ GameObject:
   - component: {fileID: 729818220}
   - component: {fileID: 729818221}
   - component: {fileID: 729818222}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4459,8 +4635,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4524,7 +4708,7 @@ GameObject:
   - component: {fileID: 769629755}
   - component: {fileID: 769629756}
   - component: {fileID: 769629757}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4671,7 +4855,7 @@ GameObject:
   - component: {fileID: 771589658}
   - component: {fileID: 771589659}
   - component: {fileID: 771589660}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5210,8 +5394,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5383,8 +5575,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5488,7 +5688,7 @@ GameObject:
   - component: {fileID: 831208450}
   - component: {fileID: 831208452}
   - component: {fileID: 831208453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5669,7 +5869,7 @@ GameObject:
   - component: {fileID: 846342718}
   - component: {fileID: 846342720}
   - component: {fileID: 846342721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5919,7 +6119,7 @@ GameObject:
   - component: {fileID: 858949061}
   - component: {fileID: 858949062}
   - component: {fileID: 858949063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6065,7 +6265,7 @@ GameObject:
   - component: {fileID: 860141069}
   - component: {fileID: 860141070}
   - component: {fileID: 860141071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (26)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6289,7 +6489,7 @@ GameObject:
   - component: {fileID: 899513608}
   - component: {fileID: 899513609}
   - component: {fileID: 899513610}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6485,8 +6685,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6514,7 +6722,7 @@ GameObject:
   - component: {fileID: 905203576}
   - component: {fileID: 905203578}
   - component: {fileID: 905203579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2
   m_TagString: Broad
   m_Icon: {fileID: 0}
@@ -6657,7 +6865,7 @@ GameObject:
   - component: {fileID: 908709053}
   - component: {fileID: 908709054}
   - component: {fileID: 908709055}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6804,7 +7012,7 @@ GameObject:
   - component: {fileID: 955235232}
   - component: {fileID: 955235234}
   - component: {fileID: 955235235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6951,7 +7159,7 @@ GameObject:
   - component: {fileID: 1001071164}
   - component: {fileID: 1001071165}
   - component: {fileID: 1001071166}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7382,8 +7590,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7571,7 +7787,7 @@ GameObject:
   - component: {fileID: 1049315214}
   - component: {fileID: 1049315215}
   - component: {fileID: 1049315216}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7811,7 +8027,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100112425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PostInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7890,6 +8106,7 @@ MonoBehaviour:
   toolsPanel: {fileID: 153214824}
   panelX1: {fileID: 288006447}
   panelX2: {fileID: 1936953617}
+  graphicRaycaster: {fileID: 854270826}
 --- !u!1001 &1156232246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7959,8 +8176,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (13)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7989,7 +8214,7 @@ GameObject:
   - component: {fileID: 1169816160}
   - component: {fileID: 1169816161}
   - component: {fileID: 1169816162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8369,9 +8594,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 148503895}
   - {fileID: 1430795094}
   - {fileID: 1750638669}
+  - {fileID: 148503895}
   - {fileID: 410334290}
   m_Father: {fileID: 1444590266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8511,8 +8736,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8634,8 +8867,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8664,7 +8905,7 @@ GameObject:
   - component: {fileID: 1252635406}
   - component: {fileID: 1252635407}
   - component: {fileID: 1252635408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8811,7 +9052,7 @@ GameObject:
   - component: {fileID: 1257783158}
   - component: {fileID: 1257783159}
   - component: {fileID: 1257783160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9053,7 +9294,7 @@ GameObject:
   - component: {fileID: 1265837869}
   - component: {fileID: 1265837870}
   - component: {fileID: 1265837871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9249,8 +9490,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9279,7 +9528,7 @@ GameObject:
   - component: {fileID: 1312524132}
   - component: {fileID: 1312524133}
   - component: {fileID: 1312524134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9426,7 +9675,7 @@ GameObject:
   - component: {fileID: 1317580079}
   - component: {fileID: 1317580080}
   - component: {fileID: 1317580081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9573,7 +9822,7 @@ GameObject:
   - component: {fileID: 1323786898}
   - component: {fileID: 1323786899}
   - component: {fileID: 1323786900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (25)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9812,8 +10061,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9891,8 +10148,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10167,8 +10432,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (11)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10320,7 +10593,7 @@ GameObject:
   - component: {fileID: 1405665248}
   - component: {fileID: 1405665249}
   - component: {fileID: 1405665250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10851,8 +11124,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10881,7 +11162,7 @@ GameObject:
   - component: {fileID: 1467856287}
   - component: {fileID: 1467856289}
   - component: {fileID: 1467856290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11077,8 +11358,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11142,7 +11431,7 @@ GameObject:
   - component: {fileID: 1482261570}
   - component: {fileID: 1482261571}
   - component: {fileID: 1482261572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11338,8 +11627,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11368,7 +11665,7 @@ GameObject:
   - component: {fileID: 1491772318}
   - component: {fileID: 1491772319}
   - component: {fileID: 1491772320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11515,7 +11812,7 @@ GameObject:
   - component: {fileID: 1503289776}
   - component: {fileID: 1503289778}
   - component: {fileID: 1503289779}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11798,8 +12095,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11956,7 +12261,7 @@ GameObject:
   - component: {fileID: 1578617329}
   - component: {fileID: 1578617330}
   - component: {fileID: 1578617331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12119,14 +12424,14 @@ RectTransform:
   m_GameObject: {fileID: 1582183615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8333334, y: 0.8333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 148503889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.3, y: -31.5}
+  m_AnchoredPosition: {x: 21.083332, y: -26.24997}
   m_SizeDelta: {x: 69.48, y: 58.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582183617
@@ -12177,7 +12482,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x4
+  m_Text: 
 --- !u!222 &1582183619
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12198,7 +12503,7 @@ GameObject:
   - component: {fileID: 1596373723}
   - component: {fileID: 1596373724}
   - component: {fileID: 1596373725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12345,7 +12650,7 @@ GameObject:
   - component: {fileID: 1603405973}
   - component: {fileID: 1603405975}
   - component: {fileID: 1603405976}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12632,8 +12937,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (12)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12662,7 +12975,7 @@ GameObject:
   - component: {fileID: 1612736536}
   - component: {fileID: 1612736537}
   - component: {fileID: 1612736538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13016,8 +13329,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13202,8 +13523,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13232,7 +13561,7 @@ GameObject:
   - component: {fileID: 1699560114}
   - component: {fileID: 1699560115}
   - component: {fileID: 1699560116}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13773,8 +14102,16 @@ PrefabInstance:
       value: CFX_CircularLightWall
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13852,8 +14189,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13931,8 +14276,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14168,7 +14521,7 @@ GameObject:
   - component: {fileID: 1862486120}
   - component: {fileID: 1862486121}
   - component: {fileID: 1862486122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14314,6 +14667,7 @@ GameObject:
   - component: {fileID: 1867800459}
   - component: {fileID: 1867800461}
   - component: {fileID: 1867800460}
+  - component: {fileID: 1867800462}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -14378,6 +14732,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867800458}
   m_CullTransparentMesh: 1
+--- !u!114 &1867800462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867800458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1148613221}
+          m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
+          m_MethodName: OffPanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1148613221}
+          m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
+          m_MethodName: OnPanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1877712326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14581,8 +14980,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (10)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14611,7 +15018,7 @@ GameObject:
   - component: {fileID: 1898362030}
   - component: {fileID: 1898362032}
   - component: {fileID: 1898362033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14930,7 +15337,7 @@ GameObject:
   - component: {fileID: 1954370278}
   - component: {fileID: 1954370280}
   - component: {fileID: 1954370281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15134,8 +15541,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15221,8 +15636,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (9)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15300,8 +15723,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15370,7 +15801,7 @@ GameObject:
   - component: {fileID: 2012672869}
   - component: {fileID: 2012672871}
   - component: {fileID: 2012672872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15761,7 +16192,7 @@ GameObject:
   - component: {fileID: 2067381571}
   - component: {fileID: 2067381572}
   - component: {fileID: 2067381573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16267,8 +16698,16 @@ PrefabInstance:
       value: CFX_CircularLightWall (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426401, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620142055250426403, guid: fda7514fad434a34d8bdf9e813bdfe01, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16585,7 +17024,7 @@ GameObject:
   - component: {fileID: 7354016757475669186}
   - component: {fileID: 2538626388733007790}
   - component: {fileID: 7354016757475669187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 4
   m_TagString: Broad
   m_Icon: {fileID: 0}
@@ -16707,7 +17146,7 @@ GameObject:
   - component: {fileID: 9096586268498602211}
   - component: {fileID: 3183026604365620508}
   - component: {fileID: 9096586268498602212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 3
   m_TagString: Broad
   m_Icon: {fileID: 0}
@@ -16725,7 +17164,7 @@ GameObject:
   - component: {fileID: 3323263303801784763}
   - component: {fileID: 136078645119022466}
   - component: {fileID: 3323263303801784764}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 1
   m_TagString: Broad
   m_Icon: {fileID: 0}

@@ -74,70 +74,55 @@ public class Ballon : BarrialAir
                 }
             }
         }
-        if (GamePlayController.Instance.playerContain.inputThone.wasDraw)
+      
+        if(GamePlayController.Instance.playerContain.spinerBooster.wasUseSniperBooster && !isOff)
         {
-            Vector2 circleCenter = circleCollider.transform.position;
-            float radius = circleCollider.radius * circleCollider.transform.localScale.x; // Bao gồm scale nếu có
 
-            bool isRaycastPassingThrough = false; // Cờ để theo dõi nếu có raycast nào thỏa mãn điều kiện
+        }    
 
-            foreach (RaycastPoint raycastPoint in GamePlayController.Instance.playerContain.inputThone.lsRaycastPoints)
-            {
-                Vector2 startPoint = raycastPoint.startPoint;
-                Vector2 endPoint = raycastPoint.endPoint;
+        if (GamePlayController.Instance.playerContain.inputThone.wasDraw && !isOff)
+        {
+            CheckIfLineCrossesCircle();
+         
 
-                // Vector chỉ phương của đoạn thẳng từ startPoint đến endPoint
-                Vector2 direction = (endPoint - startPoint).normalized;
-
-                // Tính vector từ điểm đầu đến tâm hình tròn
-                Vector2 startToCenter = circleCenter - startPoint;
-
-                // Chiếu vector từ startPoint đến center lên direction để tìm điểm gần nhất trên đoạn thẳng
-                float projectionLength = Vector2.Dot(startToCenter, direction);
-                Vector2 closestPoint;
-
-                if (projectionLength < 0)
-                {
-                    // Điểm gần nhất là startPoint
-                    closestPoint = startPoint;
-                }
-                else if (projectionLength > Vector2.Distance(startPoint, endPoint))
-                {
-                    // Điểm gần nhất là endPoint
-                    closestPoint = endPoint;
-                }
-                else
-                {
-                    // Điểm gần nhất nằm trên đoạn thẳng
-                    closestPoint = startPoint + direction * projectionLength;
-                }
-
-                // Tính khoảng cách từ điểm gần nhất đến tâm hình tròn
-                float distanceToCircle = Vector2.Distance(closestPoint, circleCenter);
-
-                // Kiểm tra nếu khoảng cách này nhỏ hơn hoặc bằng bán kính hình tròn
-                if (distanceToCircle <= radius)
-                {
-
-                    isRaycastPassingThrough = true; // Cập nhật cờ nếu có raycast thỏa mãn
-                    break; // Có thể dừng vòng lặp nếu tìm thấy một raycast thỏa mãn
-                }
-            }
-
-            // Cập nhật màu của spriteRenderer dựa trên giá trị của cờ
-            if (isRaycastPassingThrough && !isOff)
-            {
-                outLine.SetActive(true);
-            }
-            else
-            {
-                outLine.SetActive(false);
-            }
+      
         }
         else
         {
             outLine.SetActive(false);
         }
+
+
+
+    }
+    public void CheckIfLineCrossesCircle()
+    {
+        LineRenderer lineRenderer = GamePlayController.Instance.playerContain.inputThone.lineRenderer;
+        if (lineRenderer == null)
+            return; // Ensure there's a LineRenderer available
+
+        // Create an array to store the positions
+        Vector3[] positions = new Vector3[lineRenderer.positionCount];
+
+        // Populate the positions array with points from the LineRenderer
+        lineRenderer.GetPositions(positions);
+
+        // Loop through all points in the trajectory and check if any pass through the balloon
+        foreach (var point in positions)
+        {
+            float distanceToBallon = Vector2.Distance(transform.position, point);
+
+            // Check if the point is close enough to the balloon
+            if (distanceToBallon <= circleCollider.radius)
+            {
+                // Activate the outline when the trajectory passes through the balloon
+                outLine.SetActive(true);
+                return;
+            }
+        }
+
+        // Deactivate the outline when the trajectory no longer passes through the balloon
+        outLine.SetActive(false);
     }
 
     [Button]

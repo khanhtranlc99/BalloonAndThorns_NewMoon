@@ -25,7 +25,11 @@ public class CloneSpikeBallon : Ballon
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             demoSpike.gameObject.SetActive(false);
 
-            ballController.HandleBoosterX2();
+            if(ballController != null)
+            {
+                ballController.HandleBoosterX2();
+            }    
+  
 
             //GamePlayController.Instance.HandlSpawnItemInGameBallon(sprite, this.transform.position);
 

@@ -44,6 +44,12 @@ public class MoveSightingPointBooster : MonoBehaviour
 
         }
 
+        if (UseProfile.UnlimitScope)
+        {
+            objNum.SetActive(false);
+            tvNum.gameObject.SetActive(false);
+            parentTvCoin.SetActive(false);
+        }
 
         void HandleUnlock()
         {
@@ -89,6 +95,16 @@ public class MoveSightingPointBooster : MonoBehaviour
     public void Handle_Move_Sighting_Point()
     {
         GameController.Instance.musicManager.PlayClickSound();
+        if (UseProfile.UnlimitScope)
+        {
+ 
+            playerContain.HandleMoveSightingPointBooster();
+            wasUseMoveSightingPointBooster = true;
+            moveSightingPoint_Booster.interactable = false;
+            playerContain.levelData.inputThone.postFireSpike.HandleScale();
+            GamePlayController.Instance.TutMoveSightingPointBooster.NextTut();
+            return;
+        }
         if (UseProfile.MoveSightingPointBooster >= 1)
         {
 
@@ -113,6 +129,7 @@ public class MoveSightingPointBooster : MonoBehaviour
         wasUseMoveSightingPointBooster = false;
         moveSightingPoint_Booster.interactable = true;
         playerContain.levelData.inputThone.postFireSpike.OffScale();
+        GamePlayController.Instance.playerContain.levelData.inputThone.SetupFirstPost();
     }    
    
 

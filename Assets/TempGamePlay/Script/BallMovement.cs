@@ -27,6 +27,7 @@ public class BallMovement : MonoBehaviour
      
         activeMove = true;
         moveAll = false;
+        StartCoroutine(HandleOff());
     }
     public void Init(Vector2 param, int idParam, bool test)
     {
@@ -117,48 +118,18 @@ public class BallMovement : MonoBehaviour
             Vector2 currentPosition = transform.position;
             transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
         }    
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+     
     }
     private void OnDisable()
     {
-        try
-        {
-            GamePlayController.Instance.playerContain.levelData.HandleCheckLose();
-        }    
-      catch
-        {
-
-        }
+      
     }
 
-    public void HandleBoosterX2()
+    private IEnumerator HandleOff()
     {
-        
-        // Sử dụng hướng của trục x của đối tượng làm initialDirection
-        Vector3 initialDirection = transform.right;
-
-        // Spawn và khởi tạo temp1 với hướng 45 độ
-        var temp1 = SimplePool2.Spawn(ballMovementPrefab);
-        temp1.transform.position = this.transform.position;
-
-        // Xoay hướng ban đầu 45 độ quanh trục Z
-        Vector3 direction1 = Quaternion.Euler(0, 0, 45) * initialDirection;
-        //GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp1);
-        temp1.Init(direction1, GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Count);
-
-        // Spawn và khởi tạo temp2 với hướng -45 độ
-        var temp2 = SimplePool2.Spawn(ballMovementPrefab);
-        temp2.transform.position = this.transform.position;
-
-        // Xoay hướng ban đầu -45 độ quanh trục Z
-        Vector3 direction2 = Quaternion.Euler(0, 0, -45) * initialDirection;
-        //GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp2);
-        temp2.Init(direction2, GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Count);
-
-
-
-
+        yield return new WaitForSeconds(4);
         SimplePool2.Despawn(this.gameObject);
-    }
+    }    
+   
     
 }

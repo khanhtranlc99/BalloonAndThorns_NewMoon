@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1104757564573108463}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: df6434a8848bfd149aa2b07f7dd1e143, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0d35369aaac54646a362235c1351bea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallLayer:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 64
   direction: {x: 1, y: 1}
   activeMove: 0
   vfxTouch: {fileID: 4532592830453562900, guid: 8ecbd7c7632a7f142bada3de5d726be3, type: 3}
@@ -109,6 +109,8 @@ MonoBehaviour:
   audioSource: {fileID: 8740966078942773587}
   ballMovementPrefab: {fileID: 3368367723875134208}
   id: 0
+  moveAll: 0
+  moveOut: 0
 --- !u!82 &8740966078942773587
 AudioSource:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+ 
 [System.Serializable]
 public class RaycastPoint
 {
@@ -15,10 +16,10 @@ public class InputThone : MonoBehaviour
 
     public ThoneDemo postFireSpike;
     public BallController ballMovement;
- 
+
     RaycastHit2D hit;
     Vector2 initialDirection;
- 
+
     public LineRenderer lineRenderer;
     public LineRenderer lineRenderer_Demo;
     public LayerMask hitLayers;
@@ -26,41 +27,41 @@ public class InputThone : MonoBehaviour
     public Material lineMaterial;
     public int numOfReflect;
     public List<BallController> lsBallMovement;
-    public  List<RaycastPoint> lsRaycastPoints;
-    public  bool wasDraw;
+    public List<RaycastPoint> lsRaycastPoints;
+    public bool wasDraw;
 
     public Vector3 firstPost;
     public Vector3 secondPost;
- 
+
 
     public Transform leftPost;
     public Transform rightPost;
     public Transform upPost;
     public Transform botPost;
-
+    public Color lineColor = Color.black;
     public bool AllDestoy
     {
         get
         {
-            if(lsBallMovement.Count <= 0)
+            if (lsBallMovement.Count <= 0)
             {
                 return true;
             }
-            foreach(var item in lsBallMovement)
+            foreach (var item in lsBallMovement)
             {
-                if(item.gameObject.activeSelf)
+                if (item.gameObject.activeSelf)
                 {
                     return false;
-                }    
+                }
             }
             return true;
-        }    
-    }    
-    
+        }
+    }
+
     public bool HasBallInGame
     {
         get
-            {
+        {
             foreach (var item in lsBallMovement)
             {
                 if (item.gameObject.activeSelf == true)
@@ -70,18 +71,41 @@ public class InputThone : MonoBehaviour
             }
             return false;
         }
-   
+
     }
 
     public SpriteRenderer outlineLimit;
     public GameObject objText;
- 
+
 
     public int numberOfPoints = 50; // Number of points to draw the trajectory
     public float timeBetweenPoints = 0.1f; // Time interval between points
     public LayerMask collisionMask;
-  
-    public void Init()
+    public Material blackMaterial;
+    private bool CanShoot
+    {
+        get
+        {
+ 
+            if (GamePlayController.Instance.gameScene.IsMouseClickingOnImage)
+            {
+
+                return false;
+            }
+            if (GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && !GamePlayController.Instance.playerContain.moveSightingPointBooster.wasUseMoveSightingPointBooster)
+            {
+
+                return true;
+            }
+      
+            return false;
+        }    
+    }
+ 
+ 
+
+
+public void Init()
     {
         // Thiết lập LineRenderer
         wasDraw = false;
@@ -90,26 +114,23 @@ public class InputThone : MonoBehaviour
         lineRenderer.endWidth = 0.15f;
         lineMaterial.SetFloat("width", 0.75f);
         lineMaterial.SetFloat("heigth", 0.1f);
-        if (UseProfile.UnlimitScope)
-        {
-            numOfReflect = 4;
-        }
-        else
-        {
-            numOfReflect = 1;
-        }
+       
 
         lsBallMovement = new List<BallController>();
         SimplePool2.Preload(ballMovement.gameObject, 5);
         if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
         {
             lineRenderer.SetColors(Color.black, Color.black);
+            lineRenderer_Demo.material = blackMaterial;
         }
         firstPost = postFireSpike.transform.position;
         collisionMask = LayerMask.GetMask("Default");
 
     }
-
+    public void SetupFirstPost()
+    {
+        firstPost = postFireSpike.transform.position;
+    }    
    
 
     void Update()
@@ -117,11 +138,16 @@ public class InputThone : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (GamePlayController.Instance.playerContain.levelData.limitTouch > 0)
+         
+            if (CanShoot)
             {
                 outlineLimit.gameObject.SetActive(true);
                 wasDraw = true;
             }
+            else
+            {
+                wasDraw = false;
+            }    
             objText.gameObject.SetActive(true);
 
         }
@@ -235,8 +261,7 @@ public class InputThone : MonoBehaviour
             lineRenderer.SetPosition(i, newPoint);
 
 
-  
-
+ 
             if (i > 0)
             {
               
@@ -257,12 +282,7 @@ public class InputThone : MonoBehaviour
                     lineRenderer.SetPosition(i, collisionPoint);
                     lineRenderer.positionCount = i + 1;
 
-                    RaycastPoint raycastPoint = new RaycastPoint
-                    {
-                        startPoint = lineRenderer.GetPosition(i - 1),
-                        endPoint = (Vector3)newPoint
-                    };
-                    lsRaycastPoints.Add(raycastPoint);
+                
                     // Start drawing the reflected trajectory
 
                     break; // Exit the loop after handling the first collision
