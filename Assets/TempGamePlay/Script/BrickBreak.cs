@@ -5,7 +5,7 @@ using UnityEngine;
 public class BrickBreak : BarrialAir
 {
     public SpriteRenderer spriteRD;
-    int heart;
+    int heart = 3;
     public ParticleSystem partycale;
     public override void Init()
     {
@@ -18,12 +18,12 @@ public class BrickBreak : BarrialAir
         heart -= 1;
         if(heart == 2)
         {
-            //spriteRD.color = new Color32(255,255,255,100);
+            spriteRD.color = new Color32(255,255,255,100);
      
         }
         if (heart == 1)
         {
-            //spriteRD.color = new Color32(255, 255, 255, 80);
+            spriteRD.color = new Color32(255, 255, 255, 80);
         }
         if (heart == 0)
         {
@@ -38,5 +38,10 @@ public class BrickBreak : BarrialAir
     public override void HandleColorBallon()
     {
        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TakeDameSpike();
     }
 }

@@ -29,7 +29,7 @@ public class PlayerContain : MonoBehaviour
         moveSightingPointBooster.Init(this);
         cloneBallsBooster.Init(this);
         roketBooster.Init(this);
-        //GamePlayController.Instance.TutGameplay.StartTut();
+        GamePlayController.Instance.TutGameplay.StartTut();
         GamePlayController.Instance.TutSpinerBooster.StartTut();
         GamePlayController.Instance.TutMoveSightingPointBooster.StartTut();
  
@@ -42,7 +42,10 @@ public class PlayerContain : MonoBehaviour
     private IEnumerator SetPost()
     {
         yield return new WaitForSeconds(0.1f);
-        //levelData.inputThone.postFireSpike.transform.position = new Vector3(levelData.inputThone.postFireSpike.transform.position.x, postBot.position.y, 0);
+        //levelData.inputThone.transform.localPosition += new Vector3(0, postBot.localPosition.y, 0);
+        //Debug.LogError("postBot.position.y_" + postBot.position.y);
+        //Debug.LogError("levelData.inputThone.transform.position_" + levelData.inputThone.transform.position);
+        //Debug.LogError("Sum_" );
     }
 
     public void HandleSpinerBooster()

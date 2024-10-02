@@ -102,11 +102,7 @@ public class DrawPredictedTrajectory : MonoBehaviour
                 Debug.DrawRay(lineRenderer.GetPosition(i - 1), direction * distance, Color.green, 0.1f);
             }
         }
-        distanceStartEnd = Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
-        if (distanceStartEnd > 1)
-        {
-            lineRenderer.positionCount = lineRenderer.positionCount / 2;
-        }
+       
     }
 
    

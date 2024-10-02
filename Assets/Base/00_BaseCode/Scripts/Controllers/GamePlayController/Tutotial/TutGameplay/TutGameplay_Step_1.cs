@@ -1,10 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class TutGameplay_Step_1 : TutorialBase
 {
     GameObject currentHand;
+    Vector3 postTarget
+    { 
+     get
+        {
+            return GamePlayController.Instance.playerContain.levelData.inputThone.postFireSpike.transform.position;
+        }    
+    }
+    Vector3 postTargetSecond
+    {
+        get
+        {
+            return GamePlayController.Instance.playerContain.levelData.inputThone.botPost.position;
+        }
+    }
     public override bool IsCanEndTut()
     {
         if (currentHand != null)
@@ -25,14 +39,21 @@ public class TutGameplay_Step_1 : TutorialBase
                 return;
             }
             currentHand = SimplePool2.Spawn(handTut);
-            //currentHand.transform.parent = GamePlayController.Instance.playerContain.TNT_Booster.btnTNT_Booster.transform;
-            //currentHand.transform.localScale = new Vector3(1, 1, 1);
-            //currentHand.transform.localEulerAngles = new Vector3(0, 0, 120);
-        
-            currentHand.transform.position = Vector3.zero;
-            currentHand.gameObject.GetComponent<HandTutGamePlay>().Init(GamePlayController.Instance.playerContain.levelData.inputThone.postFireSpike);
+            currentHand.transform.position = new Vector3(postTarget.x + 0.5f  , postTarget.y , -5);
+            MoveHand();
+
         }
     }
+
+    private void MoveHand()
+    {
+    
+        currentHand.transform.DOMove(new Vector3(postTargetSecond.x -0.5f, postTargetSecond.y, -5), 1).OnComplete(delegate {
+
+            currentHand.transform.position = new Vector3(postTarget.x + 0.5f, postTarget.y , -5);
+            MoveHand();
+        });
+    }    
     
 
 

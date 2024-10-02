@@ -39,6 +39,7 @@ public class InputThone : MonoBehaviour
     public Transform upPost;
     public Transform botPost;
     public Color lineColor = Color.black;
+    private float plusSpeed;
     public bool AllDestoy
     {
         get
@@ -86,7 +87,12 @@ public class InputThone : MonoBehaviour
     {
         get
         {
- 
+
+            if (GamePlayController.Instance.stateGame != StateGame.Playing)
+            {
+
+                return false;
+            }
             if (GamePlayController.Instance.gameScene.IsMouseClickingOnImage)
             {
 
@@ -121,10 +127,11 @@ public void Init()
         if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
         {
             lineRenderer.SetColors(Color.black, Color.black);
+            lineRenderer_Demo.SetColors(Color.black, Color.black);
             lineRenderer_Demo.material = blackMaterial;
         }
         firstPost = postFireSpike.transform.position;
-        collisionMask = LayerMask.GetMask("Default");
+        //collisionMask = LayerMask.GetMask("Default");
 
     }
     public void SetupFirstPost()
@@ -143,6 +150,7 @@ public void Init()
             {
                 outlineLimit.gameObject.SetActive(true);
                 wasDraw = true;
+                GamePlayController.Instance.TutGameplay.NextTut();
             }
             else
             {
@@ -160,19 +168,27 @@ public void Init()
                 if (secondPost.x < leftPost.position.x)
                 {
                     secondPost = new Vector3(leftPost.position.x, secondPost.y);
+                
                 }
                 if (secondPost.x > rightPost.position.x)
                 {
                     secondPost = new Vector3(rightPost.position.x, secondPost.y);
+                    
                 }
 
                 if (secondPost.y < botPost.position.y)
                 {
                     secondPost = new Vector3(secondPost.x, botPost.position.y);
+                    plusSpeed = 2.4f;
+                }
+                else
+                {
+                    plusSpeed = 1.6f;
                 }
                 if (secondPost.y > upPost.position.y)
                 {
                     secondPost = new Vector3(secondPost.x, upPost.position.y);
+                  
                 }
 
 
@@ -181,7 +197,7 @@ public void Init()
                 postFireSpike.transform.position = new Vector3(secondPost.x, secondPost.y, 0);
                 objText.transform.position = new Vector3(secondPost.x + 0.5f, secondPost.y + 0.5f, 0);
 
-                initialDirection = (firstPost - postFireSpike.transform.position).normalized * 1.5f ;
+                initialDirection = (firstPost - postFireSpike.transform.position).normalized  * plusSpeed;
                 DrawTrajectory(ballMovement.rigidbody2D, postFireSpike.transform.position, initialDirection);
                 lineRenderer_Demo.positionCount = 2;
                 lineRenderer_Demo.SetPosition(0, new Vector3(firstPost.x,firstPost.y,-10));

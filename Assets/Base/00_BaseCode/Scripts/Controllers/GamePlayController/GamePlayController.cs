@@ -38,6 +38,7 @@ public class GamePlayController : Singleton<GamePlayController>
     public List<RockWall> lsIdWallOffInGame;
 
     public BallController ballController;
+    public CameraScale cameraScale;
     public RockWall GetRockWall(int id)
     {
         foreach(var item in lsIdWallOffInGame)
@@ -122,7 +123,8 @@ public class GamePlayController : Singleton<GamePlayController>
         foreach(var item in testPosts)
         {
             item.workPost.position = item.uiPost.position;
-        }    
+        }
+     //   cameraScale.Init();
     }
     [Button]
     private void Test()

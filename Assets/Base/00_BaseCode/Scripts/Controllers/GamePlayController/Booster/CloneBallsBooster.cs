@@ -22,7 +22,7 @@ public class CloneBallsBooster : MonoBehaviour
         playerContain = param;
 
         wasUseFreezeBooster = false;
-        if (UseProfile.CurrentLevel >= 7)//7
+        if (UseProfile.CurrentLevel >= 5)//7
         {
 
             //unLockIcon.gameObject.SetActive(true);
