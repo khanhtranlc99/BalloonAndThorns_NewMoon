@@ -25,6 +25,7 @@ public class DialogueRate : BaseBox
 
     [SerializeField] private Button btnClose;
     [SerializeField] private Button btnConfirm;
+    [SerializeField] private Button btnNothanks;
     [SerializeField] private List<Sprite> lstSprStar;
     [SerializeField] private List<Button> lstBtnStar;
     [SerializeField] private List<Image> lstImgStar;
@@ -34,7 +35,7 @@ public class DialogueRate : BaseBox
     {
         btnConfirm.onClick.AddListener(RateAction);
         btnClose.onClick.AddListener(CloseAction);
-
+        btnNothanks.onClick.AddListener(CloseAction);
 
         btnConfirm.interactable = false;
 

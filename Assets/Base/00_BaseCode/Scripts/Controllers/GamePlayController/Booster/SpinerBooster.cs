@@ -96,11 +96,11 @@ public class SpinerBooster : MonoBehaviour
             postFireSpike.spriteRenderer.sprite = fireCreaker;
             postFireSpike.transform.localScale = new Vector3(2, 2, 2);
             postFireSpike.transform.localEulerAngles = new Vector3(0, 0, 0);
-            if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-            {
-                lineRenderer.SetColors(Color.black, Color.black);
+            //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
+            //{
+            //    lineRenderer.SetColors(Color.black, Color.black);
                
-            }
+            //}
         }
         else
         {

@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);
         startLoading.Init();
         heartGame.Init();
-        idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
+        //idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
     }
 
     public void LoadScene(string sceneName)

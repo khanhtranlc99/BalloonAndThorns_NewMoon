@@ -32,8 +32,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public Transform limitLeft;
     public Transform limitRight;
-    public GameObject backGround_1;
-    public GameObject backGround_2;
+  
 
     public List<RockWall> lsIdWallOffInGame;
 
@@ -76,16 +75,7 @@ public class GamePlayController : Singleton<GamePlayController>
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
         StartCoroutine(HandleSetPostWall());
-        if(RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 1)
-        {
-            backGround_1.SetActive(true);
-            backGround_2.SetActive(false);
-        }
-        if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-        {
-            backGround_1.SetActive(false);
-            backGround_2.SetActive(true);
-        }
+        
 
     }
    

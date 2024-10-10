@@ -22,10 +22,10 @@ public class HandTutGamePlay : MonoBehaviour
     {
         postFireSpike = thoneDemo;
         wasInit = true;
-        if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-        {
-            lineRenderer.SetColors(Color.black, Color.black);
-        }
+        //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
+        //{
+        //    lineRenderer.SetColors(Color.black, Color.black);
+        //}
     }
 
      

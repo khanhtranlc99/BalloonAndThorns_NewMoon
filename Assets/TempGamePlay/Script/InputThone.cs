@@ -124,12 +124,12 @@ public void Init()
 
         lsBallMovement = new List<BallController>();
         SimplePool2.Preload(ballMovement.gameObject, 5);
-        if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-        {
-            lineRenderer.SetColors(Color.black, Color.black);
-            lineRenderer_Demo.SetColors(Color.black, Color.black);
-            lineRenderer_Demo.material = blackMaterial;
-        }
+        //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
+        //{
+        //    lineRenderer.SetColors(Color.black, Color.black);
+        //    lineRenderer_Demo.SetColors(Color.black, Color.black);
+        //    lineRenderer_Demo.material = blackMaterial;
+        //}
         firstPost = postFireSpike.transform.position;
         //collisionMask = LayerMask.GetMask("Default");
 
