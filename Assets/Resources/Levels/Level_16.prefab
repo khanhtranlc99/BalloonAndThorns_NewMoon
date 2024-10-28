@@ -315,7 +315,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  inputThone: {fileID: 8148369020195312270}
   lsBallons:
   - {fileID: 4396088482349608793}
   - {fileID: 9063919165705198646}
@@ -350,9 +349,9 @@ MonoBehaviour:
   - {fileID: 4216247879114785952}
   - {fileID: 6655280212641631883}
   limitTouch: 5
-  tvShowLimit: {fileID: 6563716998613627822}
   numbTarget: 32
   lsIdWallOff: 04000000
+  isMove: 0
 --- !u!1 &2814035721999411601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1220,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 2.8400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -1235,6 +1242,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -1258,11 +1269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8400002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1366,6 +1377,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -1380,6 +1399,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -1403,11 +1426,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1444,6 +1467,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -1511,6 +1542,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -1525,6 +1564,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -1548,11 +1591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1589,6 +1632,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -1656,6 +1707,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -1670,6 +1729,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.5686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -1693,11 +1756,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1734,6 +1797,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -1863,6 +1934,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 4.0200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -1877,6 +1956,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -1900,11 +1983,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1941,6 +2024,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -2008,6 +2099,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -2022,6 +2121,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.427451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -2045,11 +2148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2086,6 +2189,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -2153,6 +2264,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -2167,6 +2286,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -2190,11 +2313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2231,6 +2354,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -2298,6 +2429,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -2312,6 +2451,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -2335,11 +2478,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2376,6 +2519,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -2509,6 +2660,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -2523,6 +2682,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -2546,11 +2709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2587,6 +2750,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -2728,6 +2899,14 @@ PrefabInstance:
       value: 0.43529415
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.y
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.a
       value: 0.23921569
       objectReference: {fileID: 0}
@@ -2742,6 +2921,10 @@ PrefabInstance:
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.r
       value: 0.43529415
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: countExplosion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: eplosionBallon
@@ -2777,11 +2960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2814,6 +2997,10 @@ PrefabInstance:
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798924755556166763, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4845073424418882682, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_Name
@@ -2931,6 +3118,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -3.8300009
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -2945,6 +3140,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -2968,11 +3167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.8300009
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3076,6 +3275,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 2.8400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3090,6 +3297,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3113,11 +3324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8400002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3154,6 +3365,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3221,6 +3440,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -3.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3235,6 +3462,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3258,11 +3489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3299,6 +3530,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3428,6 +3667,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 4.0200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3442,6 +3689,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3465,11 +3716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3506,6 +3757,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3573,6 +3832,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -3.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3587,6 +3854,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.9607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3610,11 +3881,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3651,6 +3922,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3718,6 +3997,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 2.8400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.3399999
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3732,6 +4019,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.53333336
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3755,11 +4046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8400002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3399999
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3796,6 +4087,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3863,6 +4162,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -3877,6 +4184,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.76470596
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -3900,11 +4211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3941,6 +4252,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -4008,6 +4327,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 4.0200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -4045,11 +4372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4086,6 +4413,10 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -4165,6 +4496,14 @@ PrefabInstance:
       value: 0.87843144
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.a
       value: 0.23921569
       objectReference: {fileID: 0}
@@ -4179,6 +4518,10 @@ PrefabInstance:
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.r
       value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: countExplosion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: eplosionBallon
@@ -4214,11 +4557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4251,6 +4594,10 @@ PrefabInstance:
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798924755556166763, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4845073424418882682, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_Name
@@ -4302,6 +4649,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 4.0200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -4316,6 +4671,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.427451
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -4339,11 +4698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4380,6 +4739,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -4447,6 +4814,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -2.6500006
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -4461,6 +4836,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.5686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -4484,11 +4863,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6500006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4649,28 +5028,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1999895022181660674, guid: 828f9a3360d9f3845aa587c7b144fb01, type: 3}
   m_PrefabInstance: {fileID: 5712827071198077284}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6563716998613627822 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1467900944014496458, guid: 828f9a3360d9f3845aa587c7b144fb01, type: 3}
-  m_PrefabInstance: {fileID: 5712827071198077284}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8148369020195312270 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4493707903801570282, guid: 828f9a3360d9f3845aa587c7b144fb01, type: 3}
-  m_PrefabInstance: {fileID: 5712827071198077284}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e82a7c968748644bf16851b2473a42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5869841155811976939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4746,6 +5103,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 0.3399999
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -4760,6 +5125,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.7019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -4783,11 +5152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3399999
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4824,6 +5193,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -4891,6 +5268,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 4.0200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -4905,6 +5290,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.7019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -4928,11 +5317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5048,6 +5437,14 @@ PrefabInstance:
       value: 0.67058825
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.a
       value: 0.23921569
       objectReference: {fileID: 0}
@@ -5062,6 +5459,10 @@ PrefabInstance:
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.r
       value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: countExplosion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: eplosionBallon
@@ -5097,11 +5498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5134,6 +5535,10 @@ PrefabInstance:
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798924755556166763, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4845073424418882682, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_Name
@@ -5247,6 +5652,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -3.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -5261,6 +5674,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -5284,11 +5701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5325,6 +5742,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -5392,6 +5817,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 2.8400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 5.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -5406,6 +5839,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -5429,11 +5866,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8400002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.08
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5470,6 +5907,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -5537,6 +5982,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -5551,6 +6004,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -5574,11 +6031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5615,6 +6072,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -5682,6 +6147,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 1.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -5696,6 +6169,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -5719,11 +6196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5760,6 +6237,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -5827,6 +6312,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -3.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -5841,6 +6334,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -5864,11 +6361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5905,6 +6402,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -5984,6 +6489,14 @@ PrefabInstance:
       value: 0.5686275
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: postFly.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.a
       value: 0.23921569
       objectReference: {fileID: 0}
@@ -5998,6 +6511,10 @@ PrefabInstance:
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: colorBallon.r
       value: 0.5686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: countExplosion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1382176164177009700, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: eplosionBallon
@@ -6033,11 +6550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.75
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6070,6 +6587,10 @@ PrefabInstance:
     - target: {fileID: 2747002863237990235, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4798924755556166763, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4845073424418882682, guid: ac7ed39663775744ea1b2fd465f948d7, type: 3}
       propertyPath: m_Name
@@ -6121,6 +6642,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: -2.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -6135,6 +6664,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.9568628
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -6158,11 +6691,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6199,6 +6732,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -6332,6 +6873,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 622126516968815066}
     m_Modifications:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.x
+      value: 2.8400002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: postFly.y
+      value: 6.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.a
       value: 1
       objectReference: {fileID: 0}
@@ -6346,6 +6895,10 @@ PrefabInstance:
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: colorBallon.r
       value: 0.43529415
+      objectReference: {fileID: 0}
+    - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: countExplosion
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114733648314305811, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: eplosionBallon
@@ -6369,11 +6922,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8400002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.98
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2520815421183225497, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6410,6 +6963,14 @@ PrefabInstance:
     - target: {fileID: 3417024107753056133, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: m_Name
       value: Ballon (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511828286122748011, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4638836198027418892, guid: 620de5448f2c7f74aa5e27fab94da41b, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a

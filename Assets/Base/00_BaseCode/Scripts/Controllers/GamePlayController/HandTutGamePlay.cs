@@ -17,11 +17,14 @@ public class HandTutGamePlay : MonoBehaviour
     public LayerMask hitLayers;
     public Transform param;
     bool wasInit = false;
+    public SpriteRenderer iconCanon;
 
-    public void Init (ThoneDemo thoneDemo)
+    public void Init (InputThone paramInput)
     {
-        postFireSpike = thoneDemo;
+        iconCanon = paramInput.iconCanon;
+        postFireSpike = paramInput.postFireSpike;
         wasInit = true;
+   
         //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
         //{
         //    lineRenderer.SetColors(Color.black, Color.black);
@@ -62,8 +65,14 @@ public class HandTutGamePlay : MonoBehaviour
         // Clear the list at the start of the raycasting process
         lsRaycastPoints.Clear();
 
-      
-            hit = Physics2D.CircleCast(currentOrigin, 0.4f, currentDirection, Mathf.Infinity, hitLayers);
+        Vector2 direction2 = (worldPosition - iconCanon.transform.position).normalized;
+
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction2.y, direction2.x) * Mathf.Rad2Deg;
+
+        // Apply rotation to the cannon (rotating on the Z-axis)
+        iconCanon.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        hit = Physics2D.CircleCast(currentOrigin, 0.4f, currentDirection, Mathf.Infinity, hitLayers);
 
             // Debug raycast với đầu là hình tròn
             Debug.DrawRay(currentOrigin, currentDirection * 100f, Color.red, 0.05f);

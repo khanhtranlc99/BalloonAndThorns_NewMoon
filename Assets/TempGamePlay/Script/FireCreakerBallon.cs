@@ -22,32 +22,53 @@ public class FireCreakerBallon : Ballon
         SimplePool2.Preload(fireCreaker_1.gameObject, 2);
     }
 
-    public override void TakeDameSpike()
+    public override void TakeDameSpike(int paramDame)
     {
 
+        if (isInit)
+        {
+
+
+            countExplosion -= paramDame;
+
+
+            if (countExplosion < 1)
+            {
+                spriteRenderer.sprite = eplosionBallon;
+                HandleExplosion();
+            }
+            tvExplosion.text = "" + countExplosion;
+
+        }
+
+
+    }
+    private void HandleExplosion()
+    {
         spriteRenderer.sprite = eplosionBallon;
 
         if (!isOff)
         {
             isOff = true;
             GameController.Instance.musicManager.PlayRandomBallon();
-            GamePlayController.Instance.gameScene.HandleSubtrackBallon();
+            circleCollider.enabled = false;
+            tvExplosion.gameObject.SetActive(false);
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             demoSpike.gameObject.SetActive(false);
-            
-            switch(fireCreakeType)
+
+            switch (fireCreakeType)
             {
                 case FireCreakeType.UpDown:
 
                     var tempUp = SimplePool2.Spawn(fireCreaker_1);
                     tempUp.transform.position = this.transform.position;
-                    tempUp.Init(new Vector3(0,1,0));
-     
+                    tempUp.Init(new Vector3(0, 1, 0));
+
 
                     var tempDown = SimplePool2.Spawn(fireCreaker_1);
                     tempDown.transform.position = this.transform.position;
                     tempDown.Init(new Vector3(0, -1, 0));
-                    tempDown.transform.localEulerAngles = new Vector3(0,0,180);
+                    tempDown.transform.localEulerAngles = new Vector3(0, 0, 180);
                     break;
 
                 case FireCreakeType.RightLeft:
@@ -65,9 +86,12 @@ public class FireCreakerBallon : Ballon
 
                     break;
             }
-
+            GamePlayController.Instance.playerContain.effectExplosion.HandleEffectExplosion(this);
         }
-
-
+    }
+    public override void Destroy()
+    {
+        base.Destroy();
+        demoSpike.SetActive(false);
     }
 }

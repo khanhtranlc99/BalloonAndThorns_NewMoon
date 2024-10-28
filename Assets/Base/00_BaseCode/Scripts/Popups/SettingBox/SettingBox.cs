@@ -53,7 +53,7 @@ public class SettingBox : BaseBox
     #endregion
     private void Init()
     {
-        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true; OnClickButtonClose(); }); 
+        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.inputThone.enabled = true; OnClickButtonClose(); }); 
         btnVibration.onClick.AddListener(delegate { OnClickBtnVibration(); });
         btnMusic.onClick.AddListener(delegate { OnClickBtnMusic(); });
         btnSound.onClick.AddListener(delegate { OnClickBtnSound(); });
@@ -83,7 +83,7 @@ public class SettingBox : BaseBox
         }    
     
         SetUpBtn();
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+        GamePlayController.Instance.playerContain.inputThone.enabled = false;
         if (Time.timeScale == 2)
         {
             Time.timeScale = 1;

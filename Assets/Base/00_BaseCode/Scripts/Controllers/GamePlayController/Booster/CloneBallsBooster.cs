@@ -85,23 +85,7 @@ public class CloneBallsBooster : MonoBehaviour
         GameController.Instance.musicManager.PlayClickSound();
         if (UseProfile.CloneBallsBooster >= 1)
         {
-          if(GamePlayController.Instance.playerContain.levelData.inputThone.HasBallInGame)
-            {
-                UseProfile.CloneBallsBooster -= 1;
-                playerContain.HandleCloneBallsBooster();
-                GamePlayController.Instance.TutCloneBallsBooster.NextTut();
-            }    
-          else
-            {
-                GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp
-
-                      ( 
-                      cloneBallsBooster_Btn.transform.position,
-                      "No Spike",
-                      Color.white,
-                      isSpawnItemPlayer: true
-                      );
-            }    
+       
       
         }
         else

@@ -36,7 +36,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public List<RockWall> lsIdWallOffInGame;
 
-    public BallController ballController;
+   
     public CameraScale cameraScale;
     public RockWall GetRockWall(int id)
     {
@@ -52,7 +52,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     protected override void OnAwake()
     {
-        stateGame = StateGame.Playing;
+    
 
         Init();
 
@@ -63,29 +63,44 @@ public class GamePlayController : Singleton<GamePlayController>
     public void Init()
     {
         TutGameplay.Init();
-        TutSpinerBooster.Init();
-        TutMoveSightingPointBooster.Init();
-        TutCloneBallsBooster.Init();
-        TutRocketBooster.Init();
+       
 
         playerContain.Init();
+      //
         gameScene.Init(playerContain.levelData);
         SimplePool2.ClearPool();
         SimplePool2.Preload(hitVfx.gameObject, 40, null);
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
-        stateGame = StateGame.Playing;
+      
         StartCoroutine(HandleSetPostWall());
-        
+        playerContain.inputThone.listBallController.Init();
 
     }
-   
+    public void SetPlayingState()
+    {
+        if(playerContain.levelData.AllBallonInit)
+        {
+            stateGame = StateGame.Playing;
+            playerContain.HandleScaleInput();
+        }
+    }    
     public void HandleWin()
     {
-        GamePlayController.Instance.stateGame = StateGame.Win;
+        stateGame = StateGame.Win;
         //confeti_1.Play();
         //confeti_2.Play();
-        GamePlayController.Instance.playerContain.inputThone.StopActiveMove();
-       Invoke(nameof(HandleShowWin), 2);
+   
+        if (playerContain.inputThone.lsBallMovement.Count > 0)
+        {
+          StartCoroutine(  playerContain.inputThone.StopActiveMove(delegate { HandleShowWin(); playerContain.inputThone.HandleSetUp(); }));
+        }    
+        else
+        {
+            HandleShowWin();
+            playerContain.inputThone.HandleSetUp();
+        }    
+   
+     
     }    
 
     private void HandleShowWin()
@@ -95,15 +110,16 @@ public class GamePlayController : Singleton<GamePlayController>
             Time.timeScale = 1;
             gameScene.HandleChangeNormal();
         }
-     
-        if (UseProfile.CurrentLevel == 4)
-        {
-            DialogueRate.Setup().Show();
-        }
-        else
-        {
-            Winbox.Setup().Show();
-        }
+        playerContain.inputThone.gameObject.transform.localScale = Vector3.zero;
+        Winbox.Setup().Show();
+        //if (UseProfile.CurrentLevel == 4)
+        //{
+        //    DialogueRate.Setup().Show();
+        //}
+        //else
+        //{
+        //    Winbox.Setup().Show();
+        //}
     }    
 
   
@@ -143,8 +159,7 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         if(Input.GetKey(KeyCode.K))
         {
-            Winbox.Setup().Show();
-            Debug.LogError("Winbox");
+            playerContain.levelData.AllBallHit();
         }
       
     }

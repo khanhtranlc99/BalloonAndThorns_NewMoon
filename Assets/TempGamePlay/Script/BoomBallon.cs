@@ -8,26 +8,52 @@ public class BoomBallon : Ballon
     public GameObject demoSpike;
     public ParticleSystem vfxBoom;
     public List<BarrialAir> lsBarrialAir;
-    public override void TakeDameSpike()
+    public override void TakeDameSpike(int paramDame)
     {
+        if (isInit)
+        {
 
-        spriteRenderer.sprite = eplosionBallon;
 
+            countExplosion -= paramDame;
+
+
+            if (countExplosion < 1)
+            {
+                spriteRenderer.sprite = eplosionBallon;
+                HandleExplosion();
+            }
+            tvExplosion.text = "" + countExplosion;
+
+        }
+ 
+
+      
+
+
+    }
+
+
+    private void HandleExplosion()
+    {
         if (!isOff)
         {
             isOff = true;
             GameController.Instance.musicManager.PlayRandomBallon();
-            GamePlayController.Instance.gameScene.HandleSubtrackBallon();
+            circleCollider.enabled = false;
+            tvExplosion.gameObject.SetActive(false);
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             demoSpike.gameObject.SetActive(false);
             vfxBoom.Play();
-            foreach(var item in lsBarrialAir)
+            foreach (var item in lsBarrialAir)
             {
-                item.TakeDameSpike();
+                item.Destroy();
             }
-
+            GamePlayController.Instance.playerContain.effectExplosion.HandleEffectExplosion(this);
         }
-
-
+    }
+    public override void Destroy()
+    {
+        base.Destroy();
+        demoSpike.SetActive(false);
     }
 }

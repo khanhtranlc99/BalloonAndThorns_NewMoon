@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-
+using DG.Tweening;
 public class Ballon : BarrialAir
 {
     public Sprite eplosionBallon;
@@ -11,51 +11,86 @@ public class Ballon : BarrialAir
     public CircleCollider2D circleCollider;
     public GameObject outLine;
 
-    public bool isOff;
+
 
     public Vector3 positionX ; // Target position X
     public Vector3 positionY; // Target position Y
     public float speed = 2f;  // Speed of movement
     private bool movingUp = true;
-    public bool isInit;
+   
     public Color colorBallon;
 
     public virtual void Explosion()
     {
-        spriteRenderer.sprite = eplosionBallon;
- 
+   
         if (!isOff)
         {
             isOff = true;
+            circleCollider.enabled = false;
+            tvExplosion.gameObject.SetActive(false);
             GameController.Instance.musicManager.PlayRandomBallon();
-            GamePlayController.Instance.gameScene.HandleSubtrackBallon();
+      //      GamePlayController.Instance.gameScene.HandleSubtrackBallon();
             GamePlayController.Instance.playerContain.levelData.CountWin(this.transform);
             GamePlayController.Instance.HandlSpawnItemInGameBallon(GameController.Instance.dataContain.giftDatabase.GetIconItem(GiftType.Coin), this.transform.position);
             foreach (var item in vfxExprosion)
             {
                 item.Play();
             }
+            GamePlayController.Instance.playerContain.effectExplosion.HandleEffectExplosion(this);
+
+
         }
     }
 
     public override void Init()
     {
-        positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 1);
-        positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 1);
-        speed = Random.RandomRange(0.1f, 0.5f);
-        isInit = true;
+    
+       
+        tvExplosion.text = "" + countExplosion;
+        this.transform.DOMove(postFly,2).OnComplete(delegate {
+            positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 1);
+            positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 1);
+            speed = Random.RandomRange(0.1f, 0.5f);
+            isInit = true;
+            GamePlayController.Instance.SetPlayingState();
+        });
+      
     }
-    public override void TakeDameSpike()
+   
+
+    public override void TakeDameSpike(int paramDame)
     {
         if(isInit)
         {
-            Explosion();
+              if(!isFade)
+            {
+                isFade = true;
+                spriteRenderer.DOFade(0.5f, 0.1f).OnComplete(delegate {
+                    spriteRenderer.DOFade(1, 0.1f).OnComplete(delegate {
+                        isFade = false;
+
+                    });
+
+                });
+
+            }
+              
+                countExplosion -= paramDame;
+               
+       
+                if (countExplosion < 1)
+                {
+                spriteRenderer.sprite = eplosionBallon;
+                Explosion();
+                }
+              tvExplosion.text = "" + countExplosion;
+
         }    
     }
  
     private void FixedUpdate()
     {
-        if(!isOff)
+        if(!isOff )
         {
             if (movingUp)
             {
@@ -202,7 +237,7 @@ public class Ballon : BarrialAir
     
     }
 
-    public override void TakeDameSpikeEffect(BallMovement paramBall, BallController ballController)
+    public override void TakeDameSpikeEffect(BallBase paramBall )
     {
     
     }
@@ -210,6 +245,92 @@ public class Ballon : BarrialAir
     public override void HandleColorBallon()
     {
         HandleRandom();
+    }
+    public override IEnumerator Move()
+    {
+         
+        if (!isOff)
+        {
+            yield return this.transform.DOMoveY(transform.position.y - 1, 0.5f).OnComplete(delegate
+            {
+                positionX = new Vector3(this.transform.position.x, this.transform.position.y + 0.2f, 1);
+                positionY = new Vector3(this.transform.position.x, this.transform.position.y - 0.2f, 1);
+           
+            }).WaitForCompletion();
+        }
+        else
+        {
+            yield return null;
+
+        }
+
+    }
+ 
+    public override List<BarrialAir> GetBallondsAround()
+    {
+        var tempList = new  List<BarrialAir>();
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
+
+        // Bán kính của vòng tròn cast
+        float radius = 1;
+
+        // Hướng và khoảng cách của CircleCast
+        Vector2 direction = Vector2.zero; // Hướng về mọi phía
+        float distance = 0.1f; // Khoảng cách nhỏ để kiểm tra xung quanh
+
+        // Thực hiện CircleCast
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(origin, radius, direction, distance);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                if(hit.collider.gameObject.GetComponent<BarrialAir>() != null && !hit.collider.gameObject.GetComponent<BarrialAir>().isOff)
+                {
+                    if(hit.collider.gameObject.GetComponent<BarrialAir>() != this)
+                    {
+                        tempList.Add(hit.collider.gameObject.GetComponent<BarrialAir>());
+                    }                 
+                }         
+            }
+        }
+        return tempList;
+    }
+
+    public override List<BarrialAir> GetBallondsLeftRight()
+    {
+        var tempList = new List<BarrialAir>();
+        // Vị trí ban đầu của Raycast (có thể dùng transform.position hoặc một vị trí khác)
+        Vector2 origin = new Vector2(transform.position.x, transform.position.y);
+
+        // Khoảng cách tối đa của Raycast
+        float distance = 5.0f; // Khoảng cách kiểm tra
+
+        // Bắn ray về phía bên trái
+        RaycastHit2D[] hitsLeft = Physics2D.RaycastAll(origin, Vector2.left, distance);
+        foreach (RaycastHit2D hit in hitsLeft)
+        {
+            if (hit.collider.gameObject.GetComponent<BarrialAir>() != null && hit.collider.gameObject.GetComponent<BarrialAir>() != this)
+            {     
+                tempList.Add(hit.collider.gameObject.GetComponent<BarrialAir>());
+            }
+        }
+
+        // Bắn ray về phía bên phải
+        RaycastHit2D[] hitsRight = Physics2D.RaycastAll(origin, Vector2.right, distance);
+        foreach (RaycastHit2D hit in hitsRight)
+        {
+            if (hit.collider.gameObject.GetComponent<BarrialAir>() != null && hit.collider.gameObject.GetComponent<BarrialAir>() != this)
+            {
+                tempList.Add(hit.collider.gameObject.GetComponent<BarrialAir>());
+            }
+        }
+        return tempList;
+    }
+    public override void Destroy()
+    {
+        spriteRenderer.sprite = eplosionBallon;
+        Explosion();
     }
 }
 

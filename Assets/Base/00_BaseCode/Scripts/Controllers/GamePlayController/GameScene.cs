@@ -17,8 +17,7 @@ public class GameScene : BaseScene
  
     public Button adsBallsButton;
     public Button speedButton;
-    int targetBallond;
-
+    
     public Image warningPanel;
     public Button shopButton;
     public Button resetButton;
@@ -59,11 +58,11 @@ public class GameScene : BaseScene
     public void Init(LevelData levelData)
     {
         wasOpenShop = false;
-        settinBtn.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false; SettingBox.Setup(true).Show(); });
+        settinBtn.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.inputThone.enabled = false; SettingBox.Setup(true).Show(); });
         //reStartBtn.onClick.AddListener(delegate { Initiate.Fade("GamePlay", Color.black, 2f); });
         tvLevel.text = "Level " + UseProfile.CurrentLevel;
-        targetBallond = levelData.numbTarget;
-        tvTarget.text = "" + targetBallond;
+       
+        tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
 
         adsBallsButton.onClick.AddListener(delegate { HandleBtnAdsBall();  });
         if (UseProfile.UnlimitSpike)
@@ -74,7 +73,7 @@ public class GameScene : BaseScene
 
         shopButton.onClick.AddListener(delegate {
             wasOpenShop = true;
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+            GamePlayController.Instance.playerContain.inputThone.enabled = false;
             ShopBox.Setup(ButtonShopType.Gift).Show();
         });
 
@@ -125,7 +124,7 @@ public class GameScene : BaseScene
     private void HandleBtnAdsBall()
     {
 
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+        GamePlayController.Instance.playerContain.inputThone.enabled = false;
 
         GameController.Instance.admobAds.ShowVideoReward(
                 actionReward: () =>
@@ -138,7 +137,7 @@ public class GameScene : BaseScene
                     {
                         GameController.Instance.dataContain.giftDatabase.Claim(item.type, item.amount);
                     }
-                    PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;  });
+                    PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { GamePlayController.Instance.playerContain.inputThone.enabled = true;  });
 
                 },
                 actionNotLoadedVideo: () =>
@@ -159,10 +158,10 @@ public class GameScene : BaseScene
                 UseProfile.CurrentLevel.ToString());
     }
 
-    public void HandleSubtrackBallon()
+    public void HandleSubtrackNumShoot()
     {
-        targetBallond -= 1;
-        tvTarget.text = "" + targetBallond;
+        GamePlayController.Instance.playerContain.inputThone.NumShoot -= 1;
+        tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
         iconBallon.transform.DOScale(new Vector3(1.2f,1.2f,1.2f), 0.3f).OnComplete(delegate {
             iconBallon.transform.DOScale(new Vector3(1, 1, 1), 0.3f).OnComplete(delegate {
 

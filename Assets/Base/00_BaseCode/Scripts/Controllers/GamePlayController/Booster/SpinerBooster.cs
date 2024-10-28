@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 public class SpinerBooster : MonoBehaviour
 {
     public Button sniper_Btn;
@@ -80,33 +81,21 @@ public class SpinerBooster : MonoBehaviour
 
 
 
-
+    [Button]
     public void HandleSniper_Booster()
     {
         GameController.Instance.musicManager.PlayClickSound();
-        if (UseProfile.SniperBooster >= 1)
-        {
+       
      
             UseProfile.SniperBooster -= 1;  
             sniper_Btn.interactable = false;
-            GamePlayController.Instance.TutSpinerBooster.NextTut();
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
-            postFireSpike = GamePlayController.Instance.playerContain.levelData.inputThone.postFireSpike;
+         
+            GamePlayController.Instance.playerContain.inputThone.enabled = false;
+            postFireSpike = GamePlayController.Instance.playerContain.inputThone.postFireSpike;
             wasUseSniperBooster = true;
-            postFireSpike.spriteRenderer.sprite = fireCreaker;
-            postFireSpike.transform.localScale = new Vector3(2, 2, 2);
-            postFireSpike.transform.localEulerAngles = new Vector3(0, 0, 0);
-            //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-            //{
-            //    lineRenderer.SetColors(Color.black, Color.black);
-               
-            //}
-        }
-        else
-        {
-            SuggetBox.Setup(GiftType.SNIPER_BOOSTER).Show();
-
-        }
+ 
+    
+       
 
 
 
@@ -148,7 +137,7 @@ public class SpinerBooster : MonoBehaviour
    
     public Sprite fireCreaker;
     public Sprite normalSprite;
-    public BallMovement ballMovement;
+    public RocketCardItem ballMovement;
 
 
 
@@ -161,6 +150,10 @@ public class SpinerBooster : MonoBehaviour
             return;
         }
         if ( GamePlayController.Instance.gameScene.IsMouseClickingOnImage)
+        {
+            return;
+        }
+        if (GamePlayController.Instance.stateGame != StateGame.Playing)
         {
             return;
         }
@@ -190,6 +183,13 @@ public class SpinerBooster : MonoBehaviour
             // Clear the list at the start of the raycasting process
             lsRaycastPoints.Clear();
 
+            Vector2 direction2 = (worldPosition - GamePlayController.Instance.playerContain.inputThone.iconCanon.transform.position).normalized;
+
+            // Calculate the angle in degrees
+            float angle = Mathf.Atan2(direction2.y, direction2.x) * Mathf.Rad2Deg;
+
+            // Apply rotation to the cannon (rotating on the Z-axis)
+            GamePlayController.Instance.playerContain.inputThone.iconCanon.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
 
             hit = Physics2D.CircleCast(currentOrigin, 0.4f, currentDirection, Mathf.Infinity, hitLayers);
 
@@ -253,14 +253,14 @@ public class SpinerBooster : MonoBehaviour
             var temp = SimplePool2.Spawn(ballMovement);
             temp.transform.position = postFireSpike.transform.position;
             temp.transform.up = initialDirection;
-            temp.Init(initialDirection, 0);
+            temp.Init(initialDirection );
 
             lineRenderer.positionCount = 0;
-            postFireSpike.spriteRenderer.sprite = normalSprite;
-            postFireSpike.transform.localScale = new Vector3(1, 1, 1);
+   
             wasUseSniperBooster = false;
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+            GamePlayController.Instance.playerContain.inputThone.enabled = true;
             sniper_Btn.interactable = true;
+           
         }
   
 

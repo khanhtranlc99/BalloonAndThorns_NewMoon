@@ -44,8 +44,8 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<BarrialAir>() != null)
         {
-            collision.gameObject.GetComponent<BarrialAir>().TakeDameSpike();
-            collision.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(null, this);
+            collision.gameObject.GetComponent<BarrialAir>().TakeDameSpike(DamePlusCard.dame);
+           
         }
         
     }
@@ -65,7 +65,7 @@ public class BallController : MonoBehaviour
         Vector3 direction1 = Quaternion.Euler(0, 0, 45) * transform.right;
      
         temp1.AddForceBall(direction1* 1.8f);
-        GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp1);
+       // GamePlayController.Instance.playerContain.inputThone.lsBallMovement.Add(temp1);
         // Spawn và khởi tạo temp2 với hướng -45 độ
         var temp2 = SimplePool2.Spawn(ballMovementPrefab);
         temp2.transform.position = this.transform.position;
@@ -76,7 +76,7 @@ public class BallController : MonoBehaviour
         temp2.AddForceBall(direction2 * 1.8f);
       
   
-        GamePlayController.Instance.playerContain.levelData.inputThone.lsBallMovement.Add(temp2);
+      //  GamePlayController.Instance.playerContain.inputThone.lsBallMovement.Add(temp2);
 
         SimplePool2.Despawn(this.gameObject);
     }

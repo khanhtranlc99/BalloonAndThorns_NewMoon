@@ -39,7 +39,7 @@ public class LoseBox : BaseBox
             Time.timeScale = 1;
           GamePlayController.Instance.gameScene.HandleChangeNormal();
         }
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+      
         GameController.Instance.AnalyticsController.LoseLevel(UseProfile.CurrentLevel);
      
     }
@@ -47,6 +47,7 @@ public class LoseBox : BaseBox
     {
         GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => {
 
+            UseProfile.CurrentLevel = 1;
             Initiate.Fade("GamePlay", Color.black, 2f);
 
         }, actionWatchLog: "LoseBox");
@@ -57,9 +58,12 @@ public class LoseBox : BaseBox
         GameController.Instance.admobAds.ShowVideoReward(
                 actionReward: () =>
                 {
-
-                    UseProfile.CurrentLevel += 1;
-                    Initiate.Fade("GamePlay", Color.black, 2f);
+                    GamePlayController.Instance.playerContain.inputThone.NumShoot += 3;
+                    GamePlayController.Instance.gameScene.tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
+                    GamePlayController.Instance.playerContain.inputThone.HandleSetUp();
+                    Close();
+            
+                    //Initiate.Fade("GamePlay", Color.black, 2f);
                 },
                 actionNotLoadedVideo: () =>
                 {

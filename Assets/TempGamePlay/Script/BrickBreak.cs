@@ -12,10 +12,10 @@ public class BrickBreak : BarrialAir
         heart = 3;
     }
 
-    public override void TakeDameSpike()
+    public override void TakeDameSpike(int paramDame)
     {
      
-        heart -= 1;
+        heart -= paramDame;
         if(heart == 2)
         {
             spriteRD.color = new Color32(255,255,255,100);
@@ -31,7 +31,7 @@ public class BrickBreak : BarrialAir
         }
         partycale.Play();
     }
-    public override void TakeDameSpikeEffect(BallMovement paramBall, BallController ballController)
+    public override void TakeDameSpikeEffect(BallBase paramBall )
     {
 
     }
@@ -42,6 +42,24 @@ public class BrickBreak : BarrialAir
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TakeDameSpike();
+        TakeDameSpike(DamePlusCard.dame);
+    }
+    public override List<BarrialAir> GetBallondsAround( )
+    {
+       
+        return null;
+    }
+    public override List<BarrialAir> GetBallondsLeftRight( )
+    {
+       
+        return null;
+    }
+    public override IEnumerator Move()
+    {
+        yield return null;
+    }
+    public override void Destroy()
+    {
+  
     }
 }

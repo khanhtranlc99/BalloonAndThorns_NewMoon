@@ -33,7 +33,7 @@ public class SuggetBox : BaseBox
     public void Init()
     {
      
-        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true; GameController.Instance.musicManager.PlayClickSound(); Close(); });
+        btnClose.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.inputThone.enabled = true; GameController.Instance.musicManager.PlayClickSound(); Close(); });
    
         payByCoinBtn.onClick.AddListener(delegate { HandlePayByCoin(); });
     }
@@ -42,7 +42,7 @@ public class SuggetBox : BaseBox
     {
         coinHeartBar.Init();
         Debug.LogError(giftType);
-        GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
+        GamePlayController.Instance.playerContain.inputThone.enabled = false;
         currentGift = giftType;
         switch (giftType)
         {
@@ -211,7 +211,7 @@ public class SuggetBox : BaseBox
         giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = currentGift });
         PopupRewardBase.Setup(false).Show(giftRewardShows, delegate {
 
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true  ;
+            GamePlayController.Instance.playerContain.inputThone.enabled = true  ;
         });
 
     }
@@ -226,7 +226,7 @@ public class SuggetBox : BaseBox
         PopupRewardBase.Setup(false).Show(giftRewardShows, delegate {
 
 
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+            GamePlayController.Instance.playerContain.inputThone.enabled = true;
         });
 
     }

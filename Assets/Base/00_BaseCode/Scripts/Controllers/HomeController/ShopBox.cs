@@ -58,7 +58,7 @@ public class ShopBox : BaseBox
         coinHeartBar.Init();
         btnClose.onClick.AddListener(delegate {
             GameController.Instance.musicManager.PlayClickSound();
-            GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;
+            GamePlayController.Instance.playerContain.inputThone.enabled = true;
             Close(); });
         EventDispatcher.EventDispatcher.Instance.RegisterListener(EventID.SHOP_CHECK, CheckOffPack);
     }

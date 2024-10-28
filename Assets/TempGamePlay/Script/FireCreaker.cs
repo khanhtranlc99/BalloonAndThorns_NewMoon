@@ -35,9 +35,9 @@ public class FireCreaker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Ballon>() != null)
+        if(collision.gameObject.GetComponent<BarrialAir>() != null)
         {
-            collision.gameObject.GetComponent<Ballon>().TakeDameSpike();
+            collision.gameObject.GetComponent<BarrialAir>().Destroy();
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Layer_2"))
         {

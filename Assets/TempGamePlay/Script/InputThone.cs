@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
  
 [System.Serializable]
 public class RaycastPoint
@@ -13,34 +14,28 @@ public class RaycastPoint
 
 public class InputThone : MonoBehaviour
 {
-
+    public TMP_Text tvBall;
+    public int numbBall ;
     public ThoneDemo postFireSpike;
-    public BallController ballMovement;
-
+    public BallMovement ballMovement;
     RaycastHit2D hit;
     Vector2 initialDirection;
-
     public LineRenderer lineRenderer;
-    public LineRenderer lineRenderer_Demo;
     public LayerMask hitLayers;
     public List<GameObject> lsThoneDemos;
     public Material lineMaterial;
-    public int numOfReflect;
-    public List<BallController> lsBallMovement;
+    public int numOfReflect = 1;
+    public List<BallBase> lsBallMovement;
     public List<RaycastPoint> lsRaycastPoints;
     public bool wasDraw;
+    public bool lockShoot;
+    public BallBase lastPostBall;
+    public GameObject mark;
+    public int NumShoot;
+    public Transform firstPost;
+    public DownBallButton downBallButton;
 
-    public Vector3 firstPost;
-    public Vector3 secondPost;
-
-
-    public Transform leftPost;
-    public Transform rightPost;
-    public Transform upPost;
-    public Transform botPost;
-    public Color lineColor = Color.black;
-    private float plusSpeed;
-    public bool AllDestoy
+    public bool AllBallDrop
     {
         get
         {
@@ -50,7 +45,7 @@ public class InputThone : MonoBehaviour
             }
             foreach (var item in lsBallMovement)
             {
-                if (item.gameObject.activeSelf)
+                if (item.activeMove)
                 {
                     return false;
                 }
@@ -58,294 +53,261 @@ public class InputThone : MonoBehaviour
             return true;
         }
     }
-
-    public bool HasBallInGame
+    public bool AllBallMoveStartPost
     {
         get
         {
+            
             foreach (var item in lsBallMovement)
             {
-                if (item.gameObject.activeSelf == true)
+                if (!item.endGame)
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
-
     }
-
-    public SpriteRenderer outlineLimit;
-    public GameObject objText;
-
-
-    public int numberOfPoints = 50; // Number of points to draw the trajectory
-    public float timeBetweenPoints = 0.1f; // Time interval between points
-    public LayerMask collisionMask;
-    public Material blackMaterial;
-    private bool CanShoot
+    PlayerContain playerContain;
+    public void Init(PlayerContain param)
     {
-        get
-        {
-
-            if (GamePlayController.Instance.stateGame != StateGame.Playing)
-            {
-
-                return false;
-            }
-            if (GamePlayController.Instance.gameScene.IsMouseClickingOnImage)
-            {
-
-                return false;
-            }
-            if (GamePlayController.Instance.playerContain.levelData.limitTouch > 0 && !GamePlayController.Instance.playerContain.moveSightingPointBooster.wasUseMoveSightingPointBooster)
-            {
-
-                return true;
-            }
-      
-            return false;
-        }    
-    }
- 
- 
-
-
-public void Init()
-    {
+        playerContain = param;
+       // postFireSpike.Init();
         // Thiết lập LineRenderer
-        wasDraw = false;
         lineRenderer.positionCount = 0; // Khởi tạo với không điểm
         lineRenderer.startWidth = 0.15f;
         lineRenderer.endWidth = 0.15f;
         lineMaterial.SetFloat("width", 0.75f);
         lineMaterial.SetFloat("heigth", 0.1f);
-       
-
-        lsBallMovement = new List<BallController>();
-        SimplePool2.Preload(ballMovement.gameObject, 5);
-        //if (RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1) == 2)
-        //{
-        //    lineRenderer.SetColors(Color.black, Color.black);
-        //    lineRenderer_Demo.SetColors(Color.black, Color.black);
-        //    lineRenderer_Demo.material = blackMaterial;
-        //}
-        firstPost = postFireSpike.transform.position;
-        //collisionMask = LayerMask.GetMask("Default");
-
+     //   numOfReflect = 1;
+        lsBallMovement = new List<BallBase>();
+ 
+        lastPostBall = null;
+        lockShoot = false;
+        tvBall.text = "x" + numbBall;
+        NumShoot =  5 + ShootPlusCard.numbShootPlus;
+        GamePlayController.Instance.gameScene.tvTarget.text = "" + NumShoot;
     }
-    public void SetupFirstPost()
-    {
-        firstPost = postFireSpike.transform.position;
-    }    
-   
-
+    public SpriteRenderer iconCanon;
+    public MoveCollider moveCollider;
+    public ListBallController listBallController;
     void Update()
     {
-
+        if (lockShoot) return;
+        if (GamePlayController.Instance.gameScene.IsMouseClickingOnImage)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
-         
-            if (CanShoot)
+            if (GamePlayController.Instance.stateGame == StateGame.Playing)
             {
-                outlineLimit.gameObject.SetActive(true);
                 wasDraw = true;
                 GamePlayController.Instance.TutGameplay.NextTut();
             }
-            else
-            {
-                wasDraw = false;
-            }    
-            objText.gameObject.SetActive(true);
 
         }
         if (wasDraw)
         {
             if (Input.GetMouseButton(0))
             {
-                secondPost = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                if (secondPost.x < leftPost.position.x)
-                {
-                    secondPost = new Vector3(leftPost.position.x, secondPost.y);
-                
-                }
-                if (secondPost.x > rightPost.position.x)
-                {
-                    secondPost = new Vector3(rightPost.position.x, secondPost.y);
-                    
-                }
+                // Lấy vị trí chuột trên màn hình
+                Vector3 mousePosition = Input.mousePosition;
 
-                if (secondPost.y < botPost.position.y)
+                // Chuyển đổi vị trí chuột từ màn hình sang thế giới
+                Vector3 worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.transform.position.z));
+                if (worldPosition.y <= postFireSpike.postShoot.position.y)
                 {
-                    secondPost = new Vector3(secondPost.x, botPost.position.y);
-                    plusSpeed = 2.4f;
+                    HandleMouseEndLimit();
+                    return;
+
+                }
+                // Tạo một Ray bắn từ vị trí của thoneDemo qua vị trí người dùng chạm
+                Vector3 direction = (worldPosition - postFireSpike.postShoot.position).normalized;
+
+                // Lưu hướng của raycast để sử dụng khi khởi tạo bóng
+                initialDirection = direction;
+
+                // Sử dụng CircleCast thay cho Raycast, với bán kính hình tròn là 0.4f
+                Vector3 currentDirection = direction;
+                Vector3 currentOrigin = postFireSpike.postShoot.position;
+
+                // Khởi tạo LineRenderer
+                lineRenderer.positionCount = 1;
+                lineRenderer.SetPosition(0, currentOrigin);
+
+                int lineIndex = 1;
+
+                // Clear the list at the start of the raycasting process
+                lsRaycastPoints.Clear();
+
+                // Calculate the direction from the cannon to the mouse position
+                Vector2 direction2 = (worldPosition - iconCanon.transform.position).normalized;
+
+                // Calculate the angle in degrees
+                float angle = Mathf.Atan2(direction2.y, direction2.x) * Mathf.Rad2Deg;
+
+                // Apply rotation to the cannon (rotating on the Z-axis)
+                iconCanon.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+
+
+
+
+                if (numOfReflect <= 1)
+                {
+                    hit = Physics2D.CircleCast(currentOrigin, 0.2f, currentDirection, Mathf.Infinity, hitLayers);
+
+                    // Debug raycast với đầu là hình tròn
+                    Debug.DrawRay(currentOrigin, currentDirection * 100f, Color.red, 0.05f);
+
+                    if (hit.collider != null)
+                    {
+                        // Tọa độ của điểm va chạm
+                        Vector2 hitPoint = hit.point;
+
+                        // Tính toán hướng vuông góc với raycast (normal của va chạm)
+                        Vector2 normal = hit.normal;
+
+                        // Vẽ một hình tròn tại điểm va chạm để kiểm tra
+                        Vector2 circleCastOrigin = hitPoint + normal * 0.2f;
+                        lsThoneDemos[0].gameObject.SetActive(true);
+                        lsThoneDemos[0].transform.position = circleCastOrigin;
+
+                        // Tăng số điểm của LineRenderer
+                        lineRenderer.positionCount = lineIndex + 1;
+                        lineRenderer.SetPosition(lineIndex, circleCastOrigin);
+                        lineIndex++;
+
+                        // Tạo và lưu thông tin raycast vào lsRaycastPoints
+                        RaycastPoint raycastPoint = new RaycastPoint
+                        {
+                            startPoint = currentOrigin,
+                            endPoint = (Vector3)circleCastOrigin
+                        };
+                        lsRaycastPoints.Add(raycastPoint);
+
+                        // Tính toán hướng phản chiếu từ điểm va chạm
+                        Vector2 reflectDirection = Vector2.Reflect(currentDirection, normal);
+
+                        // Vẽ raycast phản chiếu từ điểm va chạm
+                        Debug.DrawRay(circleCastOrigin, reflectDirection * 100f, Color.blue, 0.05f);
+                        float shortSegmentLength = 2.0f; // Chiều dài của đoạn ngắn, có thể điều chỉnh
+                        Vector2 reflectSegmentEnd = circleCastOrigin + reflectDirection.normalized * shortSegmentLength;
+
+                        // Thêm điểm kết thúc của đoạn ngắn vào LineRenderer
+                        lineRenderer.positionCount = lineIndex + 1;
+                        lineRenderer.SetPosition(lineIndex, reflectSegmentEnd);
+                        lineIndex++;
+
+                        // Tạo và lưu thông tin phản chiếu vào lsRaycastPoints
+                        raycastPoint = new RaycastPoint
+                        {
+                            startPoint = circleCastOrigin,
+                            endPoint = (Vector3)reflectSegmentEnd
+                        };
+                        lsRaycastPoints.Add(raycastPoint);
+                    }
                 }
                 else
                 {
-                    plusSpeed = 1.6f;
+                    for (int i = 0; i < numOfReflect; i++)
+                    {
+                        // CircleCast để phát hiện va chạm với các lớp được chỉ định bởi hitLayers
+                        hit = Physics2D.CircleCast(currentOrigin, 0.2f, currentDirection, Mathf.Infinity, hitLayers);
+
+                        // Debug raycast với đầu là hình tròn
+                        Debug.DrawRay(currentOrigin, currentDirection * 100f, Color.red, 0.05f);
+
+                        if (hit.collider != null)
+                        {
+                            // Tọa độ của điểm va chạm
+                            Vector2 hitPoint = hit.point;
+
+                            // Tính toán hướng vuông góc với raycast (normal của va chạm)
+                            Vector2 normal = hit.normal;
+
+                            // Vẽ một hình tròn tại điểm va chạm để kiểm tra
+                            Vector2 circleCastOrigin = hitPoint + normal * 0.2f;
+                            lsThoneDemos[i].gameObject.SetActive(true);
+                            lsThoneDemos[i].transform.position = circleCastOrigin;
+
+                            // Tăng số điểm của LineRenderer
+                            lineRenderer.positionCount = lineIndex + 1;
+                            lineRenderer.SetPosition(lineIndex, circleCastOrigin);
+                            lineIndex++;
+
+                            // Tạo và lưu thông tin raycast vào lsRaycastPoints
+                            RaycastPoint raycastPoint = new RaycastPoint
+                            {
+                                startPoint = currentOrigin,
+                                endPoint = (Vector3)circleCastOrigin
+                            };
+                            lsRaycastPoints.Add(raycastPoint);
+
+                            // Tính toán hướng phản chiếu từ điểm va chạm
+                            Vector2 reflectDirection = Vector2.Reflect(currentDirection, normal);
+
+                            // Vẽ raycast phản chiếu từ điểm va chạm
+                            Debug.DrawRay(circleCastOrigin, reflectDirection * 100f, Color.blue, 0.05f);
+
+                            // Cập nhật hướng và gốc cho lần phản chiếu tiếp theo
+                            currentDirection = reflectDirection;
+                            currentOrigin = circleCastOrigin;
+                        }
+                        else
+                        {
+                            // Nếu không có va chạm, dừng vòng lặp
+                            break;
+                        }
+                    }
                 }
-                if (secondPost.y > upPost.position.y)
-                {
-                    secondPost = new Vector3(secondPost.x, upPost.position.y);
-                  
-                }
-
-
-               
-
-                postFireSpike.transform.position = new Vector3(secondPost.x, secondPost.y, 0);
-                objText.transform.position = new Vector3(secondPost.x + 0.5f, secondPost.y + 0.5f, 0);
-
-                initialDirection = (firstPost - postFireSpike.transform.position).normalized  * plusSpeed;
-                DrawTrajectory(ballMovement.rigidbody2D, postFireSpike.transform.position, initialDirection);
-                lineRenderer_Demo.positionCount = 2;
-                lineRenderer_Demo.SetPosition(0, new Vector3(firstPost.x,firstPost.y,-10));
-                lineRenderer_Demo.SetPosition(1, new Vector3(postFireSpike.transform.position.x, postFireSpike.transform.position.y, -10));
-
             }
             if (Input.GetMouseButtonUp(0))
             {
-
-
-
-                GamePlayController.Instance.TutCloneBallsBooster.StartTut();
+                lockShoot = true;
                 wasDraw = false;
-
+                lastPostBall = null;
                 foreach (var item in lsThoneDemos)
                 {
                     item.gameObject.SetActive(false);
                 }
-               
-          
-                objText.transform.position = new Vector3(firstPost.x + 0.5f, firstPost.y + 0.5f, 0);
-
-
-             
-                var temp = SimplePool2.Spawn(ballMovement);
-
-                temp.transform.position = postFireSpike.transform.position;
-                temp.AddForceBall(initialDirection);
-           
                 lineRenderer.positionCount = 0;
-
-                lsBallMovement.Add(temp);
-
-                GamePlayController.Instance.playerContain.levelData.HandleSubtrack();
-
-                StartCoroutine(StartAgain());
-                outlineLimit.gameObject.SetActive(false);
-                objText.gameObject.SetActive(false);
-                postFireSpike.transform.localScale = Vector3.zero;
-                postFireSpike.transform.position = firstPost;
-                lineRenderer_Demo.positionCount = 0;
+                // Khởi tạo bóng và gán vị trí ban đầu của nó
+                var tempInitialDirection = initialDirection.normalized;
+                GamePlayController.Instance.gameScene.HandleSubtrackNumShoot();
+                StartCoroutine(Shoot(tempInitialDirection));
+                downBallButton.gameObject.SetActive(true);
+              //  postFireSpike.postShoot.gameObject.SetActive(false);
             }
-
         }
 
 
-
-
-
     }
-    int tempList;
-    public float distanceStartEnd;
-    void DrawTrajectory(Rigidbody2D rb, Vector2 start, Vector2 initialForce)
+    int tempBall;
+    private IEnumerator Shoot(Vector2 param)
     {
-        Vector2 currentPosition = start;
-        Vector2 initialVelocity = initialForce / rb.mass;
-
-        float gravity = Physics2D.gravity.y * rb.gravityScale;
-        float timeStep = timeBetweenPoints;
-
-        lineRenderer.positionCount = numberOfPoints;
-
-        for (int i = 0; i < numberOfPoints; i++)
+        tempBall = numbBall;
+        var tempListBall = listBallController.GetListBallBase;
+        for (int i = 0; i < tempListBall.Count; i++)
         {
-            float t = i * timeStep;
-            Vector2 displacement = initialVelocity * t + 0.5f * new Vector2(0, gravity) * t * t;
-            Vector2 newPoint = currentPosition + displacement;
 
-            if (newPoint.y < -10)
-            {
-                lineRenderer.positionCount = i;
-                break;
-            }
-
-            // Set the position of each point in the LineRenderer
- 
-            lineRenderer.SetPosition(i, newPoint);
-
-
- 
-            if (i > 0)
-            {
-              
-                //Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
-                Vector2 direction = (lineRenderer.GetPosition(i) - lineRenderer.GetPosition(i - 1)).normalized;
-                float distance = Vector2.Distance(lineRenderer.GetPosition(i), lineRenderer.GetPosition(i - 1));
-
-                // Perform a raycast from the previous point to the current point
-                RaycastHit2D hit = Physics2D.CircleCast(lineRenderer.GetPosition(i - 1), 0.5f, direction, distance, collisionMask);
-
-                if (hit.collider != null)
-                {
-                    // Calculate the reflection direction
-                    Vector2 reflectDirection = Vector2.Reflect(direction, hit.normal);
-
-                    // Update the position to the collision point
-                    Vector2 collisionPoint = hit.point + hit.normal * 0.5f;
-                    lineRenderer.SetPosition(i, collisionPoint);
-                    lineRenderer.positionCount = i + 1;
-
-                
-                    // Start drawing the reflected trajectory
-
-                    break; // Exit the loop after handling the first collision
-                }
-
-                Debug.DrawRay(lineRenderer.GetPosition(i - 1), direction * distance, Color.green, 0.1f);
-            }
+            var temp = SimplePool2.Spawn(tempListBall[i]);
+            temp.transform.position =    postFireSpike.postShoot.position;
+            lsBallMovement.Add(temp);
+        
+      
         }
-        distanceStartEnd = Vector3.Distance(lineRenderer.GetPosition(0), lineRenderer.GetPosition(lineRenderer.positionCount - 1));
-       
-    }
-
-    void DrawReflectedTrajectory(Rigidbody2D rb, Vector2 start, Vector2 reflectDirection)
-    {
-        Vector2 currentPosition = start;
-        Vector2 initialVelocity = reflectDirection * 10f; // Adjust the speed after reflection if necessary
-
-        float gravity = Physics2D.gravity.y * rb.gravityScale;
-        float timeStep = timeBetweenPoints;
-
-        int reflectedPoints = numberOfPoints / 2; // Limit the number of points for reflected trajectory
-        lineRenderer.positionCount += reflectedPoints; // Increase the lineRenderer point count for the reflected trajectory
-
-        for (int i = 0; i < reflectedPoints; i++)
+        foreach(var item in lsBallMovement)
         {
-            float t = i * timeStep;
-            Vector2 displacement = initialVelocity * t + 0.5f * new Vector2(0, gravity) * t * t;
-            Vector2 newPoint = currentPosition + displacement;
-
-            if (newPoint.y < -10)
-            {
-                lineRenderer.positionCount -= (reflectedPoints - i); // Adjust the position count to stop at the ground
-                break;
-            }
-
-            // Set the position of each reflected point in the LineRenderer
-            lineRenderer.SetPosition(lineRenderer.positionCount - reflectedPoints + i, newPoint);
-        }
+            yield return new WaitForSeconds(0.05f);
+            tempBall -= 1;
+            tvBall.text = "x" + tempBall;
+            item.Init(param);
+        }    
+        //mark.SetActive(false);
     }
-    private IEnumerator StartAgain()
-    {
-        yield return new WaitForSeconds(1);
-       
-        postFireSpike.transform.DOScale(new Vector3(1,1,1),1);
-        objText.gameObject.SetActive(true);
 
-    }
 
     private void HandleMouseEndLimit()
     {
@@ -356,16 +318,115 @@ public void Init()
         }
         lineRenderer.positionCount = 0;
         Debug.LogError("HandleMouseEndLimit__" + lineRenderer.positionCount);
-    }    
+    }
 
-    public void StopActiveMove()
+    public IEnumerator StopActiveMove(Action callBack)
     {
-        foreach(var item in lsBallMovement)
+        StopAllCoroutines();
+        for  (int i = 0; i < lsBallMovement.Count; i ++)
         {
-            if(item != null)
+            lsBallMovement[i].activeMove = false;
+        }
+        yield return new WaitForSeconds(0.75f);
+        List<Coroutine> runningCoroutines = new List<Coroutine>();
+        foreach (var item in lsBallMovement)
+        {
+            runningCoroutines.Add(StartCoroutine(item.Move(postFireSpike.postShoot.position)));
+        }
+        foreach (var coroutine in runningCoroutines)
+        {
+            yield return coroutine;
+        }
+        HandleOffBall();
+        callBack?.Invoke();
+    }
+
+  
+
+    public void HandleOffBall()
+    {
+       
+            downBallButton.gameObject.SetActive(false);
+            foreach (var item in lsBallMovement)
             {
-                item.gameObject.SetActive(false);
-            }    
+                SimplePool2.Despawn(item.gameObject);
+            }
+            lsBallMovement.Clear();
+     
+    }
+
+    public void HandleMoveCharetor(BallBase ball)
+    {
+        if (lastPostBall == null)
+        {
+            lastPostBall = ball;
+
+        }
+        if (ball.transform.position != lastPostBall.transform.position)
+        {
+            ball.transform.DOMove(lastPostBall.transform.position, 0.2f);
+        }
+        if (AllBallDrop)
+        {
+            postFireSpike.transform.DOMoveX(lastPostBall.transform.position.x, 0.5f).OnComplete(delegate
+            {
+                for (int i = 0; i < lsBallMovement.Count; i++)
+                {
+                    int index = i;
+                    lsBallMovement[index].transform.DOMove(postFireSpike.postShoot.gameObject.transform.position, 0.35f).OnComplete(delegate
+                    {
+                       
+                        if (index == lsBallMovement.Count - 1)
+                        {
+
+                            //  postFireSpike.postShoot.gameObject.SetActive(true);
+                            HandleSetUp();
+                          
+                        }
+
+                    });
+                }
+            });
+
+        }
+    }
+
+    public void HandleSetUp()
+    {
+        downBallButton.gameObject.SetActive(false);
+
+        if (playerContain.levelData.isMove)
+        {
+            StartCoroutine(playerContain.levelData.HandleActionMove(SetUp));
         }    
-    }    
+         else
+        {
+            SetUp();
+        }    
+
+     
+      
+
+        void SetUp()
+        {
+            HandleOffBall();
+
+
+            if (NumShoot <= 0 && !playerContain.levelData.AllExplosion)
+            {
+                LoseBox.Setup().Show();
+            }
+            else
+            {
+                tvBall.text = "x" + numbBall;
+                postFireSpike.postShoot.gameObject.SetActive(true);
+                lockShoot = false;
+            }
+        
+          //  mark.SetActive(true);
+        }
+
+
+    }
+
 }

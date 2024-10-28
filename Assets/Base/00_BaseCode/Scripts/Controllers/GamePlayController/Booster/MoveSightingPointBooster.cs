@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 public class MoveSightingPointBooster : MonoBehaviour
 {
     public Button moveSightingPoint_Booster;
@@ -91,35 +92,16 @@ public class MoveSightingPointBooster : MonoBehaviour
 
 
 
-
+    [Button]
     public void Handle_Move_Sighting_Point()
     {
-        GameController.Instance.musicManager.PlayClickSound();
-        if (UseProfile.UnlimitScope)
-        {
+      
  
-            playerContain.HandleMoveSightingPointBooster();
+            GamePlayController.Instance.playerContain.HandleMoveSightingPointBooster();
             wasUseMoveSightingPointBooster = true;
             moveSightingPoint_Booster.interactable = false;
-            playerContain.levelData.inputThone.postFireSpike.HandleScale();
-            GamePlayController.Instance.TutMoveSightingPointBooster.NextTut();
-            return;
-        }
-        if (UseProfile.MoveSightingPointBooster >= 1)
-        {
-
-
-            UseProfile.MoveSightingPointBooster -= 1;
-            playerContain.HandleMoveSightingPointBooster();
-            wasUseMoveSightingPointBooster = true;
-            moveSightingPoint_Booster.interactable = false;
-            playerContain.levelData.inputThone.postFireSpike.HandleScale();
-            GamePlayController.Instance.TutMoveSightingPointBooster.NextTut();
-        }
-        else
-        {
-            SuggetBox.Setup(GiftType.MOVE_SIGHTING_POINT_BOOSTER).Show();
-        }
+          //  playerContain.inputThone.postFireSpike.HandleScale();
+          
 
 
     }
@@ -128,8 +110,8 @@ public class MoveSightingPointBooster : MonoBehaviour
     {
         wasUseMoveSightingPointBooster = false;
         moveSightingPoint_Booster.interactable = true;
-        playerContain.levelData.inputThone.postFireSpike.OffScale();
-        GamePlayController.Instance.playerContain.levelData.inputThone.SetupFirstPost();
+        playerContain.inputThone.postFireSpike.OffScale();
+      //  GamePlayController.Instance.playerContain.inputThone.SetupFirstPost();
     }    
    
 

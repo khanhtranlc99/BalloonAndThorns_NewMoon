@@ -17,59 +17,51 @@ public class PlayerContain : MonoBehaviour
     public MoveSightingPointBooster moveSightingPointBooster;
     public CloneBallsBooster cloneBallsBooster;
     public RoketBooster roketBooster;
+    public CardController cardController;
+    public EffectExplosion effectExplosion;
     public void Init()
     {
         string pathLevel = StringHelper.PATH_CONFIG_LEVEL_TEST;
         levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
         levelData.Init();
-        inputThone = levelData.inputThone;
-        inputThone.Init();
+      
+        inputThone.Init(this);
 
-        spinerBooster.Init(this);
-        moveSightingPointBooster.Init(this);
-        cloneBallsBooster.Init(this);
-        roketBooster.Init(this);
-        GamePlayController.Instance.TutGameplay.StartTut();
-        GamePlayController.Instance.TutSpinerBooster.StartTut();
-        GamePlayController.Instance.TutMoveSightingPointBooster.StartTut();
- 
-        GamePlayController.Instance.TutRocketBooster.StartTut();
-        StartCoroutine(SetPost());
-
+      
+       // GamePlayController.Instance.TutGameplay.StartTut();
         GameController.Instance.AnalyticsController.LoadingComplete();
         GameController.Instance.AnalyticsController.StartLevel(UseProfile.CurrentLevel);
     }
-    private IEnumerator SetPost()
-    {
-        yield return new WaitForSeconds(0.1f);
-        //levelData.inputThone.transform.localPosition += new Vector3(0, postBot.localPosition.y, 0);
-        //Debug.LogError("postBot.position.y_" + postBot.position.y);
-        //Debug.LogError("levelData.inputThone.transform.position_" + levelData.inputThone.transform.position);
-        //Debug.LogError("Sum_" );
-    }
+  
 
-    public void HandleSpinerBooster()
+    public void HandleScaleInput()
     {
-        inputThone.numOfReflect = 4;
-      
+        //  inputThone.postFireSpike.transform.position = new Vector3(0,-8.28f,0);
+        //Debug.LogError(inputThone.postFireSpike.transform.position);
+        inputThone.iconCanon.transform.localEulerAngles = Vector3.zero;
+        inputThone.transform.DOScale(new Vector3(1,1,1), 0.3f).OnComplete(delegate {
+            GamePlayController.Instance.TutGameplay.StartTut();
+        
+        }) ;
+     
     }
 
     public void HandleMoveSightingPointBooster()
     {
   
         //levelData.PlusBall();
-        levelData.inputThone.postFireSpike.HandleBooster();
+      inputThone.moveCollider.HandleBooster();
     }
 
     public void HandleCloneBallsBooster()
     {
         var temp = new List<BallController>();
-        foreach (var item in levelData.inputThone.lsBallMovement)
+        foreach (var item in inputThone.lsBallMovement)
         {
             if (item.gameObject.activeSelf)
             {
 
-                temp.Add(item);
+               // temp.Add(item);
 
             }
         }
@@ -116,5 +108,10 @@ public class PlayerContain : MonoBehaviour
 
         Initiate.Fade("GamePlay", Color.black, 2f);
     }    
-
+    public void HandleNextLevel()
+    {
+        Destroy(levelData.gameObject);
+        Init();
+   
+    }    
 }

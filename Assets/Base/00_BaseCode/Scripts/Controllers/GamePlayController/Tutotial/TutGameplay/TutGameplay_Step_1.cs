@@ -9,14 +9,14 @@ public class TutGameplay_Step_1 : TutorialBase
     { 
      get
         {
-            return GamePlayController.Instance.playerContain.levelData.inputThone.postFireSpike.transform.position;
+            return GamePlayController.Instance.playerContain.inputThone.postFireSpike.transform.position;
         }    
     }
     Vector3 postTargetSecond
     {
         get
         {
-            return GamePlayController.Instance.playerContain.levelData.inputThone.botPost.position;
+            return GamePlayController.Instance.playerContain.inputThone.postFireSpike.transform.position;
         }
     }
     public override bool IsCanEndTut()
@@ -39,21 +39,12 @@ public class TutGameplay_Step_1 : TutorialBase
                 return;
             }
             currentHand = SimplePool2.Spawn(handTut);
-            currentHand.transform.position = new Vector3(postTarget.x + 0.5f  , postTarget.y , -5);
-            MoveHand();
+            currentHand.gameObject.GetComponent<HandTutGamePlay>().Init(GamePlayController.Instance.playerContain.inputThone );
+            //currentHand.transform.position = new Vector3(postTarget.x + 0.5f  , postTarget.y , -5);
 
         }
     }
 
-    private void MoveHand()
-    {
-    
-        currentHand.transform.DOMove(new Vector3(postTargetSecond.x -0.5f, postTargetSecond.y, -5), 1).OnComplete(delegate {
-
-            currentHand.transform.position = new Vector3(postTarget.x + 0.5f, postTarget.y , -5);
-            MoveHand();
-        });
-    }    
     
 
 
