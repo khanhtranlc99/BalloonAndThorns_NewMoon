@@ -16,7 +16,7 @@ public class FireCrackerCard : CardBase
     public override void HandleAction()
     {
         spinerBooster.HandleSniper_Booster();
-        Debug.LogError("FireCrackerCard");
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 }
 

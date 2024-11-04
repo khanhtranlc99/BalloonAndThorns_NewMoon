@@ -15,6 +15,7 @@ public class SeeThroughBallCard : CardBase
     {
         countNumb += 1;
         GamePlayController.Instance.playerContain.inputThone.listBallController.currentBallBases.Add(ballBase);
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     public override bool CanShow()

@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
  
     public StartLoading startLoading;
     public float idBackground;
+    public bool isContinue;
 
     protected void Awake()
     {
@@ -62,12 +63,21 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         Application.targetFrameRate = 60;
-        SetUp();
+        admobAds.Init();
+        if (UseProfile.isSaveDataCard)
+        {
+            ContinueGameBox.Setup().Show();
+        }
+        else
+        {
+            SetUp();
+        }
+      
     }
 
     public void SetUp()
     {
-        admobAds.Init();
+   
         musicManager.Init();
         iapController.Init();
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);

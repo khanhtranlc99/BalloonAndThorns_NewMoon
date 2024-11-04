@@ -21,7 +21,7 @@ public class SpinerBooster : MonoBehaviour
      
         playerContain = param;
         wasUseSniperBooster = false;
-        if (UseProfile.CurrentLevel >= 7)//5
+        if (UseProfile.CurrentLevel_Chapper_I >= 7)//5
         {
 
             //unLockIcon.gameObject.SetActive(true);

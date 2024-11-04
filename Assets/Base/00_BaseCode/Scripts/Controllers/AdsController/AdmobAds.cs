@@ -159,7 +159,7 @@ public class AdmobAds : MonoBehaviour
         {
 
 
-            if (UseProfile.CurrentLevel >= RemoteConfigController.GetFloatConfig(FirebaseConfig.LEVEL_START_SHOW_INITSTIALL, 1))
+            if (UseProfile.CurrentLevel_Chapper_I >= RemoteConfigController.GetFloatConfig(FirebaseConfig.LEVEL_START_SHOW_INITSTIALL, 1))
             {
                
                 if (countdownAds > RemoteConfigController.GetFloatConfig(FirebaseConfig.DELAY_SHOW_INITSTIALL, 90))

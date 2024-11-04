@@ -23,6 +23,7 @@ public class EndOfRocketCard : CardBase
         isActive = true;
         SimplePool2.Preload(vfxRocket.gameObject, 50);
         GamePlayController.Instance.playerContain.effectExplosion.effectExplosion += HandleEndOfRocket;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     private void HandleEndOfRocket(BarrialAir param)

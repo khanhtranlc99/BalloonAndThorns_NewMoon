@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 public class PackInShop : MonoBehaviour
 {
+    
     public TypePackIAP typePackIAP;
     public Button btnBuy;
     public Text tvBuy;
@@ -21,6 +22,7 @@ public class PackInShop : MonoBehaviour
 
 
     }
+ 
 
     public void ButtonOnClick()
     {

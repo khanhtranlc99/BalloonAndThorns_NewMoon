@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Sirenix.OdinInspector;
 public class SoundWaveCard : CardBase
 {
     public bool isActive = false;
@@ -10,11 +10,13 @@ public class SoundWaveCard : CardBase
     {
 
     }
+    [Button]
     public override void HandleAction()
     {
         isActive = true;
         SimplePool2.Preload(vfxSoundWave.gameObject, 50);
-        GamePlayController.Instance.playerContain.effectExplosion.effectExplosion += HandleEndOfElectric;
+        GamePlayController.Instance.playerContain.effectTouch.effectTouch += HandleEndOfElectric;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     private void HandleEndOfElectric(BarrialAir param)

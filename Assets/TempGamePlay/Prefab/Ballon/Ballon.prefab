@@ -362,6 +362,8 @@ MonoBehaviour:
   - {fileID: 2171655273423741501}
   - {fileID: 4638836198027418892}
   isInit: 0
+  isFade: 0
+  isOff: 0
   eplosionBallon: {fileID: 21300000, guid: 734dcf9cf9214324995ed6c36ea5ca14, type: 3}
   spriteRenderer: {fileID: 8773024787548583458}
   lsDataBallon:
@@ -412,7 +414,6 @@ MonoBehaviour:
     color: {r: 0.427451, g: 0.9725491, b: 0.7137255, a: 1}
   circleCollider: {fileID: 7845615264836261280}
   outLine: {fileID: 378315931111327613}
-  isOff: 0
   positionX: {x: 0, y: 0, z: 0}
   positionY: {x: 0, y: 0, z: 0}
   speed: 2
@@ -566,6 +567,10 @@ PrefabInstance:
     - target: {fileID: 638822128912685843, guid: 5764d11b5faeadd409dfa502d03465fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882244660996164195, guid: 5764d11b5faeadd409dfa502d03465fc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6527724453774977928, guid: 5764d11b5faeadd409dfa502d03465fc, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b

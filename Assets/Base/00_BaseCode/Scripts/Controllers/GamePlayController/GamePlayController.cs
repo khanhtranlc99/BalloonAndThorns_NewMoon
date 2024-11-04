@@ -25,10 +25,7 @@ public class GamePlayController : Singleton<GamePlayController>
     public ItemInGameBallon itemInGameBallon;
 
     public TutorialFunController TutGameplay;
-    public TutorialFunController TutSpinerBooster;
-    public TutorialFunController TutMoveSightingPointBooster;
-    public TutorialFunController TutCloneBallsBooster;
-    public TutorialFunController TutRocketBooster;
+ 
 
     public Transform limitLeft;
     public Transform limitRight;
@@ -62,6 +59,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void Init()
     {
+        playerContain.cardController.Init();
         TutGameplay.Init();
        
 
@@ -69,9 +67,9 @@ public class GamePlayController : Singleton<GamePlayController>
       //
         gameScene.Init(playerContain.levelData);
         SimplePool2.ClearPool();
-        SimplePool2.Preload(hitVfx.gameObject, 40, null);
-        SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
-      
+        SimplePool2.Preload(hitVfx.gameObject, 250, null);
+        SimplePool2.Preload(itemInGameBallon.gameObject, 100, null);
+       
         StartCoroutine(HandleSetPostWall());
         playerContain.inputThone.listBallController.Init();
 
@@ -80,27 +78,36 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         if(playerContain.levelData.AllBallonInit)
         {
-            stateGame = StateGame.Playing;
-            playerContain.HandleScaleInput();
+          
+            playerContain.levelData.HandleShowWall(delegate {
+                
+                playerContain.HandleScaleInput(delegate {
+
+                    stateGame = StateGame.Playing;
+                }); 
+            });
+        
         }
     }    
     public void HandleWin()
     {
-        stateGame = StateGame.Win;
-        //confeti_1.Play();
-        //confeti_2.Play();
-   
-        if (playerContain.inputThone.lsBallMovement.Count > 0)
+        if ( stateGame == StateGame.Playing)
         {
-          StartCoroutine(  playerContain.inputThone.StopActiveMove(delegate { HandleShowWin(); playerContain.inputThone.HandleSetUp(); }));
-        }    
-        else
-        {
-            HandleShowWin();
-            playerContain.inputThone.HandleSetUp();
-        }    
-   
-     
+            stateGame = StateGame.Win;
+            //confeti_1.Play();
+            //confeti_2.Play();
+
+            if (playerContain.inputThone.lsBallMovement.Count > 0)
+            {
+                StartCoroutine(playerContain.inputThone.StopActiveMove(delegate { HandleShowWin();/* playerContain.inputThone.HandleSetUp();*/ }));
+            }
+            else
+            {
+                HandleShowWin();
+                playerContain.inputThone.HandleSetUp();
+            }
+
+        }
     }    
 
     private void HandleShowWin()
@@ -108,7 +115,7 @@ public class GamePlayController : Singleton<GamePlayController>
         if (Time.timeScale == 2)
         {
             Time.timeScale = 1;
-            gameScene.HandleChangeNormal();
+           
         }
         playerContain.inputThone.gameObject.transform.localScale = Vector3.zero;
         Winbox.Setup().Show();

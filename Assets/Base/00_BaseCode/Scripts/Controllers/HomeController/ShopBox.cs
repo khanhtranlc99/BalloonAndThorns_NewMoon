@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Newtonsoft.Json;
 public class ShopBox : BaseBox
 {
     public static ShopBox instance;
@@ -40,8 +41,8 @@ public class ShopBox : BaseBox
     public CoinHeartBar coinHeartBar;
     public Button btnClose;
     public  GameObject paramPost;
+    public SkinShopController skinShopController;
 
-   
 
     private void Init(ButtonShopType buttonShopType)
     {
@@ -64,8 +65,7 @@ public class ShopBox : BaseBox
     }
     private void InitState()
     {
-        ResetDay();
-        CheckOffPack();
+        skinShopController.InitState();
     }
 
     private void ResetDay()
@@ -86,25 +86,7 @@ public class ShopBox : BaseBox
         }
         wasCountTime = true; 
     }
-    private void Update()
-    {
-        if(wasCountTime)
-        {
-           if(countTime > 0)
-            {
-                countTime -=  1*Time.deltaTime;
-                tvCountTime.text = "REFRESH IN : " + TimeManager.ShowTime2((long)countTime);
-                tvCountTime_2.text = "REFRESH IN : " + TimeManager.ShowTime2((long)countTime);
-           
-
-            }
-           else
-            {
-                tvCountTime.text = " "  ;
-                tvCountTime_2.text = " "  ;
-            }    
-        }
-    }
+ 
 
     public void CheckOffPack()
     {

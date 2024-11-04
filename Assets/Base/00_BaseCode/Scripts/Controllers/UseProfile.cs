@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MoreMountains.NiceVibrations;
+using Newtonsoft.Json;
 
 public class UseProfile : MonoBehaviour
 {
@@ -55,10 +56,35 @@ public class UseProfile : MonoBehaviour
         }
     }
 
-    public static int CurrentLevel
+    public static int CurrentLevel_Chapper_I
     {
         get
         {
+            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_CHAPER_I, 1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_CHAPER_I, value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static int CurrentLevel_Chapper_II
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_CHAPER_II, 1);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_CHAPER_II, value);
+            PlayerPrefs.Save();
+        }
+    }
+    public static int CurrentLevel 
+    {
+        get
+        {
+        
             return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL, 1);
         }
         set
@@ -311,20 +337,115 @@ public class UseProfile : MonoBehaviour
             EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.FASTBOOM_ITEM);
         }
     }
-    public static int TimeBoom_Item
+    public static int id_ball_skin
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.TIMEBOOM_ITEM, 0);
+            return PlayerPrefs.GetInt(StringHelper.ID_BALL_SKIN, 0);
         }
         set
         {
-            PlayerPrefs.SetInt(StringHelper.TIMEBOOM_ITEM, value);
+            PlayerPrefs.SetInt(StringHelper.ID_BALL_SKIN, value);
             PlayerPrefs.Save();
-            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.TIMEBOOM_ITEM);
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ID_BALL);
+        }
+    }
+    public static int id_cannon_skin
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.ID_CANNON_SKIN, 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.ID_CANNON_SKIN, value);
+            PlayerPrefs.Save();
+            EventDispatcher.EventDispatcher.Instance.PostEvent(EventID.CHANGE_ID_CANNON);
         }
     }
 
+    public static List<int> lsIdSkinBalls
+    {
+        get
+        {
+            List<int> tempList = new List<int>();
+            var temp = JsonConvert.DeserializeObject<List<int>>( PlayerPrefs.GetString(StringHelper.LS_ID_SKIN_BALLS ));
+            if(temp == null)
+            {
+                string jsonValue = JsonConvert.SerializeObject(new List<int>() { 0 });
+                PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_BALLS, jsonValue);
+            }
+            else
+            { 
+           
+                foreach (var item in temp)
+                {
+                    tempList.Add(item);
+                }
+            }
+       
+            return tempList;
+
+        }
+        set
+        {
+            string jsonValue = JsonConvert.SerializeObject(value);
+            PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_BALLS, jsonValue);
+            PlayerPrefs.Save();
+        }
+    }
+    public static List<int> lsIdSkinCanons
+    {
+        get
+        {
+            List<int> tempList = new List<int>();
+            var temp = JsonConvert.DeserializeObject<List<int>>(PlayerPrefs.GetString(StringHelper.LS_ID_SKIN_CANNONS));
+            if (temp == null)
+            {
+                string jsonValue = JsonConvert.SerializeObject(new List<int>() { 0 });
+                PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_CANNONS, jsonValue);
+            }
+            else
+            {
+
+                foreach (var item in temp)
+                {
+                    tempList.Add(item);
+                }
+            }
+            return tempList;
+
+        }
+        set
+        {
+            string jsonValue = JsonConvert.SerializeObject(value);
+            PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_CANNONS, jsonValue);
+            PlayerPrefs.Save();
+        }
+    }
+    public static string DataCardSave
+    {
+        get
+        {
+           return PlayerPrefs.GetString(StringHelper.LS_ID_SKIN_CANNONS);
+        }
+        set
+        {
+            PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_CANNONS, value);
+        }
+    }
+    public static bool isSaveDataCard
+    {
+        get
+        {
+            return PlayerPrefs.GetInt(StringHelper.IS_SAVE_DATA_CARD, 0) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt(StringHelper.IS_SAVE_DATA_CARD, value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
     public static bool UnlimitScope
     {
         get
@@ -705,6 +826,7 @@ public class UseProfile : MonoBehaviour
         }
         return result;
     }
+   
 
 
 }

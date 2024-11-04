@@ -19,29 +19,53 @@ public class PlayerContain : MonoBehaviour
     public RoketBooster roketBooster;
     public CardController cardController;
     public EffectExplosion effectExplosion;
+    public GameObject bg_Chapper_I;
+    public GameObject bg_Chapper_II;
+    public CannonSkinController cannonSkinController;
+    public EffectTouch effectTouch;
     public void Init()
     {
-        string pathLevel = StringHelper.PATH_CONFIG_LEVEL_TEST;
-        levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
+         if(UseProfile.CurrentLevel_Chapper_I < 40)
+        {
+            string pathLevel = StringHelper.PATH_CHAPER_I;
+            levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel_Chapper_I)));
+            bg_Chapper_I.SetActive(true);
+            bg_Chapper_II.SetActive(false);
+            GamePlayController.Instance.gameScene.ShowText(UseProfile.CurrentLevel_Chapper_I);
+          
+        }
+         else
+        {
+            string pathLevel = StringHelper.PATH_CHAPER_II;
+            levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel_Chapper_II)));
+            bg_Chapper_I.SetActive(false);
+            bg_Chapper_II.SetActive(true);
+            GamePlayController.Instance.gameScene.ShowText(UseProfile.CurrentLevel_Chapper_II);
+        }
+   
         levelData.Init();
       
         inputThone.Init(this);
+        cannonSkinController.Init();
 
-      
-       // GamePlayController.Instance.TutGameplay.StartTut();
+
+
         GameController.Instance.AnalyticsController.LoadingComplete();
         GameController.Instance.AnalyticsController.StartLevel(UseProfile.CurrentLevel);
+        Debug.LogError("CurrentLevel_" + UseProfile.CurrentLevel);
     }
   
 
-    public void HandleScaleInput()
+    public void HandleScaleInput(Action callBack)
     {
         //  inputThone.postFireSpike.transform.position = new Vector3(0,-8.28f,0);
         //Debug.LogError(inputThone.postFireSpike.transform.position);
         inputThone.iconCanon.transform.localEulerAngles = Vector3.zero;
         inputThone.transform.DOScale(new Vector3(1,1,1), 0.3f).OnComplete(delegate {
+
             GamePlayController.Instance.TutGameplay.StartTut();
-        
+            callBack?.Invoke();
+
         }) ;
      
     }
@@ -100,10 +124,10 @@ public class PlayerContain : MonoBehaviour
 
     public void NextLevel()
     {
-        UseProfile.CurrentLevel += 1;
-        if (UseProfile.CurrentLevel > 80)
+        UseProfile.CurrentLevel_Chapper_I += 1;
+        if (UseProfile.CurrentLevel_Chapper_I > 80)
         {
-            UseProfile.CurrentLevel = 80;
+            UseProfile.CurrentLevel_Chapper_I = 80;
         }
 
         Initiate.Fade("GamePlay", Color.black, 2f);

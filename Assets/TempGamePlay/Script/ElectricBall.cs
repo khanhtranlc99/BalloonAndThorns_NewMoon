@@ -16,13 +16,15 @@ public class ElectricBall : BallBase
 
     public ElectricBall ballMovementPrefab;
     InputThone inputThone;
-
+    public Collider2D tempCollider2D;
+    float time = 0.005f;
+    float timeRefresh;
     public override void Init(Vector2 param)
     {
         endGame = false;
         wasTouch = false;
         direction = param;
-        speed = SpeedBallPlusCard.speedBall;
+        speed = 18;
         radius = 0.2f;
 
         activeMove = true;
@@ -50,10 +52,14 @@ public class ElectricBall : BallBase
                 {
                     wasTouch = true;
                     audioSource.Play();
-                    // Tính toán hướng phản chiếu bằng cách sử dụng pháp tuyến của bề mặt va chạm
-                    direction = Vector2.Reflect(direction, hit.normal);
-                    // Di chuyển bóng đến ngay ngoài rìa của BoxCollider2D
-                    currentPosition = hit.point + hit.normal * radius;
+                    if (tempCollider2D == null)
+                    {
+                        direction = Vector2.Reflect(direction, hit.normal);
+                        currentPosition = hit.point + hit.normal * radius;
+                        tempCollider2D = hits[0].collider;
+                        timeRefresh = time;
+
+                    }
                     var temp = SimplePool2.Spawn(vfxTouch);
                     temp.transform.position = hit.point;
 
@@ -91,6 +97,15 @@ public class ElectricBall : BallBase
 
             // Di chuyển quả bóng
             transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
+        }
+        if (tempCollider2D != null)
+        {
+            timeRefresh -= Time.fixedDeltaTime;
+            if (timeRefresh <= 0)
+            {
+                tempCollider2D = null;
+            }
+
         }
         this.transform.localEulerAngles -= new Vector3(0, 0, 5);
 

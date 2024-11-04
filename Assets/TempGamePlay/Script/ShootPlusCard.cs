@@ -21,6 +21,7 @@ public class ShootPlusCard : CardBase
     public override void HandleAction()
     {
         numbShootPlus  += 1;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 }
 

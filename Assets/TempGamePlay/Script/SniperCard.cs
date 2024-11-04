@@ -20,6 +20,6 @@ public class SniperCard : CardBase
     public override void HandleAction()
     {
         inputThone.numOfReflect += 1;
-
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 }

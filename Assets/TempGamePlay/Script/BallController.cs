@@ -82,14 +82,7 @@ public class BallController : MonoBehaviour
     }
     private void OnDisable()
     {
-        try
-        {
-            GamePlayController.Instance.playerContain.levelData.HandleCheckLose();
-        }
-        catch
-        {
-
-        }
+        
     }
 
 }

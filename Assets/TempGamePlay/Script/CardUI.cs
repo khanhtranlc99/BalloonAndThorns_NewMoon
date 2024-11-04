@@ -6,6 +6,7 @@ using System;
 
 public class CardUI : MonoBehaviour
 {
+    public Image backGround;
     public Image icon;
     public Button btnClick;
     public Text tvContent;
@@ -16,9 +17,20 @@ public class CardUI : MonoBehaviour
    //     icon.SetNativeSize();
         tvContent.text = paramBase.content;
         btnClick.onClick.RemoveAllListeners();
-        btnClick.onClick.AddListener(delegate { paramBase.HandleAction(); paramAction?.Invoke(); } );
-
+        btnClick.onClick.AddListener(delegate { paramBase.HandleAction(); paramAction?.Invoke(); });
+        switch (paramBase.cardRank)
+        {
+            case CardRank.Normal:
+                backGround.color = Color.white;
+                break;
+            case CardRank.Platium:
+                backGround.color = Color.blue;
+                break;
+            case CardRank.Gold:
+                backGround.color = Color.yellow;
+                break;
+        }
 
     }
- 
+
 }

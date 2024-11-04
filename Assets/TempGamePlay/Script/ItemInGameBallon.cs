@@ -25,6 +25,7 @@ public class ItemInGameBallon : MonoBehaviour
     public void Init(Sprite param)
     {
         tvNumb.text = "";
+     
         spriteRenderer.sprite = param;
         spriteRenderer.color = Color.white;
         this.transform.localScale = Vector3.zero;
@@ -36,6 +37,16 @@ public class ItemInGameBallon : MonoBehaviour
 
             });
         });
+    }
+    private void OnDisable()
+    {
+        this.transform.DOKill();
+        tvNumb.DOKill();
+    }
+    private void OnDestroy()
+    {
+        this.transform.DOKill();
+        tvNumb.DOKill();
     }
 
 }

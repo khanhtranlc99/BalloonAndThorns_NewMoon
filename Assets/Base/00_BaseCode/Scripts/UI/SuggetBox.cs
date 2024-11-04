@@ -171,7 +171,7 @@ public class SuggetBox : BaseBox
                      },
                      actionClose: null,
                      actionWatchVideo,
-                     UseProfile.CurrentLevel.ToString());
+                     UseProfile.CurrentLevel_Chapper_I.ToString());
     }   
     
     public void HandlePayByCoin()

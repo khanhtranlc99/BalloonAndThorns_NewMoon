@@ -46,8 +46,9 @@ public class LoseBox : BaseBox
     private void HandleRetry()
     {
         GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => {
-
-            UseProfile.CurrentLevel = 1;
+            UseProfile.CurrentLevel = 0;
+            UseProfile.CurrentLevel_Chapper_I = 1;
+            UseProfile.CurrentLevel_Chapper_II = 1;
             Initiate.Fade("GamePlay", Color.black, 2f);
 
         }, actionWatchLog: "LoseBox");
@@ -61,7 +62,8 @@ public class LoseBox : BaseBox
                     GamePlayController.Instance.playerContain.inputThone.NumShoot += 3;
                     GamePlayController.Instance.gameScene.tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
                     GamePlayController.Instance.playerContain.inputThone.HandleSetUp();
-                    Close();
+                    GamePlayController.Instance.stateGame = StateGame.Playing;
+                   Close();
             
                     //Initiate.Fade("GamePlay", Color.black, 2f);
                 },

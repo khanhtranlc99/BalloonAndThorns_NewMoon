@@ -116,6 +116,27 @@ public enum GiftType
     
     UnlimitSniper = 9,
     UnlimitSpike = 10,
+    Skin_Canon_1 = 11,
+    Skin_Canon_2 = 12,
+    Skin_Canon_3 = 13,
+    Skin_Canon_4 = 14,
+    Skin_Canon_5  = 15,
+    Skin_Canon_6 = 16,
+    Skin_Canon_7 = 17,
+    Skin_Canon_8 = 18,
+    Skin_Ball_1 = 19,
+    Skin_Ball_2 = 20,
+    Skin_Ball_3 = 21,
+    Skin_Ball_4 = 22,
+    Skin_Ball_5 = 23,
+    Skin_Ball_6 = 24,
+    Skin_Ball_7 = 25,
+    Skin_Ball_8 = 26,
+    Skin_Ball_9 = 27,
+    Skin_Ball_10 = 28,
+    Skin_Ball_11 = 29,
+
+
 }
 
 public enum Reason

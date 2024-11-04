@@ -18,13 +18,13 @@ public class BallMovement : BallBase
     public BallMovement ballMovementPrefab;
     InputThone inputThone;
     public Collider2D tempCollider2D;
- 
+    public SpriteRenderer spriteRender;
     public override void Init(Vector2 param)
     {
         endGame = false;
         wasTouch = false;
         direction = param;
-        speed = 19 ;
+        speed = 18 ;
         radius = 0.2f;
         tempCollider2D = null;
         activeMove = true;
@@ -32,12 +32,17 @@ public class BallMovement : BallBase
         {
             inputThone = GamePlayController.Instance.playerContain.inputThone;
         }
+        spriteRender.sprite = GamePlayController.Instance.playerContain.inputThone.listBallController.GetBalls;
+
+
+
     }
-    float time = 0.01f;
+    float time = 0.005f;
     float timeRefresh;
 
     void FixedUpdate()
     {
+      
         if (activeMove)
         {
           
@@ -45,7 +50,7 @@ public class BallMovement : BallBase
             Vector2 currentPosition = transform.position;
 
             // Thực hiện CircleCast để kiểm tra va chạm
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(currentPosition, radius, direction, speed * Time.fixedDeltaTime, wallLayer);                                
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(currentPosition, radius, direction, speed * Time.fixedDeltaTime , wallLayer);                                
             foreach (var hit in hits)
                 {
                     if (hit.collider != null && !hit.collider.isTrigger)
@@ -70,8 +75,8 @@ public class BallMovement : BallBase
                         if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
                         {
                             hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike(DamePlusCard.dame);
-
                             hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(this);
+                            GamePlayController.Instance.playerContain.effectTouch.HandleEffectExplosion(hit.collider.gameObject.GetComponent<BarrialAir>());
                         }
 
                     }
@@ -96,16 +101,16 @@ public class BallMovement : BallBase
             // Di chuyển quả bóng
             transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
         }
-        if (tempCollider2D != null)
+       if (tempCollider2D != null)
         {
-            timeRefresh -= Time.deltaTime;
+            timeRefresh -= Time.fixedDeltaTime;
             if (timeRefresh <= 0)
             {
                 tempCollider2D = null;
             }
-            
+
         }
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+        this.transform.localEulerAngles -= new Vector3(0, 0, 0.2f);
        
     }
 

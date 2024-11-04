@@ -6,7 +6,7 @@ using UnityEditor;
 using System;
 using DG.Tweening;
 using TMPro;
-
+using System;
 public enum Difficult
 {
     Normal,
@@ -25,7 +25,7 @@ public class LevelData : SerializedMonoBehaviour
     public int limitTouch;
     public int numbTarget;
     public List<int> lsIdWallOff;
- 
+  
     public bool isMove = false;
     public bool AllExplosion
     {
@@ -59,11 +59,17 @@ public class LevelData : SerializedMonoBehaviour
             return true;
         }
     }
-
+    public List<SpriteRenderer> lsBrickBreak;
     public void Init()
     {
-
-        countBallon = 0;
+        if (lsBrickBreak.Count > 0)
+        {
+            for (int i = 0; i < lsBrickBreak.Count; i++)
+            {
+                lsBrickBreak[i].color = new Color32(255, 255, 255, 0);
+            }
+        }
+            countBallon = 0;
       
 
         foreach (var item in lsBallons)
@@ -83,6 +89,28 @@ public class LevelData : SerializedMonoBehaviour
 
     }
 
+    public void  HandleShowWall( Action callBack)
+    {
+       if (lsBrickBreak.Count > 0)
+        {
+            for (int i = 0; i < lsBrickBreak.Count; i++)
+            {
+                int index = i;
+                lsBrickBreak[index].DOFade(1, 0.35f).OnComplete(delegate {
+
+                    if (index == lsBrickBreak.Count - 1)
+                    {
+                        callBack?.Invoke();
+                    }
+
+                });
+            }
+        }
+       else
+        {
+            callBack?.Invoke();
+        }
+    }    
 
     public void CountWin(Transform param)
     {
@@ -166,21 +194,7 @@ public class LevelData : SerializedMonoBehaviour
         callBack?.Invoke();
     }
  
-    [Button]
-    private void HandleFindBrickBreak()
-    {
-        var temp = transform.GetChild(0);
-        for (int i = 0; i < temp.childCount; i++)
-        {
-            //if(transform.GetChild(i).name.Contains("BrickBreak"))
-            //{
-            //    lsBrickBreak.Add(transform.GetChild(i).gameObject);
-            //}
-            Debug.LogError(temp.GetChild(i).gameObject.name);
-        }
-      
-
-    }
+     
     [Button]
     private void HandleColor()
     {
@@ -224,7 +238,7 @@ public class LevelData : SerializedMonoBehaviour
         Debug.LogError("HandlePostZero");
     }
 
-    public List<GameObject> lsBrickBreak;
+
  
 
 }

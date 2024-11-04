@@ -15,6 +15,7 @@ public class EndOfExplosionCard : CardBase
         isActive = true;
         SimplePool2.Preload(vfxExplosion.gameObject, 50);
         GamePlayController.Instance.playerContain.effectExplosion.effectExplosion += HandleEndOfElectric;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     private void HandleEndOfElectric(BarrialAir param)

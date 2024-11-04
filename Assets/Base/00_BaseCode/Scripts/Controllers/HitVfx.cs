@@ -14,7 +14,7 @@ public class HitVfx : MonoBehaviour
 
     private IEnumerator  DeSpawn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.4f);
         SimplePool2.Despawn(this.gameObject);
     }    
   

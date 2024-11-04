@@ -19,7 +19,7 @@ public class TutSpinerBooster_Step_1 : TutorialBase
 
     public override void StartTut()
     {
-        if (UseProfile.CurrentLevel == 7)
+        if (UseProfile.CurrentLevel_Chapper_I == 7)
         {
             if (currentHand != null)
             {

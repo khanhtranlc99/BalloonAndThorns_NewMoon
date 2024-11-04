@@ -77,7 +77,7 @@ public class AnalyticsController : MonoBehaviour
             FirebaseAnalytics.SetUserProperty(StringHelper.RETENTION_D, UseProfile.RetentionD.ToString());
             FirebaseAnalytics.SetUserProperty(StringHelper.DAYS_PLAYED, UseProfile.DaysPlayed.ToString());
             FirebaseAnalytics.SetUserProperty(StringHelper.PAYING_TYPE, UseProfile.PayingType.ToString());
-            FirebaseAnalytics.SetUserProperty(StringHelper.LEVEL, UseProfile.CurrentLevel.ToString());
+            FirebaseAnalytics.SetUserProperty(StringHelper.LEVEL, UseProfile.CurrentLevel_Chapper_I.ToString());
         }
         catch
         {

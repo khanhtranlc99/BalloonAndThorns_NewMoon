@@ -80,6 +80,7 @@ public class BigBallon : BarrialAir
             {
                 spriteRenderer.sprite = eplosionBallon;
                 Explosion();
+                spriteRenderer.DOKill();
             }
             tvExplosion.text = "" + countExplosion;
 
@@ -304,6 +305,16 @@ public class BigBallon : BarrialAir
     public override void Destroy()
     {
         Explosion();
+    }
+    public void OnDisable()
+    {
+        spriteRenderer.DOKill();
+        transform.DOKill();
+    }
+    public void OnDestroy()
+    {
+        spriteRenderer.DOKill();
+        transform.DOKill();
     }
 }
 

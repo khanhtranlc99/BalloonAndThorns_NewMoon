@@ -12,10 +12,13 @@ public static class StringHelper
     public const string FIRST_TIME_INSTALL = "FIRST_TIME_INSTALL";
     public const string VERSION_FIRST_INSTALL = "VERSION_FIRST_INSTALL";
     public const string REMOVE_ADS = "REMOVE_ADS";
-    public const string CURRENT_LEVEL = "CURRENT_LEVEL";
+    public const string CURRENT_LEVEL  = "CURRENT_LEVEL ";
+    public const string CURRENT_LEVEL_CHAPER_I = "CURRENT_LEVEL_CHAPER_I";
+    public const string CURRENT_LEVEL_CHAPER_II = "CURRENT_LEVEL_CHAPER_II";
     public const string CURRENT_LEVEL_PLAY = "CURRENT_LEVEL_PLAY";
     public const string PATH_CONFIG_LEVEL = "Levels/LevelData_";
-    public const string PATH_CONFIG_LEVEL_TEST = "Levels/Level_{0}";
+    public const string PATH_CHAPER_I = "Chaper_1/Level_{0}";
+    public const string PATH_CHAPER_II = "Chaper_2/Level_{0}";
     public const string PATH_CONFIG_LEVEL_SPECIAL = "SpecialLevel/Level_{0}";
     public const string LEVEL_DEMO_IMAGE_WIN = "Demo/lv";
     public const string LEVEL_DEMO_IMAGE_NOT_WIN = "Demo/bw_lv";
@@ -69,7 +72,8 @@ public static class StringHelper
 
     public const string FLAMEUP_ITEM = "flameup_item";
     public const string FASTBOOM_ITEM = "fastboom_item";
-    public const string TIMEBOOM_ITEM = "timeboom_item";
+    public const string ID_BALL_SKIN = "id_ball_skin";
+    public const string ID_CANNON_SKIN = "id_cannon_skin";
     public const string WINSTREAK = "winstreak";
     public const string TIME_LAST_OVER_HEALTH = "TIME_LAST_OVER_HEALTH";
 
@@ -84,6 +88,12 @@ public static class StringHelper
     public const string NUMB_WATCH_ADS_COIN = "numb_watch_ads_coin";
     public const string WAS_BOUGHT_UNLIMIT_TIME = "was_bought_unlimit_time";
     public const string NEED_CHECK_SHOP = "need_check_shop";
+
+    public const string LS_ID_SKIN_BALLS = "ls_id_skin_balls";
+    public const string LS_ID_SKIN_CANNONS = "ls_id_skin_balls";
+
+    public const string DATA_CARD_SAVE = "data_card_save";
+    public const string IS_SAVE_DATA_CARD = "is_save_data_card";
 }
 
 public class PathPrefabs
@@ -134,6 +144,8 @@ public class PathPrefabs
     public const string BACK_HOME_BOX = "UI/Popups/BackHomeBox";
     public const string SHOP_COIN_BOX = "UI/Popups/ShopCoinBox";
     public const string HEART_BOX = "UI/Popups/HeartBox";
+
+    public const string CONTINUE_GAME_BOX = "UI/Popups/ContinueGameBox";
 }
 
 public class SceneName

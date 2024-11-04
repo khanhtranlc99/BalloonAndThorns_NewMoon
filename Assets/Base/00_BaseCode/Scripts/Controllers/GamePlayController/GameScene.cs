@@ -60,7 +60,7 @@ public class GameScene : BaseScene
         wasOpenShop = false;
         settinBtn.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.inputThone.enabled = false; SettingBox.Setup(true).Show(); });
         //reStartBtn.onClick.AddListener(delegate { Initiate.Fade("GamePlay", Color.black, 2f); });
-        tvLevel.text = "Level " + UseProfile.CurrentLevel;
+    
        
         tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
 
@@ -77,10 +77,10 @@ public class GameScene : BaseScene
             ShopBox.Setup(ButtonShopType.Gift).Show();
         });
 
-        if(UseProfile.CurrentLevel == 1)
-        {
-            shopButton.interactable = false;
-        }
+        //if(UseProfile.CurrentLevel_Chapper_I == 1)
+        //{
+        //    shopButton.interactable = false;
+        //}
         resetButton.onClick.AddListener(OnReset);
     }
 
@@ -155,7 +155,7 @@ public class GameScene : BaseScene
                 },
                 actionClose: null,
                 ActionWatchVideo.Skip_level,
-                UseProfile.CurrentLevel.ToString());
+                UseProfile.CurrentLevel_Chapper_I.ToString());
     }
 
     public void HandleSubtrackNumShoot()
@@ -198,5 +198,10 @@ public class GameScene : BaseScene
     public void OffPanelTools()
     {
         toolsPanel.SetActive(false);
+    }
+
+    public void ShowText(int param)
+    {
+        tvLevel.text = "Wave " + "\n" + param + "/40" ;
     }
 }

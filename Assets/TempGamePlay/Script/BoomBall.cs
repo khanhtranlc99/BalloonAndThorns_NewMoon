@@ -15,16 +15,21 @@ public class BoomBall : BallBase
     public AudioSource audioSource;
     public bool endGame;
     public BoomBall ballMovementPrefab;
+    public Collider2D tempCollider2D;
+    float time = 0.005f;
+    float timeRefresh;
+    public HitVfx vfxTouch;
+    int random;
     public override void Init(Vector2 param)
     {
         endGame = false;
         wasTouch = false;
         direction = param;
-        speed = SpeedBallPlusCard.speedBall;
+        speed = 18;
         radius = 0.2f;
-
+        tempCollider2D = null;
         activeMove = true;
-
+       
     }
 
 
@@ -32,55 +37,87 @@ public class BoomBall : BallBase
     {
         if (activeMove)
         {
-            // Tính toán vị trí hiện tại của quả bóng
-            Vector2 currentPosition = transform.position;
-
-            // Thực hiện CircleCast để kiểm tra va chạm
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(currentPosition, radius, direction, speed * Time.fixedDeltaTime, wallLayer);
-
-            foreach (var hit in hits)
+            if (activeMove)
             {
-                if (hit.collider != null && !hit.collider.isTrigger)
-                {
-                    wasTouch = true;
-                    audioSource.Play();
-                    // Tính toán hướng phản chiếu bằng cách sử dụng pháp tuyến của bề mặt va chạm
-                    direction = Vector2.Reflect(direction, hit.normal);
-                    // Di chuyển bóng đến ngay ngoài rìa của BoxCollider2D
-                    currentPosition = hit.point + hit.normal * radius;
-                    //var temp = SimplePool2.Spawn(vfxTouch);
-                    //temp.transform.position = hit.point;
 
-                    if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
-                    {
-                        hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike(DamePlusCard.dame);
-                        hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(this);
-                    }
+                // Tính toán vị trí hiện tại của quả bóng
+                Vector2 currentPosition = transform.position;
 
-                }
-                else if (hit.collider != null && hit.collider.isTrigger)
+                // Thực hiện CircleCast để kiểm tra va chạm
+                RaycastHit2D[] hits = Physics2D.CircleCastAll(currentPosition, radius, direction, speed * Time.fixedDeltaTime, wallLayer);
+                foreach (var hit in hits)
                 {
-                    if (wasTouch)
+                    if (hit.collider != null && !hit.collider.isTrigger)
                     {
-                        if (hit.collider.gameObject.tag == "Broad")
+                        wasTouch = true;
+                        audioSource.Play();
+                        // Tính toán hướng phản chiếu bằng cách sử dụng pháp tuyến của bề mặt va chạm
+
+                        // Di chuyển bóng đến ngay ngoài rìa của BoxCollider2D
+
+                        if (tempCollider2D == null)
                         {
-                            activeMove = false;
-                            GamePlayController.Instance.playerContain.inputThone.HandleMoveCharetor(this);
-                            //  SimplePool2.Despawn(this.gameObject);
+                            direction = Vector2.Reflect(direction, hit.normal);
+                            currentPosition = hit.point + hit.normal * radius;
+                            tempCollider2D = hits[0].collider;
+                            timeRefresh = time;
+
                         }
+                        var temp = SimplePool2.Spawn(vfxTouch);
+                        temp.transform.position = hit.point;
+
+                        if (hit.collider.gameObject.GetComponent<BarrialAir>() != null)
+                        {
+                            random = Random.Range(0,100);
+                            if(random < 10)
+                            {
+                                hit.collider.gameObject.GetComponent<BarrialAir>().Destroy();
+                            }
+                            else
+                            {
+                                hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpike(DamePlusCard.dame);
+                                hit.collider.gameObject.GetComponent<BarrialAir>().TakeDameSpikeEffect(this);
+                            }
+                       
+                        }
+
                     }
+                    else if (hit.collider != null && hit.collider.isTrigger)
+                    {
+                        if (wasTouch)
+                        {
+                            if (hit.collider.gameObject.tag == "Broad")
+                            {
+                                activeMove = false;
+                                GamePlayController.Instance.playerContain.inputThone.HandleMoveCharetor(this);
+                                //  SimplePool2.Despawn(this.gameObject);
+                            }
+                        }
 
+                    }
                 }
+
+
+
+
+                // Di chuyển quả bóng
+                transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
             }
+            if (tempCollider2D != null)
+            {
+                timeRefresh -= Time.fixedDeltaTime;
+                if (timeRefresh <= 0)
+                {
+                    tempCollider2D = null;
+                }
 
-            // Di chuyển quả bóng
-            transform.position = currentPosition + direction * speed * Time.fixedDeltaTime;
+            }
+            this.transform.localEulerAngles -= new Vector3(0, 0, 0.2f);
+
         }
-        this.transform.localEulerAngles -= new Vector3(0, 0, 5);
+
     }
-
-
-    public void HandleBoosterX2()
+        public void HandleBoosterX2()
     {
 
         // Sử dụng hướng của trục x của đối tượng làm initialDirection

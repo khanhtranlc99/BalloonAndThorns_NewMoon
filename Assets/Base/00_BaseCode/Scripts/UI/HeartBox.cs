@@ -99,7 +99,7 @@ public class HeartBox : BaseBox
                      },
                      actionClose: null,
                      ActionWatchVideo.HeartInHearPopup,
-                     UseProfile.CurrentLevel.ToString());
+                     UseProfile.CurrentLevel_Chapper_I.ToString());
     }
     private void OnclickBtnBuy()
     {

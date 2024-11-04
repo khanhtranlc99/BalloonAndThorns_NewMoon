@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class EndOfLightlingCard : CardBase
 {
@@ -10,11 +11,13 @@ public class EndOfLightlingCard : CardBase
     {
 
     }
+    [Button]
     public override void HandleAction()
     {
         isActive = true;
         SimplePool2.Preload(vfxLightling.gameObject, 50);
         GamePlayController.Instance.playerContain.effectExplosion.effectExplosion += HandleEndOfElectric;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     private void HandleEndOfElectric(BarrialAir param)

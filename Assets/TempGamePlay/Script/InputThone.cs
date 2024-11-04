@@ -34,7 +34,7 @@ public class InputThone : MonoBehaviour
     public int NumShoot;
     public Transform firstPost;
     public DownBallButton downBallButton;
-
+ 
     public bool AllBallDrop
     {
         get
@@ -71,7 +71,12 @@ public class InputThone : MonoBehaviour
     PlayerContain playerContain;
     public void Init(PlayerContain param)
     {
+        if (UseProfile.CurrentLevel > 39)
+        {
+            lineRenderer.SetColors(Color.black, Color.black);
+        }
         playerContain = param;
+
        // postFireSpike.Init();
         // Thiết lập LineRenderer
         lineRenderer.positionCount = 0; // Khởi tạo với không điểm
@@ -278,6 +283,7 @@ public class InputThone : MonoBehaviour
                 GamePlayController.Instance.gameScene.HandleSubtrackNumShoot();
                 StartCoroutine(Shoot(tempInitialDirection));
                 downBallButton.gameObject.SetActive(true);
+           
               //  postFireSpike.postShoot.gameObject.SetActive(false);
             }
         }
@@ -393,8 +399,10 @@ public class InputThone : MonoBehaviour
 
     public void HandleSetUp()
     {
+     
+ 
         downBallButton.gameObject.SetActive(false);
-
+  
         if (playerContain.levelData.isMove)
         {
             StartCoroutine(playerContain.levelData.HandleActionMove(SetUp));
@@ -411,10 +419,16 @@ public class InputThone : MonoBehaviour
         {
             HandleOffBall();
 
-
+     
             if (NumShoot <= 0 && !playerContain.levelData.AllExplosion)
             {
-                LoseBox.Setup().Show();
+                if (GamePlayController.Instance.stateGame == StateGame.Playing)
+                {
+
+                    GamePlayController.Instance.stateGame = StateGame.Lose;
+                    LoseBox.Setup().Show();
+                }
+             
             }
             else
             {

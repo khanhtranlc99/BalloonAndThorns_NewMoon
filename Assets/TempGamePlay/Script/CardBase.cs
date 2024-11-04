@@ -22,8 +22,17 @@ public enum CardType
     IncreaseLightlingCard,
     IncreaseSoundWaveCard,
 }    
+public enum CardRank
+{
+    Normal,
+    Platium,
+    Gold
+    
+}    
 public abstract class CardBase : MonoBehaviour
 {
+    public int id;
+    public CardRank cardRank;
     public CardType cardType;
     public Sprite sprite;
     public string content;

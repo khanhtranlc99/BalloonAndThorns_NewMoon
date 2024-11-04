@@ -80,6 +80,7 @@ public class Ballon : BarrialAir
        
                 if (countExplosion < 1)
                 {
+                spriteRenderer.DOKill();
                 spriteRenderer.sprite = eplosionBallon;
                 Explosion();
                 }
@@ -332,6 +333,18 @@ public class Ballon : BarrialAir
         spriteRenderer.sprite = eplosionBallon;
         Explosion();
     }
+    public void OnDisable()
+    {
+        spriteRenderer.DOKill();
+        transform.DOKill();
+    }
+    public void OnDestroy()
+    {
+        spriteRenderer.DOKill();
+        transform.DOKill();
+    }
+ 
+
 }
 
 [System.Serializable]

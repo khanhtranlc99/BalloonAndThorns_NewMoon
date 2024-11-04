@@ -24,6 +24,8 @@ public class Winbox : BaseBox
     bool lockBtn;
     public List<CardBase> lsCardBase;
     public List<CardUI> lsCardUI;
+    public GameObject cardPanel;
+    public GameObject endChapperPanel;
 
     public void Init()
     {
@@ -48,6 +50,16 @@ public class Winbox : BaseBox
         {
             lsCardUI[i].Init(lsCardBase[i], delegate { HandleNext(); } );
         }
+        if (UseProfile.CurrentLevel_Chapper_I == 39  )
+        {
+            cardPanel.gameObject.SetActive(false);
+            endChapperPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            cardPanel.gameObject.SetActive(true);
+            endChapperPanel.gameObject.SetActive(false);
+        }   
     }    
 
     private void HandleNext()
@@ -59,15 +71,32 @@ public class Winbox : BaseBox
 
                 GameController.Instance.musicManager.PlayClickSound();
                 UseProfile.Coin += GamePlayController.Instance.playerContain.levelData.numbTarget;
-                UseProfile.CurrentLevel += 1;
-                if (UseProfile.CurrentLevel > 80)
+                if (UseProfile.CurrentLevel_Chapper_I < 40)
                 {
-                    UseProfile.CurrentLevel = 80;
+                    UseProfile.CurrentLevel_Chapper_I += 1;
                 }
-                //Initiate.Fade("GamePlay", Color.black, 2f);
-                GamePlayController.Instance.playerContain.HandleNextLevel();
-               // GamePlayController.Instance.playerContain.inputThone.enabled = true;
-               // GamePlayController.Instance.playerContain.inputThone.numShoot = 5;
+                else
+                {
+                    UseProfile.CurrentLevel_Chapper_II += 1;
+
+                    if (UseProfile.CurrentLevel_Chapper_II > 40)
+                    {
+                        UseProfile.CurrentLevel_Chapper_II = 40;
+                    }
+                }
+                UseProfile.CurrentLevel += 1;
+                if(UseProfile.CurrentLevel_Chapper_I == 40 && UseProfile.CurrentLevel_Chapper_II == 1)
+                {
+                    Initiate.Fade("GamePlay", Color.black, 2f);
+                }
+                else
+                {
+                    GamePlayController.Instance.playerContain.HandleNextLevel();
+                }
+                Debug.LogError("CurrentLevel_Chapper_I" + UseProfile.CurrentLevel_Chapper_I);
+                Debug.LogError("CurrentLevel_Chapper_II" + UseProfile.CurrentLevel_Chapper_II);
+                // GamePlayController.Instance.playerContain.inputThone.enabled = true;
+                // GamePlayController.Instance.playerContain.inputThone.numShoot = 5;
                 lockBtn = false;
                 Close();
               

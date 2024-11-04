@@ -38,10 +38,49 @@ public class ListBallController : MonoBehaviour
             return newList;
         }
     }
+    public List<IdBall> lsIdBalls;
+    public Sprite GetBalls 
+    {
+        get
+        {
+            foreach (var item in lsIdBalls)
+            {
+                if (item.id == UseProfile.id_ball_skin)
+                {
+                    return item.ballBase;
+                }
+            }
+            return null;
+        }
+  
+  
+    }
+    public List<SpriteRenderer> lsSpriteRender;
     public void Init()
     {
         SimplePool2.Preload(ballMovement.gameObject, 70);
-    }    
-  
+        EventDispatcher.EventDispatcher.Instance.RegisterListener(EventID.CHANGE_ID_BALL, HandleReskin);
+        HandleReskin(null);
+    }
+    public void HandleReskin(object param)
+    {
+        foreach(var item in lsSpriteRender)
+        {
+            item.sprite = GetBalls;
+        }
+       
+    }
+    private void OnDestroy()
+    {
+        EventDispatcher.EventDispatcher.Instance.RemoveListener(EventID.CHANGE_ID_BALL, HandleReskin);
+    }
 
+
+}
+
+[System.Serializable]
+public class IdBall
+{
+    public int id;
+    public Sprite ballBase;
 }

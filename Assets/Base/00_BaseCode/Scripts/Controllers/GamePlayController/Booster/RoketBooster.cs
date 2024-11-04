@@ -24,7 +24,7 @@ public class RoketBooster : MonoBehaviour
         playerContain = param;
         selectedObject = null;
         wasUseTNT_Booster = false;
-        if (UseProfile.CurrentLevel >= 9)//9
+        if (UseProfile.CurrentLevel_Chapper_I >= 9)//9
         {
 
             //unLockIcon.gameObject.SetActive(true);
@@ -95,7 +95,7 @@ public class RoketBooster : MonoBehaviour
             playerContain.HandleRoketBooster(RoketBooster_Btn.gameObject.transform, delegate { RoketBooster_Btn.interactable = true; });
             wasUseTNT_Booster = true;
             RoketBooster_Btn.interactable = false;
-            GamePlayController.Instance.TutRocketBooster.NextTut();
+       
         }
         else
         {

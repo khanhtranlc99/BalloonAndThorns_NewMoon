@@ -20,5 +20,6 @@ public class BallPlusCard : CardBase
     public override void HandleAction()
     {
         inputThone.numbBall += 1;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 }

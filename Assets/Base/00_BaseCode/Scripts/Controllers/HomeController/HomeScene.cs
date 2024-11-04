@@ -64,7 +64,7 @@ public class HomeScene : BaseScene
 
         btnShop.onClick.AddListener(delegate { GameController.Instance.musicManager.PlayClickSound(); ShopBox.Setup().Show(); });
 
-        tvLevel.text = "LEVEL " + UseProfile.CurrentLevel.ToString();
+        tvLevel.text = "LEVEL " + UseProfile.CurrentLevel_Chapper_I.ToString();
        
    
     }

@@ -16,5 +16,6 @@ public class DamePlusCard : CardBase
     public override void HandleAction()
     {
         dame += 1;
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 }

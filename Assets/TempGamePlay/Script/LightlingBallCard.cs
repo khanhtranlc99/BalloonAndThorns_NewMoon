@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightlingBallCard : CardBase
 {
-    int countNumb;
+    public int countNumb;
     public BallBase ballBase;
     public HitVfx vfxLightling;
     public override void Init()
@@ -16,6 +16,7 @@ public class LightlingBallCard : CardBase
         countNumb += 1;
         SimplePool2.Preload(vfxLightling.gameObject, 20);
         GamePlayController.Instance.playerContain.inputThone.listBallController.currentBallBases.Add(ballBase);
+        GamePlayController.Instance.playerContain.cardController.CheckCard(id);
     }
 
     public override bool CanShow()
