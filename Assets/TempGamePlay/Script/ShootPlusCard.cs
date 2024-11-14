@@ -8,7 +8,7 @@ public class ShootPlusCard : CardBase
     public static int numbShootPlus = 0;
     public override bool CanShow()
     {
-        if(numbShootPlus >= 20)
+        if(numbShootPlus >= 10)
         {
             return false;
         }    
@@ -22,6 +22,10 @@ public class ShootPlusCard : CardBase
     {
         numbShootPlus  += 1;
         GamePlayController.Instance.playerContain.cardController.CheckCard(id);
+    }
+    private void OnDestroy()
+    {
+        numbShootPlus = 0;
     }
 }
 

@@ -36,8 +36,7 @@ public class ContinueGameBox : BaseBox
     private void HandleNoBtn()
     {
         UseProfile.CurrentLevel = 1;
-        UseProfile.CurrentLevel_Chapper_I = 1;
-        UseProfile.CurrentLevel_Chapper_II = 1;
+    
         GameController.Instance.isContinue = false;
         GameController.Instance.SetUp();
         Close();

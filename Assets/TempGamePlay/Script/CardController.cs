@@ -68,6 +68,14 @@ public class CardController : MonoBehaviour
         return tempListGet;
 
     }
+    public  List<CardBase> GetCardLevel_1()
+    {
+        var tempListCanShow = new List<CardBase>();
+        tempListCanShow.Add(GetCardBase(11));
+        tempListCanShow.Add(GetCardBase(12));
+        tempListCanShow.Add(GetCardBase(13));
+        return tempListCanShow;
+    }
 
     public void CheckCard(int id)
     {

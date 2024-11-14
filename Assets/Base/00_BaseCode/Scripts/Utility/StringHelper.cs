@@ -16,7 +16,7 @@ public static class StringHelper
     public const string CURRENT_LEVEL_CHAPER_I = "CURRENT_LEVEL_CHAPER_I";
     public const string CURRENT_LEVEL_CHAPER_II = "CURRENT_LEVEL_CHAPER_II";
     public const string CURRENT_LEVEL_PLAY = "CURRENT_LEVEL_PLAY";
-    public const string PATH_CONFIG_LEVEL = "Levels/LevelData_";
+    public const string PATH_CONFIG_LEVEL = "Levels/Level_{0}";
     public const string PATH_CHAPER_I = "Chaper_1/Level_{0}";
     public const string PATH_CHAPER_II = "Chaper_2/Level_{0}";
     public const string PATH_CONFIG_LEVEL_SPECIAL = "SpecialLevel/Level_{0}";

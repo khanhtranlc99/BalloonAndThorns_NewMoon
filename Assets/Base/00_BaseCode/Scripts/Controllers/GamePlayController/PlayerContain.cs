@@ -25,24 +25,23 @@ public class PlayerContain : MonoBehaviour
     public EffectTouch effectTouch;
     public void Init()
     {
-         if(UseProfile.CurrentLevel_Chapper_I < 40)
+      
+            string pathLevel = StringHelper.PATH_CONFIG_LEVEL;
+            levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel)));
+          
+            GamePlayController.Instance.gameScene.ShowText(levelData.levelDetail);
+         if(levelData.chapperType == ChapperType.Chapper_I || levelData.chapperType == ChapperType.Chapper_III)
         {
-            string pathLevel = StringHelper.PATH_CHAPER_I;
-            levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel_Chapper_I)));
             bg_Chapper_I.SetActive(true);
             bg_Chapper_II.SetActive(false);
-            GamePlayController.Instance.gameScene.ShowText(UseProfile.CurrentLevel_Chapper_I);
-          
         }
          else
         {
-            string pathLevel = StringHelper.PATH_CHAPER_II;
-            levelData = Instantiate(Resources.Load<LevelData>(string.Format(pathLevel, UseProfile.CurrentLevel_Chapper_II)));
             bg_Chapper_I.SetActive(false);
             bg_Chapper_II.SetActive(true);
-            GamePlayController.Instance.gameScene.ShowText(UseProfile.CurrentLevel_Chapper_II);
         }
-   
+
+
         levelData.Init();
       
         inputThone.Init(this);
@@ -124,10 +123,10 @@ public class PlayerContain : MonoBehaviour
 
     public void NextLevel()
     {
-        UseProfile.CurrentLevel_Chapper_I += 1;
-        if (UseProfile.CurrentLevel_Chapper_I > 80)
+        UseProfile.CurrentLevel += 1;
+        if (UseProfile.CurrentLevel > 80)
         {
-            UseProfile.CurrentLevel_Chapper_I = 80;
+            UseProfile.CurrentLevel = 80;
         }
 
         Initiate.Fade("GamePlay", Color.black, 2f);

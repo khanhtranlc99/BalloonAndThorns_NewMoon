@@ -103,7 +103,7 @@ public class BackHomeBox : BaseBox
             {
            
                 UseProfile.WinStreak = 0;
-                GameController.Instance.heartGame.HandleCoolDown();
+               // GameController.Instance.heartGame.HandleCoolDown();
                 Close();
                 Initiate.Fade("GamePlay", Color.black, 1.5f);
 
@@ -124,7 +124,7 @@ public class BackHomeBox : BaseBox
         void Next()
         {
          
-            GameController.Instance.heartGame.HandleCoolDown();
+           // GameController.Instance.heartGame.HandleCoolDown();
 
             Close();
             UseProfile.WinStreak = 0;

@@ -22,7 +22,21 @@ public class CannonSkinController : MonoBehaviour
 
 
     }
+    public IdBall GetRandomCannon
+    {
+        get
+        {
+            foreach (var item in lsIdCanon)
+            {
+                if (!UseProfile.lsIdSkinBalls.Contains(item.id))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
 
+    }
     public void Init()
     {
         EventDispatcher.EventDispatcher.Instance.RegisterListener(EventID.CHANGE_ID_CANNON, HandleReskin);

@@ -27,7 +27,7 @@ public class MoveSightingPointBooster : MonoBehaviour
         selectedObject = null;
         wasUseMoveSightingPointBooster = false;
  
-        if (UseProfile.CurrentLevel_Chapper_I >= 3)//3
+        if (UseProfile.CurrentLevel >= 3)//3
         {
 
             //unLockIcon.gameObject.SetActive(true);

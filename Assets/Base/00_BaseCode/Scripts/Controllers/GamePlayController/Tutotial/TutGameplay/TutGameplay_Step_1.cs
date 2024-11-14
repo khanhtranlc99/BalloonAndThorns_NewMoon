@@ -32,7 +32,7 @@ public class TutGameplay_Step_1 : TutorialBase
 
     public override void StartTut()
     {
-        if (UseProfile.CurrentLevel_Chapper_I == 1)
+        if (UseProfile.CurrentLevel == 1)
         {
             if (currentHand != null)
             {

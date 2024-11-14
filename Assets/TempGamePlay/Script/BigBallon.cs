@@ -42,6 +42,9 @@ public class BigBallon : BarrialAir
                 });
             }
             GamePlayController.Instance.playerContain.effectExplosion.HandleEffectExplosion(this);
+
+            spriteRenderer.DOKill();
+            transform.DOKill();
         }
     }
 

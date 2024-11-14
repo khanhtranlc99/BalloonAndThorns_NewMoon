@@ -19,7 +19,7 @@ public class TutRocketBooster_Step_1 : TutorialBase
 
     public override void StartTut()
     {
-        if (UseProfile.CurrentLevel_Chapper_I == 9)
+        if (UseProfile.CurrentLevel == 9)
         {
             if (currentHand != null)
             {

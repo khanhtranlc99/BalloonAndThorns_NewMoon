@@ -59,6 +59,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void Init()
     {
+        Input.multiTouchEnabled = false;
         playerContain.cardController.Init();
         TutGameplay.Init();
        
@@ -76,18 +77,23 @@ public class GamePlayController : Singleton<GamePlayController>
     }
     public void SetPlayingState()
     {
-        if(playerContain.levelData.AllBallonInit)
+       if(stateGame != StateGame.Playing)
         {
-          
-            playerContain.levelData.HandleShowWall(delegate {
-                
-                playerContain.HandleScaleInput(delegate {
+            if (playerContain.levelData.AllBallonInit)
+            {
 
-                    stateGame = StateGame.Playing;
-                }); 
-            });
-        
+                playerContain.levelData.HandleShowWall(delegate {
+
+                    playerContain.HandleScaleInput(delegate {
+
+                        stateGame = StateGame.Playing;
+                        Debug.LogError("Playing");
+                    });
+                });
+
+            }
         }
+ 
     }    
     public void HandleWin()
     {
@@ -166,7 +172,11 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         if(Input.GetKey(KeyCode.K))
         {
-            playerContain.levelData.AllBallHit();
+            if (stateGame == StateGame.Playing)
+            {
+                playerContain.levelData.AllBallHit();
+            }
+             
         }
       
     }

@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
 
     public AnalyticsController AnalyticsController;
     public IapController iapController;
-    public HeartGame heartGame;
+ 
     [HideInInspector] public SceneType currentScene;
  
     public StartLoading startLoading;
@@ -77,12 +77,12 @@ public class GameController : MonoBehaviour
 
     public void SetUp()
     {
-   
+      
         musicManager.Init();
         iapController.Init();
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);
         startLoading.Init();
-        heartGame.Init();
+ 
         //idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
     }
 

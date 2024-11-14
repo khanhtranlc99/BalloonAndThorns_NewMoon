@@ -19,7 +19,7 @@ public class TutCloneBallsBooster_Step_1 : TutorialBase
 
     public override void StartTut()
     {
-        if (UseProfile.CurrentLevel_Chapper_I == 5)
+        if (UseProfile.CurrentLevel == 5)
         {
             if (currentHand != null)
             {

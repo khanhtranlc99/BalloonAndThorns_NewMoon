@@ -170,8 +170,9 @@ MonoBehaviour:
   id: 8
   cardRank: 1
   cardType: 8
-  sprite: {fileID: -1986592829, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: +1 Lightling Spike
+  sprite: {fileID: 21300000, guid: f486a4330ffe56a4e8b5bf449ef5aa33, type: 3}
+  name: +1 Lightling Spike
+  content: Create a damaging beam of light
   countNumb: 0
   ballBase: {fileID: 2319483593050024696, guid: 8c3f9462e92095542afc40ef1361c782, type: 3}
   vfxLightling: {fileID: 7706751104997000655, guid: c2cecbcf46baf2047840e631080b8b30, type: 3}
@@ -1013,8 +1014,9 @@ MonoBehaviour:
   id: 16
   cardRank: 0
   cardType: 16
-  sprite: {fileID: -1986592829, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: Increase Dame Lightling
+  sprite: {fileID: 21300000, guid: d945925c54675ab4caf8eca27eee0ff0, type: 3}
+  name: Increase Lightling
+  content: Increases Lightling damage by 1 level
   endOfLightlingCard: {fileID: 1463590390}
   lightlingBallCard: {fileID: 2809452}
 --- !u!1 &118561997
@@ -1259,8 +1261,9 @@ MonoBehaviour:
   id: 11
   cardRank: 2
   cardType: 10
-  sprite: {fileID: 529985149, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: End Of Electric
+  sprite: {fileID: 21300000, guid: 918e60552fbd983429e7f351e605af48, type: 3}
+  name: End Of Electric
+  content: Generate electricity when balloon bursts
   isActive: 0
   vfxElectric: {fileID: 5263446744464978685, guid: 2918080e1f584f841a7f03fbd373fd95, type: 3}
 --- !u!1 &138963024
@@ -2405,6 +2408,7 @@ GameObject:
   - component: {fileID: 290954315}
   - component: {fileID: 290954317}
   - component: {fileID: 290954316}
+  - component: {fileID: 290954318}
   m_Layer: 5
   m_Name: IconBallon
   m_TagString: Untagged
@@ -2451,7 +2455,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8dbaf98ebc01c6e4792c8c3dc7edbdda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68207618301be7643abe722e49443116, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2469,6 +2473,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290954314}
   m_CullTransparentMesh: 1
+--- !u!114 &290954318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290954314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &325620049
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,23 +2682,32 @@ MonoBehaviour:
   cannon: {fileID: 943156435}
   lsIdCanon:
   - id: 0
-    ballBase: {fileID: 21300000, guid: 8dbaf98ebc01c6e4792c8c3dc7edbdda, type: 3}
+    ballBase: {fileID: 21300000, guid: 68207618301be7643abe722e49443116, type: 3}
+    giftType: 0
   - id: 1
-    ballBase: {fileID: 21300000, guid: b5d05aef32da9f5498a8dc768a034676, type: 3}
+    ballBase: {fileID: 21300000, guid: c02f7a2396e51614c9903780331d0eae, type: 3}
+    giftType: 11
   - id: 2
-    ballBase: {fileID: 21300000, guid: 0978740adb356284fa74bfc6f9bb9da7, type: 3}
+    ballBase: {fileID: 21300000, guid: 858ea10745b39e548aaefd00f167e1c8, type: 3}
+    giftType: 12
   - id: 3
-    ballBase: {fileID: 21300000, guid: b94059e044ad0e94588555d76a4aab9a, type: 3}
+    ballBase: {fileID: 21300000, guid: 3d195e4464ce3594e934074878bb5cd5, type: 3}
+    giftType: 13
   - id: 4
-    ballBase: {fileID: 21300000, guid: eb86ab7dff7243542980c64f1b6cac33, type: 3}
+    ballBase: {fileID: 21300000, guid: 8d8e599bf7bd38749a55aca24f1b233c, type: 3}
+    giftType: 14
   - id: 5
-    ballBase: {fileID: 21300000, guid: 6b0f47894b109564cb82187a87006f57, type: 3}
+    ballBase: {fileID: 21300000, guid: cfca1bbfff43879479ab429fcb3e799c, type: 3}
+    giftType: 15
   - id: 6
-    ballBase: {fileID: 21300000, guid: f4fe1897b639a7149befd69e94851c3b, type: 3}
+    ballBase: {fileID: 21300000, guid: d087ebd15d2cc234f980c0cdfae883b8, type: 3}
+    giftType: 16
   - id: 7
-    ballBase: {fileID: 21300000, guid: aee66ff6ceef83640abdec44b708aba0, type: 3}
+    ballBase: {fileID: 21300000, guid: 94a723b926369274aad0dbee0406b629, type: 3}
+    giftType: 17
   - id: 8
-    ballBase: {fileID: 21300000, guid: 7628d4bfc30f34944ad5f51571f01b0f, type: 3}
+    ballBase: {fileID: 21300000, guid: 2e57941b73f0d2a488eddf3c5395696e, type: 3}
+    giftType: 18
 --- !u!1 &331016202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,6 +2930,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332252677}
   m_CullTransparentMesh: 1
+--- !u!1 &369445122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 369445125}
+  - component: {fileID: 369445124}
+  - component: {fileID: 369445123}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &369445123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369445122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 681905d62e30ec74993d3c85d53a3fd6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &369445124
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369445122}
+  m_CullTransparentMesh: 1
+--- !u!224 &369445125
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369445122}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 894307080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 53, y: 0}
+  m_SizeDelta: {x: 114.166664, y: 53.333332}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &375888365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3014,8 +3117,9 @@ MonoBehaviour:
   id: 15
   cardRank: 0
   cardType: 15
-  sprite: {fileID: -1162284508, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: Increase Dame Electric
+  sprite: {fileID: 21300000, guid: efa76bf597901da4eae150046e3fa4a4, type: 3}
+  name: Increase Electric
+  content: Increases Electric damage by 1 level
   endOfElectricCard: {fileID: 130545227}
   electricBallCard: {fileID: 894742138}
 --- !u!1 &402071855
@@ -3523,8 +3627,9 @@ MonoBehaviour:
   id: 2
   cardRank: 0
   cardType: 2
-  sprite: {fileID: 21300000, guid: 9f8c55ab9d7f91c44a96acb8a7280713, type: 3}
-  content: +1 Spike
+  sprite: {fileID: 21300000, guid: adc9c67b24066954daa182634541b9b2, type: 3}
+  name: BallPlus
+  content: Increase number of Spike by 1 time
   inputThone: {fileID: 3559892719486424696}
 --- !u!1 &420184661
 GameObject:
@@ -4980,7 +5085,8 @@ MonoBehaviour:
   cardRank: 0
   cardType: 0
   sprite: {fileID: 21300000, guid: 39a7a4fb16a3ebe4daaff972469067fd, type: 3}
-  content: +1 Scope
+  name: 'Scope Plus '
+  content: Make the trajectoty longer
   inputThone: {fileID: 3559892719486424696}
 --- !u!1 &588434236
 GameObject:
@@ -5029,8 +5135,9 @@ MonoBehaviour:
   id: 13
   cardRank: 2
   cardType: 13
-  sprite: {fileID: 633162159, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: End Of Rocket
+  sprite: {fileID: 21300000, guid: 3332224fb0d749c47b75e7f52070e20e, type: 3}
+  name: End Of Rocket
+  content: Create a Rocket when the balloon bursts
   isActive: 0
   vfxRocket: {fileID: 6946364980423065758, guid: 967bb794768bb08409635d5176ed12ce, type: 3}
 --- !u!1 &599772100
@@ -5691,28 +5798,34 @@ MonoBehaviour:
   lsIdBalls:
   - id: 0
     ballBase: {fileID: 21300000, guid: df6434a8848bfd149aa2b07f7dd1e143, type: 3}
+    giftType: 0
   - id: 1
-    ballBase: {fileID: 21300000, guid: edee833033ef66948aaada178b4d4de4, type: 3}
+    ballBase: {fileID: 21300000, guid: a8101e70a1382344f8f4039d5ac45604, type: 3}
+    giftType: 19
   - id: 2
-    ballBase: {fileID: 21300000, guid: df5e9659b7f0ffc41a47e0cf15f03547, type: 3}
+    ballBase: {fileID: 21300000, guid: 52c36a940eb93e545a3adba78641d290, type: 3}
+    giftType: 20
   - id: 3
-    ballBase: {fileID: 21300000, guid: d4dd96dafeb4f59409359615f0c09d2f, type: 3}
+    ballBase: {fileID: 21300000, guid: 9b01ecd66779b4f4ca9234d166900660, type: 3}
+    giftType: 21
   - id: 4
-    ballBase: {fileID: 21300000, guid: 1f634ac82e8543a45a4792edb89b9ed4, type: 3}
+    ballBase: {fileID: 21300000, guid: 5bf93f1e299403d4eabf1c682c26456e, type: 3}
+    giftType: 22
   - id: 5
-    ballBase: {fileID: 21300000, guid: ace969d89183f1c40be53a31bb626ce6, type: 3}
+    ballBase: {fileID: 21300000, guid: 8bfe03972f93f394b92e2638a0940c4b, type: 3}
+    giftType: 23
   - id: 6
-    ballBase: {fileID: 21300000, guid: 01d1352d35feb3f4e9ee022e27532abd, type: 3}
+    ballBase: {fileID: 21300000, guid: ffaaa79a81d71514f95ae3b484ecfc89, type: 3}
+    giftType: 24
   - id: 7
-    ballBase: {fileID: 21300000, guid: 62a8771a21db594428aa2455240474e3, type: 3}
+    ballBase: {fileID: 21300000, guid: 60cbe5bc5bbe3d04f812e3337c85c467, type: 3}
+    giftType: 25
   - id: 8
-    ballBase: {fileID: 21300000, guid: df0626ada671fe64a865df1017d5fcc8, type: 3}
+    ballBase: {fileID: 21300000, guid: 38f9f8e3f49ac024f898cff5b40ddfb7, type: 3}
+    giftType: 26
   - id: 9
-    ballBase: {fileID: 21300000, guid: dc6e97017df83be4fbc08e96fc43bbe5, type: 3}
-  - id: 10
-    ballBase: {fileID: 21300000, guid: 9def6f782ae1bdd4a8d33c17dc421f9d, type: 3}
-  - id: 11
-    ballBase: {fileID: 21300000, guid: 573889668150762479e46e6056f8af95, type: 3}
+    ballBase: {fileID: 21300000, guid: 0d2ce0bfec89c3d419d6a251fb88fd10, type: 3}
+    giftType: 27
   lsSpriteRender:
   - {fileID: 8920731422390768780}
   - {fileID: 1911766547630732813}
@@ -6312,7 +6425,8 @@ MonoBehaviour:
   cardRank: 1
   cardType: 4
   sprite: {fileID: 21300000, guid: d0d35369aaac54646a362235c1351bea, type: 3}
-  content: +1 FireCracker
+  name: FireCracker
+  content: Start with 1 firework
   spinerBooster: {fileID: 118561999}
 --- !u!1 &792029313
 GameObject:
@@ -8475,8 +8589,9 @@ MonoBehaviour:
   id: 6
   cardRank: 1
   cardType: 6
-  sprite: {fileID: 21300000, guid: 1a3fe6d988464a4488623b1983248d21, type: 3}
-  content: +1 See Through Spike
+  sprite: {fileID: 21300000, guid: a2237d8b57956a44494e4b5e534b86f9, type: 3}
+  name: +1 See Through Spike
+  content: This spike can pass through many things.
   ballBase: {fileID: 3497143402725144788, guid: 1034fbb198a42fd44abca38c83fa5f8c, type: 3}
 --- !u!1001 &879736130
 PrefabInstance:
@@ -8601,6 +8716,7 @@ RectTransform:
   m_Children:
   - {fileID: 290954315}
   - {fileID: 1679524462}
+  - {fileID: 369445125}
   m_Father: {fileID: 2008596711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -8693,8 +8809,9 @@ MonoBehaviour:
   id: 7
   cardRank: 1
   cardType: 7
-  sprite: {fileID: -2135920532, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: +1 Electric Spike
+  sprite: {fileID: 21300000, guid: 42eeeb131f90f094eac797b48c6dd9c1, type: 3}
+  name: +1 Electric Spike
+  content: Generate lethal electricity
   countNumb: 0
   ballBase: {fileID: 41760852664522723, guid: 7f4411eb0b6feb848b36acc0f1273224, type: 3}
   vfxElectric: {fileID: 5263446744464978685, guid: 2918080e1f584f841a7f03fbd373fd95, type: 3}
@@ -9506,8 +9623,9 @@ MonoBehaviour:
   id: 5
   cardRank: 1
   cardType: 5
-  sprite: {fileID: 21300000, guid: e0bf3ea7cf82b5044a0c325350432a1c, type: 3}
-  content: +1 Boom Spike
+  sprite: {fileID: 21300000, guid: 4fe9dc0a49c4fca4db7781dae4a47e99, type: 3}
+  name: +1 Boom Spike
+  content: 5% chance to pop balloon instantly
   ballBase: {fileID: 7866100108764356515, guid: 4216ac06122eef74aaea3313d33f353a, type: 3}
 --- !u!1 &1001071162
 GameObject:
@@ -10625,6 +10743,7 @@ MonoBehaviour:
   panelX1: {fileID: 288006447}
   panelX2: {fileID: 1936953617}
   graphicRaycaster: {fileID: 854270826}
+  unlimit: {fileID: 369445122}
 --- !u!1001 &1156232246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12111,8 +12230,9 @@ MonoBehaviour:
   id: 17
   cardRank: 1
   cardType: 17
-  sprite: {fileID: 671534848, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: Increase Dame Sound Wave
+  sprite: {fileID: 21300000, guid: 3d2054c392603a74f9d580cfa504f4d0, type: 3}
+  name: Increase Sound Wave
+  content: Increases Sound wave damage by 1 level
   soundWaveCard: {fileID: 1715336758}
 --- !u!1 &1302290451
 GameObject:
@@ -14130,8 +14250,9 @@ MonoBehaviour:
   id: 10
   cardRank: 2
   cardType: 12
-  sprite: {fileID: -347517677, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: End Of Explosion
+  sprite: {fileID: 21300000, guid: 67dd83efecdc5fc49a7f8bba0bc66e36, type: 3}
+  name: End Of Explosion
+  content: Create an explosion when the balloon bursts
   isActive: 0
   vfxExplosion: {fileID: 86967179609373377, guid: c99585777c3a6024182d73c9dd0cccf5, type: 3}
 --- !u!1 &1463590388
@@ -14181,8 +14302,9 @@ MonoBehaviour:
   id: 12
   cardRank: 2
   cardType: 11
-  sprite: {fileID: 11603302, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: End Of Lightling
+  sprite: {fileID: 21300000, guid: c2b0f1e1f59b7ee4a96ab10d1188ff6f, type: 3}
+  name: End Of Lightling
+  content: Create a light when the balloon bursts
   isActive: 0
   vfxLightling: {fileID: 7706751104997000655, guid: c2cecbcf46baf2047840e631080b8b30, type: 3}
 --- !u!1 &1467856285
@@ -14882,8 +15004,9 @@ MonoBehaviour:
   id: 1
   cardRank: 0
   cardType: 1
-  sprite: {fileID: 21300000, guid: 5ea5e14eff37226429db1984177bd1dd, type: 3}
-  content: +1 Dame
+  sprite: {fileID: 21300000, guid: 52b1c5c6f8487ec47b65bdb258d7b4cd, type: 3}
+  name: Dame Plus
+  content: Increases Spike damage by 1 level
 --- !u!1 &1498999122
 GameObject:
   m_ObjectHideFlags: 0
@@ -14931,8 +15054,9 @@ MonoBehaviour:
   id: 3
   cardRank: 0
   cardType: 3
-  sprite: {fileID: 21300000, guid: 8dbaf98ebc01c6e4792c8c3dc7edbdda, type: 3}
-  content: '+1 Stept '
+  sprite: {fileID: 21300000, guid: 244489385b1273f4882928cc04de89a6, type: 3}
+  name: Shoots Plus
+  content: Increase number of Stept by 1 time
 --- !u!1 &1503289774
 GameObject:
   m_ObjectHideFlags: 0
@@ -17193,8 +17317,9 @@ MonoBehaviour:
   id: 9
   cardRank: 2
   cardType: 9
-  sprite: {fileID: 671534848, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: 'Sound Wave '
+  sprite: {fileID: 21300000, guid: 2d616ba232b40b94985f72d2c9fa7a72, type: 3}
+  name: 'Sound Wave '
+  content: Create damaging sound waves
   isActive: 0
   vfxSoundWave: {fileID: 6977191102786276164, guid: 1ccc18e52edf7ff4aa2bdc170b506ce4, type: 3}
 --- !u!1 &1737447030
@@ -17359,8 +17484,9 @@ MonoBehaviour:
   id: 14
   cardRank: 0
   cardType: 14
-  sprite: {fileID: 153951543, guid: 2e949d7a7e3214e42845fb3b38f8766c, type: 3}
-  content: Increase Dame Rocket
+  sprite: {fileID: 21300000, guid: 4ffd3afc690951d459e182aa80d4bdcb, type: 3}
+  name: Increase Rocket
+  content: Increases Rocket damage by 1 level
   endOfRocketCard: {fileID: 588434238}
 --- !u!1 &1747024931
 GameObject:

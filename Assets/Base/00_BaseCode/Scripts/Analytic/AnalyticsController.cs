@@ -77,7 +77,7 @@ public class AnalyticsController : MonoBehaviour
             FirebaseAnalytics.SetUserProperty(StringHelper.RETENTION_D, UseProfile.RetentionD.ToString());
             FirebaseAnalytics.SetUserProperty(StringHelper.DAYS_PLAYED, UseProfile.DaysPlayed.ToString());
             FirebaseAnalytics.SetUserProperty(StringHelper.PAYING_TYPE, UseProfile.PayingType.ToString());
-            FirebaseAnalytics.SetUserProperty(StringHelper.LEVEL, UseProfile.CurrentLevel_Chapper_I.ToString());
+            FirebaseAnalytics.SetUserProperty(StringHelper.LEVEL, UseProfile.CurrentLevel.ToString());
         }
         catch
         {
@@ -113,7 +113,7 @@ public class AnalyticsController : MonoBehaviour
         {
             FirebaseAnalytics.LogEvent("Lose_Level_" + param);
         }
-
+        Debug.LogError("LoseLevel" + param);
     }
     public void WinLevel(int param)
     {
@@ -536,7 +536,8 @@ public enum ActionWatchVideo
     Sniper_Booster = 14,
     ReviveFreeLoseBox = 15,
     HeartInHearPopup = 16,
-    WinBox_Claim_Coin = 17
+    WinBox_Claim_Coin = 17,
+    OpenMoreCard = 18
 }
 
 public enum ActionShowInter

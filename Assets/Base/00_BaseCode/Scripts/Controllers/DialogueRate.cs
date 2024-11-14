@@ -88,10 +88,10 @@ public class DialogueRate : BaseBox
     {
         GameController.Instance.musicManager.PlayClickSound();
 
-        UseProfile.CurrentLevel_Chapper_I += 1;
-        if (UseProfile.CurrentLevel_Chapper_I >= 84)
+        UseProfile.CurrentLevel += 1;
+        if (UseProfile.CurrentLevel >= 84)
         {
-            UseProfile.CurrentLevel_Chapper_I = 84;
+            UseProfile.CurrentLevel = 84;
         }
         UseProfile.WinStreak += 1;
      

@@ -19,7 +19,7 @@ public class PopupPrepageGame : MonoBehaviour
         canvasGroup.DOFade(1, 0.5f).OnComplete(delegate
         {
 
-            tvLevel.text = "LEVEL " + UseProfile.CurrentLevel_Chapper_I;
+            tvLevel.text = "LEVEL " + UseProfile.CurrentLevel;
 
             parent.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutBack).OnComplete(delegate
             {
@@ -38,7 +38,7 @@ public class PopupPrepageGame : MonoBehaviour
     {
         canvasGroup.alpha = 1;
     
-            tvLevel.text = "LEVEL " + UseProfile.CurrentLevel_Chapper_I;
+            tvLevel.text = "LEVEL " + UseProfile.CurrentLevel;
 
             parent.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutBack).OnComplete(delegate {
 

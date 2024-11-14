@@ -35,7 +35,9 @@ public abstract class CardBase : MonoBehaviour
     public CardRank cardRank;
     public CardType cardType;
     public Sprite sprite;
+    public string name;
     public string content;
+
     public abstract void Init();
     public abstract bool CanShow();
     public abstract void HandleAction();

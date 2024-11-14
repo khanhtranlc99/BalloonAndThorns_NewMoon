@@ -29,6 +29,7 @@ public class GameScene : BaseScene
     public GameObject panelX2;
     public GraphicRaycaster graphicRaycaster; // Tham chiếu đến GraphicRaycaster
     private EventSystem eventSystem;
+    public GameObject unlimit;
 
     public bool IsMouseClickingOnImage
     {
@@ -61,9 +62,16 @@ public class GameScene : BaseScene
         settinBtn.onClick.AddListener(delegate { GamePlayController.Instance.playerContain.inputThone.enabled = false; SettingBox.Setup(true).Show(); });
         //reStartBtn.onClick.AddListener(delegate { Initiate.Fade("GamePlay", Color.black, 2f); });
     
-       
-        tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
-
+       if(UseProfile.CurrentLevel == 1)
+        {
+            tvTarget.text = "";
+            unlimit.SetActive(true);
+        }    
+        else
+        {
+            tvTarget.text = "" + GamePlayController.Instance.playerContain.inputThone.NumShoot;
+            unlimit.SetActive(false);
+        }    
         adsBallsButton.onClick.AddListener(delegate { HandleBtnAdsBall();  });
         if (UseProfile.UnlimitSpike)
         {
@@ -155,7 +163,7 @@ public class GameScene : BaseScene
                 },
                 actionClose: null,
                 ActionWatchVideo.Skip_level,
-                UseProfile.CurrentLevel_Chapper_I.ToString());
+                UseProfile.CurrentLevel.ToString());
     }
 
     public void HandleSubtrackNumShoot()
@@ -202,6 +210,6 @@ public class GameScene : BaseScene
 
     public void ShowText(int param)
     {
-        tvLevel.text = "Wave " + "\n" + param + "/40" ;
+        tvLevel.text = "Wave " + "\n" + param + "/20" ;
     }
 }

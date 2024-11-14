@@ -620,7 +620,7 @@ public class IapController : MonoBehaviour, IStoreListener
         AnalyticsController.LogBuyInapp(product.definition.id, product.transactionID);
         try
         {
-            AnalyticsController.LogIAP(UseProfile.CurrentLevel_Chapper_I, product.definition.id, product.metadata.localizedPrice.ToString(), product.metadata.isoCurrencyCode);
+            AnalyticsController.LogIAP(UseProfile.CurrentLevel, product.definition.id, product.metadata.localizedPrice.ToString(), product.metadata.isoCurrencyCode);
         }
         catch
         {

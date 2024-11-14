@@ -12,12 +12,20 @@ public enum Difficult
     Normal,
     Hard,
     VeryHard,
-  
-
 }
+public enum ChapperType
+{ 
+    Chapper_I,
+    Chapper_II,
+    Chapper_III,
+    Chapper_IV
+}
+
 
 public class LevelData : SerializedMonoBehaviour
 {
+    public ChapperType chapperType;
+    public int levelDetail;
     public int Max;
     public int Min;
     public List<BarrialAir> lsBallons;
@@ -165,8 +173,11 @@ public class LevelData : SerializedMonoBehaviour
     {
         foreach(var item in lsBallons)
         {
-            
-            item.Destroy();
+            if(item.isInit)
+            {
+                item.Destroy();
+            }
+       
         }    
     }
     public void PlusBallBallon()

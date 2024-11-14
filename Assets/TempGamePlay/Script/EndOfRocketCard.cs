@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class EndOfRocketCard : CardBase
 {
@@ -18,6 +19,7 @@ public class EndOfRocketCard : CardBase
     {
 
     }
+    [Button]
     public override void HandleAction()
     {
         isActive = true;

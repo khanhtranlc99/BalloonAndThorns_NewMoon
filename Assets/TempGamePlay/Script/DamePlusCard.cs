@@ -7,6 +7,10 @@ public class DamePlusCard : CardBase
     public static int dame = 1;
     public override bool CanShow()
     {
+        if (dame >= 10)
+        {
+            return false;
+        }
         return true;
     }
     public override void Init()

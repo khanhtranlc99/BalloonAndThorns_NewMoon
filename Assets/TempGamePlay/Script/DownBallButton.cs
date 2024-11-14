@@ -40,7 +40,7 @@ public class DownBallButton : MonoBehaviour
         if(wasCount)
         {
             time += Time.deltaTime;
-            if(time > 18)
+            if(time > 10)
             {
                 handTut.gameObject.SetActive(true);
                 wasCount = false;

@@ -46,9 +46,8 @@ public class LoseBox : BaseBox
     private void HandleRetry()
     {
         GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => {
-            UseProfile.CurrentLevel = 0;
-            UseProfile.CurrentLevel_Chapper_I = 1;
-            UseProfile.CurrentLevel_Chapper_II = 1;
+            UseProfile.CurrentLevel = 1;
+           
             Initiate.Fade("GamePlay", Color.black, 2f);
 
         }, actionWatchLog: "LoseBox");

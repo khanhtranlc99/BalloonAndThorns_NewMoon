@@ -19,7 +19,7 @@ public class TutMoveSightingPointBooster_Step_1 : TutorialBase
 
     public override void StartTut()
     {
-        if (UseProfile.CurrentLevel_Chapper_I == 3)
+        if (UseProfile.CurrentLevel == 3)
         {
             if (currentHand != null)
             {

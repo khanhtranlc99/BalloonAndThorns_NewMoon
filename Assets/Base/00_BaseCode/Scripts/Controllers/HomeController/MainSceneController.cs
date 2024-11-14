@@ -13,8 +13,8 @@ public class MainSceneController : SceneBase
  
     public override void Init()
     {
-        tvLevel.text =   UseProfile.CurrentLevel_Chapper_I.ToString();
-        tvLevelBtn.text = "Level " + UseProfile.CurrentLevel_Chapper_I;
+        tvLevel.text =   UseProfile.CurrentLevel.ToString();
+        tvLevelBtn.text = "Level " + UseProfile.CurrentLevel;
         btnHome.onClick.AddListener(delegate { OnClickPlay(); });
         btnReward.Init();
     }

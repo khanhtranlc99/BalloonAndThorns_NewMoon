@@ -56,35 +56,10 @@ public class UseProfile : MonoBehaviour
         }
     }
 
-    public static int CurrentLevel_Chapper_I
+    public static int CurrentLevel
     {
         get
         {
-            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_CHAPER_I, 1);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_CHAPER_I, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int CurrentLevel_Chapper_II
-    {
-        get
-        {
-            return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL_CHAPER_II, 1);
-        }
-        set
-        {
-            PlayerPrefs.SetInt(StringHelper.CURRENT_LEVEL_CHAPER_II, value);
-            PlayerPrefs.Save();
-        }
-    }
-    public static int CurrentLevel 
-    {
-        get
-        {
-        
             return PlayerPrefs.GetInt(StringHelper.CURRENT_LEVEL, 1);
         }
         set
@@ -93,6 +68,7 @@ public class UseProfile : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+  
     public static int NumbWatchAdsSniper
     {
         get
@@ -372,7 +348,9 @@ public class UseProfile : MonoBehaviour
             var temp = JsonConvert.DeserializeObject<List<int>>( PlayerPrefs.GetString(StringHelper.LS_ID_SKIN_BALLS ));
             if(temp == null)
             {
-                string jsonValue = JsonConvert.SerializeObject(new List<int>() { 0 });
+               
+                tempList.Add(0);
+                string jsonValue = JsonConvert.SerializeObject(tempList);
                 PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_BALLS, jsonValue);
             }
             else
@@ -402,7 +380,9 @@ public class UseProfile : MonoBehaviour
             var temp = JsonConvert.DeserializeObject<List<int>>(PlayerPrefs.GetString(StringHelper.LS_ID_SKIN_CANNONS));
             if (temp == null)
             {
-                string jsonValue = JsonConvert.SerializeObject(new List<int>() { 0 });
+               
+                tempList.Add(0);
+                string jsonValue = JsonConvert.SerializeObject(tempList);
                 PlayerPrefs.SetString(StringHelper.LS_ID_SKIN_CANNONS, jsonValue);
             }
             else

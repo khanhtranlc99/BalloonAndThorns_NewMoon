@@ -26,7 +26,7 @@ public class ListBallController : MonoBehaviour
                 {
                     newList.Add(currentBallBases[i]);
                 }
-                if(newList.Count < inputThone.numbBall)
+                if (newList.Count < inputThone.numbBall)
                 {
                     for (int i = newList.Count; i < inputThone.numbBall; i++)
                     {
@@ -39,7 +39,7 @@ public class ListBallController : MonoBehaviour
         }
     }
     public List<IdBall> lsIdBalls;
-    public Sprite GetBalls 
+    public Sprite GetBalls
     {
         get
         {
@@ -52,10 +52,28 @@ public class ListBallController : MonoBehaviour
             }
             return null;
         }
-  
-  
+
+
     }
     public List<SpriteRenderer> lsSpriteRender;
+
+    public IdBall GetRandomBall
+    {
+        get
+        {
+            foreach (var item in lsIdBalls)
+            {
+                if(!UseProfile.lsIdSkinBalls.Contains(item.id))
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+   
+    }
+
+
     public void Init()
     {
         SimplePool2.Preload(ballMovement.gameObject, 70);
@@ -83,4 +101,5 @@ public class IdBall
 {
     public int id;
     public Sprite ballBase;
+    public GiftType giftType;
 }

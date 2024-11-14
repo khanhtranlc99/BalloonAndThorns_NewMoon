@@ -71,13 +71,13 @@ public class InputThone : MonoBehaviour
     PlayerContain playerContain;
     public void Init(PlayerContain param)
     {
-        if (UseProfile.CurrentLevel > 39)
+        
+        playerContain = param;
+        if (playerContain.levelData.chapperType == ChapperType.Chapper_II || playerContain.levelData.chapperType == ChapperType.Chapper_IV)
         {
             lineRenderer.SetColors(Color.black, Color.black);
         }
-        playerContain = param;
-
-       // postFireSpike.Init();
+        // postFireSpike.Init();
         // Thiết lập LineRenderer
         lineRenderer.positionCount = 0; // Khởi tạo với không điểm
         lineRenderer.startWidth = 0.15f;
@@ -92,6 +92,7 @@ public class InputThone : MonoBehaviour
         tvBall.text = "x" + numbBall;
         NumShoot =  5 + ShootPlusCard.numbShootPlus;
         GamePlayController.Instance.gameScene.tvTarget.text = "" + NumShoot;
+        GamePlayController.Instance.gameScene.unlimit.SetActive(false);
     }
     public SpriteRenderer iconCanon;
     public MoveCollider moveCollider;
@@ -280,7 +281,10 @@ public class InputThone : MonoBehaviour
                 lineRenderer.positionCount = 0;
                 // Khởi tạo bóng và gán vị trí ban đầu của nó
                 var tempInitialDirection = initialDirection.normalized;
-                GamePlayController.Instance.gameScene.HandleSubtrackNumShoot();
+                if(UseProfile.CurrentLevel != 1)
+                {
+                    GamePlayController.Instance.gameScene.HandleSubtrackNumShoot();
+                }    
                 StartCoroutine(Shoot(tempInitialDirection));
                 downBallButton.gameObject.SetActive(true);
            
