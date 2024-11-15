@@ -62,8 +62,34 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         Application.targetFrameRate = 60;
+        //if (Application.internetReachability != NetworkReachability.NotReachable)
+        //{
+        //    admobAds.Init();
+        //    StartCoroutine(Helper.StartAction(delegate { HandleWaitInterAds();  }, () => AnalyticsController.firebaseInitialized == true));
+        //}
+        //else
+        //{
+        //    admobAds.Init();
+        //    SetUp();
+        //}
         SetUp();
+
     }
+    private void HandleWaitInterAds()
+    {
+        StartCoroutine(Helper.StartAction(delegate { HandleSpamInter();   }, () => admobAds.IsLoadedInterstitial() == true));
+
+
+    }    
+    private void HandleSpamInter()
+    {
+          admobAds.ShowInterstitial(false, actionIniterClose: () => {
+
+            
+
+        }, actionWatchLog: "LoseBox");
+    }    
+
 
     public void SetUp()
     {

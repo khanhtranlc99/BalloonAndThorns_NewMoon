@@ -28,8 +28,8 @@ public class AdmobAds : MonoBehaviour
     private const string InterstitialAdUnitId = "12cba4c7ccc515b2";
     private const string RewardedAdUnitId = "e3a512f3b1d365cd";
     private const string BanerAdUnitId = "cf16d1454e49a5b7";
-    //private string AppOpenId = "45fa180466aff54e";
-    //private const string MREC_Id = "9569f2b411b0eddf";
+    private const string AppOpenId = "2a0f98eafd7faa71";
+    private const string MREC_Id = "3c4aa393c6bb1848";
 
 #elif UNITY_IOS
     private const string MaxSdkKey = "oL9CCQ2BlEl-78avNTt7qkDU1Tl_Pkb2pgv9g9m5cLUiiJcxwGv_2T1_T9OsBIhSM4UPhnkDXyMO8HNGmFnEKu";
@@ -56,8 +56,8 @@ public class AdmobAds : MonoBehaviour
             InitInterstitial();
             InitRewardVideo();
             InitializeBannerAds();
-            //InitializeMRecAds();
-            //InitializeOpenAppAds();
+            InitializeMRecAds();
+            InitializeOpenAppAds();
 
             // MaxSdk.ShowMediationDebugger();
         };
@@ -653,122 +653,131 @@ public class AdmobAds : MonoBehaviour
         countdownAdsOpenAppAds += Time.unscaledTime;
     }
 
-    //public bool IsOpenAdsReady
-    //{
-    //    get
-    //    {
-    //        return MaxSdk.IsAppOpenAdReady(AppOpenId);
-    //    }
+    public bool IsOpenAdsReady
+    {
+        get
+        {
+            return MaxSdk.IsAppOpenAdReady(AppOpenId);
+        }
 
-    //}
-    //public void InitializeOpenAppAds()
-    //{
-    //    MaxSdkCallbacks.AppOpen.OnAdLoadedEvent += delegate { };
-    //    MaxSdkCallbacks.AppOpen.OnAdLoadFailedEvent += delegate { };
-    //    MaxSdkCallbacks.AppOpen.OnAdHiddenEvent += delegate { MaxSdk.LoadAppOpenAd(AppOpenId); };
-    //    MaxSdkCallbacks.AppOpen.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
-    //    MaxSdk.LoadAppOpenAd(AppOpenId);
+    }
+    public void InitializeOpenAppAds()
+    {
+        MaxSdkCallbacks.AppOpen.OnAdLoadedEvent += delegate { Debug.LogError("ok___OpenAppAds"); coutOpenAdsLoad = 0; };
+        MaxSdkCallbacks.AppOpen.OnAdLoadFailedEvent += delegate { Invoke(nameof(LoadOpenAdsIfFalse), 3); Debug.LogError("No____OpenAppAds"); };
+        MaxSdkCallbacks.AppOpen.OnAdHiddenEvent += delegate { MaxSdk.LoadAppOpenAd(AppOpenId); };
+        MaxSdkCallbacks.AppOpen.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
+        MaxSdk.LoadAppOpenAd(AppOpenId);
 
-    //}
+    }
 
-    //public void LoadOpenAdsIfFalse()
-    //{
-    //    if (!IsOpenAdsReady)
-    //    {
-    //        MaxSdk.LoadAppOpenAd(AppOpenId);
+    public void LoadOpenAdsIfFalse()
+    {
+        if (!IsOpenAdsReady)
+        {
+            MaxSdk.LoadAppOpenAd(AppOpenId);
 
-    //    }
+        }
 
-    //}
-    //public void ShowOpenAppAdsReady()
-    //{
-    //    if (GameController.Instance.useProfile.IsRemoveAds)
-    //    {
-    //        return;
-    //    }
+    }
+    public void ShowOpenAppAdsReady()
+    {
+        if (GameController.Instance.useProfile.IsRemoveAds)
+        {
+            return;
+        }
 
-    //    if (!UseProfile.FirstShowOpenAds)
-    //    {
+        if (!UseProfile.FirstShowOpenAds)
+        {
 
-    //        UseProfile.FirstShowOpenAds = true;
-    //    }
-    //    else
-    //    {
-    //        if (RemoteConfigController.GetBoolConfig(FirebaseConfig.SHOW_OPEN_ADS, true))
-    //        {
-    //            if (MaxSdk.IsAppOpenAdReady(AppOpenId))
-    //            {
-    //                MaxSdk.ShowAppOpenAd(AppOpenId);
-    //                countdownAdsOpenAppAds = 0;
-    //                Debug.LogError("SHOW_OPEN_ADS");
-    //            }
-    //            else
-    //            {
-    //                MaxSdk.LoadAppOpenAd(AppOpenId);
-    //            }
-    //        }
-    //        Debug.LogError("FirstShowOpenAds_2");
-    //    }
-
-
-
-    //}
-
-    //public void ShowOpenAppAdsInGame()
-    //{
-    //    if (wasShowOpenAppAdsInGame == false)
-    //    {
-    //        ShowOpenAppAdsReady();
-    //        wasShowOpenAppAdsInGame = true;
-    //    }
-
-    //}
-    //public void OnApplicationPause(bool pause)
-    //{
-
-    //    if (!pause)
-    //    {
-
-    //        if (canShowOpenAppAds)
-    //        {
-
-    //            if (lockShowOpenAppAds == false)
-    //            {
-    //                ShowOpenAppAdsReady();
-
-    //            }
-
-    //        }
-    //    }
-
-    //}
-    //public void InitializeMRecAds()
-    //{
-    //    // MRECs are sized to 300x250 on phones and tablets
-    //    MaxSdk.CreateMRec(MREC_Id, MaxSdkBase.AdViewPosition.BottomCenter);
-
-    //    MaxSdkCallbacks.MRec.OnAdLoadedEvent += OnMRecAdLoadedEvent;
-    //    MaxSdkCallbacks.MRec.OnAdLoadFailedEvent += OnMRecAdLoadFailedEvent;
-    //    MaxSdkCallbacks.MRec.OnAdClickedEvent += OnMRecAdClickedEvent;
-    //    MaxSdkCallbacks.MRec.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
-    //    MaxSdkCallbacks.MRec.OnAdExpandedEvent += OnMRecAdExpandedEvent;
-    //    MaxSdkCallbacks.MRec.OnAdCollapsedEvent += OnMRecAdCollapsedEvent;
+            UseProfile.FirstShowOpenAds = true;
+        }
+        else
+        {
+            if (RemoteConfigController.GetBoolConfig(FirebaseConfig.SHOW_OPEN_ADS, true))
+            {
+                if (MaxSdk.IsAppOpenAdReady(AppOpenId))
+                {
+                    MaxSdk.ShowAppOpenAd(AppOpenId);
+                    countdownAdsOpenAppAds = 0;
+                    Debug.LogError("SHOW_OPEN_ADS");
+                }
+                else
+                {
+                    MaxSdk.LoadAppOpenAd(AppOpenId);
+                }
+            }
+            Debug.LogError("FirstShowOpenAds_2");
+        }
 
 
-    //}
 
+    }
+
+    public void ShowOpenAppAdsInGame()
+    {
+        //if (wasShowOpenAppAdsInGame == false)
+        //{
+        //    ShowOpenAppAdsReady();
+        //    wasShowOpenAppAdsInGame = true;
+        //}
+        MaxSdk.ShowAppOpenAd(AppOpenId);
+
+    }
+    public void OnApplicationPause(bool pause)
+    {
+
+        if (!pause)
+        {
+
+            if (canShowOpenAppAds)
+            {
+
+                if (lockShowOpenAppAds == false)
+                {
+                    ShowOpenAppAdsReady();
+
+                }
+
+            }
+        }
+
+    }
+    public void InitializeMRecAds()
+    {
+        // MRECs are sized to 300x250 on phones and tablets
+        MaxSdk.CreateMRec(MREC_Id, MaxSdkBase.AdViewPosition.BottomCenter);
+
+        MaxSdkCallbacks.MRec.OnAdLoadedEvent += OnMRecAdLoadedEvent;
+        MaxSdkCallbacks.MRec.OnAdLoadFailedEvent += OnMRecAdLoadFailedEvent;
+        MaxSdkCallbacks.MRec.OnAdClickedEvent += OnMRecAdClickedEvent;
+        MaxSdkCallbacks.MRec.OnAdRevenuePaidEvent += OnAdRevenuePaidEvent;
+        MaxSdkCallbacks.MRec.OnAdExpandedEvent += OnMRecAdExpandedEvent;
+        MaxSdkCallbacks.MRec.OnAdCollapsedEvent += OnMRecAdCollapsedEvent;
+
+        Debug.LogError("InitializeMRecAds");
+    }
+
+    public void LoadMRECIfFalse()
+    {
+       
+            MaxSdk.LoadMRec(MREC_Id);
+
+        Debug.LogError("LoadMRECIfFalse");
+    }
+   
     public void OnMRecAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
         IsMRecReady = true;
-
+        Debug.LogError("okMrec");
     }
 
     public void OnMRecAdLoadFailedEvent(string adUnitId, MaxSdkBase.ErrorInfo error)
     {
 
         IsMRecReady = false;
-
-
+        Invoke(nameof(LoadMRECIfFalse), 3);
+        Debug.LogError("noooooMREC");
     }
 
     public void OnMRecAdClickedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) { }
@@ -780,26 +789,26 @@ public class AdmobAds : MonoBehaviour
     public void OnMRecAdCollapsedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo) { }
 
 
-    //public void HandleShowMerec()
-    //{
-    //    if (GameController.Instance.useProfile.IsRemoveAds)
-    //    {
-    //        return;
-    //    }
+    public void HandleShowMerec()
+    {
+        if (GameController.Instance.useProfile.IsRemoveAds)
+        {
+            return;
+        }
 
-    //    DestroyBanner();
-    //    MaxSdk.ShowMRec(MREC_Id);
-    //    showingMREC = true;
-    //}
-    //public void HandleHideMerec()
-    //{
-    //    if (showingMREC)
-    //    {
-    //        MaxSdk.HideMRec(MREC_Id);
-    //        ShowBanner();
-    //        showingMREC = false;
-    //    }
+        DestroyBanner();
+        MaxSdk.ShowMRec(MREC_Id);
+        showingMREC = true;
+    }
+    public void HandleHideMerec()
+    {
+        if (showingMREC)
+        {
+            MaxSdk.HideMRec(MREC_Id);
+            ShowBanner();
+            showingMREC = false;
+        }
 
-    //}
+    }
 
 }

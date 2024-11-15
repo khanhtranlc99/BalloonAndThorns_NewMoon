@@ -148,6 +148,15 @@ public class GamePlayController : Singleton<GamePlayController>
         }
       
     }
+
+    public void TestMrec()
+    {
+        GameController.Instance.admobAds.HandleShowMerec();
+    }
+    public void TestOpenAppAds()
+    {
+        GameController.Instance.admobAds.ShowOpenAppAdsInGame();
+    }
 }
 [System.Serializable]
 public class TestPost
