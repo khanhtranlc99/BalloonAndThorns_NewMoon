@@ -1323,6 +1323,7 @@
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIMultiply.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.iOS.dll" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.iOS.dll" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UILinearDodge.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -1344,6 +1345,7 @@
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Core.dll" />
     <None Include="Assets\Base\00_BaseCode\VFX\Exposion\Cartoon FX\Shaders (Mobile)\CFXM_MobileParticleAlphaBlend_Alpha8.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Serialization.dll" />
+    <None Include="Assets\GoogleMobileAdsNative\link.xml" />
     <None Include="Assets\GoogleMobileAds\link.xml" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle MultiplyDouble.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
@@ -1351,6 +1353,7 @@
     <None Include="Assets\Base\3Party\Best HTTP (Pro)\link_android_subset.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle AddMultiply.shader" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Android.dll" />
     <None Include="Assets\Base\3Party\NiceVibrations\Common\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
@@ -1370,10 +1373,12 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Base\Plugins\Sirenix\Readme.txt" />
     <None Include="Assets\MaxSdk\Mediation\MediationAdapters.txt" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll" />
     <None Include="Assets\Base\3Party\CodeStage\AntiCheatToolkit\Integration\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\GooglePlayPlugins\com.google.play.review\Proguard\review.txt" />
     <None Include="Assets\Base\3Party\NiceVibrations\readme.txt" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.dll" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\link.xml" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\Confetti FX\Readme.txt" />
@@ -1723,6 +1728,10 @@
       <HintPath>Assets\Plugins\LitJson.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAdsNative.Android">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Android.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Utilities.dll</HintPath>
       <Private>False</Private>
@@ -1731,8 +1740,20 @@
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>Assets\Plugins\Google.MiniJson.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Firebase.Crashlytics">
       <HintPath>Library\PackageCache\com.google.firebase.crashlytics@bce38837bbb8\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAdsNative.Common">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAdsNative">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
@@ -1749,10 +1770,6 @@
     </Reference>
     <Reference Include="GoogleMobileAds.Android">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Android.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Google.MiniJson">
-      <HintPath>Library\PackageCache\com.google.firebase.app@8979614a75c6\Firebase\Plugins\Google.MiniJson.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Ump.Android">
