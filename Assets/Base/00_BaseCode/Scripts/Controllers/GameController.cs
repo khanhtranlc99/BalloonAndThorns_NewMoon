@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
         musicManager.Init();
         iapController.Init();
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);
-        startLoading.Init();
+  
         heartGame.Init();
         //idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
     }
