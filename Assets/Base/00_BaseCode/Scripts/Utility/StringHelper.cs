@@ -141,6 +141,8 @@ public class SceneName
     public const string LOADING_SCENE = "LoadingScene";
     public const string HOME_SCENE = "HomeScene";
     public const string GAME_PLAY = "GamePlay";
+    public const string SELECT_LANGUAGE = "SelectLanguage";
+    public const string SCENE_TUTORIAL = "SceneTutorial";
 }
 
 public class AudioName

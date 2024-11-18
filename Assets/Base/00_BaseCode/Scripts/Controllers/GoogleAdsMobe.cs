@@ -9,10 +9,25 @@ public class GoogleAdsMobe : MonoBehaviour
 {
     public string AppID,  NativeID;
     NativeAd nativeAd;
-    public RawImage mesh;
+    NativeAd nativeAd_1;
+    NativeAd nativeAd_2;
+    NativeAd nativeAd_3;
+    NativeAd nativeAd_4;
+   
+
+    public Texture2D iconTexture;
+    public Texture2D iconTexture_1;
+    public Texture2D iconTexture_2;
+    public Texture2D iconTexture_3;
+    public Texture2D iconTexture_4;
+
+ 
     public bool isLoadNativeOK;
     AdLoader adLoader;
-    void Start()
+
+
+
+    public void Init()
     {
         isLoadNativeOK = false;
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
@@ -33,7 +48,7 @@ public class GoogleAdsMobe : MonoBehaviour
     private void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
         Debug.LogError("Native ad failed to load: " + args.ToString());
-        Invoke(nameof(LoadNative),3);
+    
     }
 
     private void HandleNativeAdLoaded(object sender, NativeAdEventArgs args)
@@ -41,14 +56,8 @@ public class GoogleAdsMobe : MonoBehaviour
         isLoadNativeOK = true;
         Debug.LogError("Native ad loaded.");
         this.nativeAd = args.nativeAd;
-
-        Texture2D iconTexture = this.nativeAd.GetIconTexture();
-        mesh.texture = iconTexture;
-        // Register GameObject that will display icon asset of native ad.
-        if (!this.nativeAd.RegisterIconImageGameObject(mesh.gameObject))
-        {
-            // Handle failure to register ad asset.
-        }
+        iconTexture = this.nativeAd.GetIconTexture();
+    
 
     }
     private void LoadNative()

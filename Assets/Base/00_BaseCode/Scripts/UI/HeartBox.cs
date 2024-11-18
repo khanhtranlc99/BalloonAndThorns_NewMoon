@@ -125,7 +125,7 @@ public class HeartBox : BaseBox
     {
         if (UseProfile.Heart < 5)
         {
-            txtTime.text = TimeManager.ShowTime2((long)GameController.Instance.heartGame.currentCoolDown);
+          //  txtTime.text = TimeManager.ShowTime2((long)GameController.Instance.heartGame.currentCoolDown);
         }
         else
         {

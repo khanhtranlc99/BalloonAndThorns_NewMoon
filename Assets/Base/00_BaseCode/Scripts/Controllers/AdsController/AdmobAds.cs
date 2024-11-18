@@ -10,6 +10,7 @@ using static MaxSdkBase;
 
 public class AdmobAds : MonoBehaviour
 {
+    public GoogleAdsMobe googleAdsMobe;
     public bool offBanner;
 
     public float countdownAds;
@@ -29,7 +30,7 @@ public class AdmobAds : MonoBehaviour
     private const string RewardedAdUnitId = "e3a512f3b1d365cd";
     private const string BanerAdUnitId = "cf16d1454e49a5b7";
     private const string AppOpenId = "2a0f98eafd7faa71";
-    private const string MREC_Id = "3c4aa393c6bb1848";
+    private const string MREC_Id = "78a68eaa403d6967";
 
 #elif UNITY_IOS
     private const string MaxSdkKey = "oL9CCQ2BlEl-78avNTt7qkDU1Tl_Pkb2pgv9g9m5cLUiiJcxwGv_2T1_T9OsBIhSM4UPhnkDXyMO8HNGmFnEKu";
@@ -41,6 +42,7 @@ public class AdmobAds : MonoBehaviour
 #endif
     public void Init()
     {
+        googleAdsMobe.Init();
         coutOpenAdsLoad = 0;
         lockShowOpenAppAds = false;
         canShowOpenAppAds = false;
@@ -528,7 +530,7 @@ public class AdmobAds : MonoBehaviour
         MaxSdk.SetBannerBackgroundColor(BanerAdUnitId, Color.black);
         MaxSdk.SetBannerWidth(BanerAdUnitId, 520);
 
-        GameController.Instance.admobAds.ShowBanner();
+   //     GameController.Instance.admobAds.ShowBanner();
     }
    
     private void OnBannerAdClickedEvent(string obj)
@@ -546,8 +548,8 @@ public class AdmobAds : MonoBehaviour
             StopCoroutine(reloadBannerCoru);
             reloadBannerCoru = null;
         }
-        reloadBannerCoru = Helper.StartAction(() => { ShowBanner(); }, 0.3f);
-        StartCoroutine(reloadBannerCoru);
+        //reloadBannerCoru = Helper.StartAction(() => { ShowBanner(); }, 0.3f);
+      //  StartCoroutine(reloadBannerCoru);
     }
 
     private void OnBannerAdLoadedEvent(string obj)
@@ -760,10 +762,13 @@ public class AdmobAds : MonoBehaviour
 
     public void LoadMRECIfFalse()
     {
-       
+       if(!IsMRecReady)
+        {
             MaxSdk.LoadMRec(MREC_Id);
+        }
+      
 
-        Debug.LogError("LoadMRECIfFalse");
+
     }
    
     public void OnMRecAdLoadedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
@@ -796,7 +801,7 @@ public class AdmobAds : MonoBehaviour
             return;
         }
 
-        DestroyBanner();
+      
         MaxSdk.ShowMRec(MREC_Id);
         showingMREC = true;
     }
@@ -805,7 +810,7 @@ public class AdmobAds : MonoBehaviour
         if (showingMREC)
         {
             MaxSdk.HideMRec(MREC_Id);
-            ShowBanner();
+ 
             showingMREC = false;
         }
 

@@ -23,15 +23,19 @@ public class GameController : MonoBehaviour
 
     public AnalyticsController AnalyticsController;
     public IapController iapController;
-    public HeartGame heartGame;
+  
     [HideInInspector] public SceneType currentScene;
- 
+    public AdsStarLoadingAds adsStarLoadingAds;
     public StartLoading startLoading;
     public float idBackground;
+    public GameObject startLoadingPanel;
+    public GameObject adsStarLoadingAdsPanel;
+    public bool initFirebaseOk;
 
     protected void Awake()
     {
         Instance = this;
+        initFirebaseOk = false;
         Init();
 
         DontDestroyOnLoad(this);
@@ -62,43 +66,52 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         Application.targetFrameRate = 60;
-        //if (Application.internetReachability != NetworkReachability.NotReachable)
-        //{
-        //    admobAds.Init();
-        //    StartCoroutine(Helper.StartAction(delegate { HandleWaitInterAds();  }, () => AnalyticsController.firebaseInitialized == true));
-        //}
-        //else
-        //{
-        //    admobAds.Init();
-        //    SetUp();
-        //}
-        SetUp();
-
+        admobAds.Init();
+        if (Application.internetReachability != NetworkReachability.NotReachable)
+        {
+          
+            StartCoroutine(Helper.StartAction(delegate { HandleWaitInterAds(); }, () => initFirebaseOk == true));
+        }
+        else
+        {
+            startLoadingPanel.gameObject.SetActive(true);
+            adsStarLoadingAdsPanel.gameObject.SetActive(false);
+            SetUp();
+            startLoading.Init();
+        }
+      
     }
     private void HandleWaitInterAds()
     {
-        StartCoroutine(Helper.StartAction(delegate { HandleSpamInter();   }, () => admobAds.IsLoadedInterstitial() == true));
-
-
+         if( RemoteConfigController.GetBoolConfig(FirebaseConfig.SPAM_COMBO_ADS, false))
+        {
+            startLoadingPanel.gameObject.SetActive(false);
+            adsStarLoadingAdsPanel.gameObject.SetActive(true);
+            SetUp();
+            adsStarLoadingAds.Init();
+            Debug.LogError("SPAM_COMBO_ADS");
+        }
+         else
+        {
+            startLoadingPanel.gameObject.SetActive(true);
+            adsStarLoadingAdsPanel.gameObject.SetActive(false);
+            SetUp();
+            startLoading.Init();
+            Debug.LogError("No_Spam");
+        }
+   
     }    
-    private void HandleSpamInter()
-    {
-          admobAds.ShowInterstitial(false, actionIniterClose: () => {
-
-            
-
-        }, actionWatchLog: "LoseBox");
-    }    
+  
 
 
     public void SetUp()
     {
-        admobAds.Init();
+      
         musicManager.Init();
         iapController.Init();
         MMVibrationManager.SetHapticsActive(useProfile.OnVibration);
   
-        heartGame.Init();
+    
         //idBackground = RemoteConfigController.GetFloatConfig(FirebaseConfig.ID_BACK_GROUND, 1);
     }
 

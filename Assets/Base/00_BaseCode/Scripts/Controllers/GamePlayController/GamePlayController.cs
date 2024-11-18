@@ -75,7 +75,7 @@ public class GamePlayController : Singleton<GamePlayController>
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
         StartCoroutine(HandleSetPostWall());
-        
+        GameController.Instance.admobAds.ShowBanner();
 
     }
    
