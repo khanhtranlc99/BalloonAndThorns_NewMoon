@@ -48,8 +48,8 @@ public class GamePlayController : Singleton<GamePlayController>
             }    
         }
         return null;
-    }    
-
+    }
+    public NativeAds_Box nativeAds_Box;
     protected override void OnAwake()
     {
         stateGame = StateGame.Playing;
@@ -75,8 +75,10 @@ public class GamePlayController : Singleton<GamePlayController>
         SimplePool2.Preload(itemInGameBallon.gameObject, 40, null);
         stateGame = StateGame.Playing;
         StartCoroutine(HandleSetPostWall());
+        GameController.Instance.admobAds.admobSplash.HideBanner();
         GameController.Instance.admobAds.ShowBanner();
-
+        nativeAds_Box.Init();
+        GameController.Instance.admobAds.nativeFullGameplay.Init();
     }
    
     public void HandleWin()
@@ -151,11 +153,11 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void TestMrec()
     {
-        GameController.Instance.admobAds.HandleShowMerec();
+    
     }
     public void TestOpenAppAds()
     {
-        GameController.Instance.admobAds.ShowOpenAppAdsInGame();
+        
     }
 }
 [System.Serializable]

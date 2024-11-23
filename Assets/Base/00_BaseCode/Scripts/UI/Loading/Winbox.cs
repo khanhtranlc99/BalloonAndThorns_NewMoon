@@ -39,6 +39,8 @@ public class Winbox : BaseBox
     }   
     public void InitState()
     {
+        nextButton.gameObject.transform.localScale = Vector3.zero;
+        nextButton.transform.DOScale(new Vector3(1,1,1), 0.5f).SetDelay(2);
         GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
         GameController.Instance.AnalyticsController.WinLevel(UseProfile.CurrentLevel);
 
@@ -48,18 +50,22 @@ public class Winbox : BaseBox
         if(!lockBtn)
         {
             lockBtn = true;
-            GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => {
+            claimDoubleCoinButton.gameObject.SetActive(false);
+            GameController.Instance.admobAds.ShowInterstitialAd(  actionIniterClose: () => {
+                GamePlayController.Instance.nativeAds_Box.HandleShowNativeGamePlay(delegate {
 
-                GameController.Instance.musicManager.PlayClickSound();
-                UseProfile.Coin += GamePlayController.Instance.playerContain.levelData.numbTarget;
-                UseProfile.CurrentLevel += 1;
-                if (UseProfile.CurrentLevel > 80)
-                {
-                    UseProfile.CurrentLevel = 80;
-                }
-                Initiate.Fade("GamePlay", Color.black, 2f);
+                    GameController.Instance.musicManager.PlayClickSound();
+                    UseProfile.Coin += GamePlayController.Instance.playerContain.levelData.numbTarget;
+                    UseProfile.CurrentLevel += 1;
+                    if (UseProfile.CurrentLevel > 80)
+                    {
+                        UseProfile.CurrentLevel = 80;
+                    }
+                    Initiate.Fade("GamePlay", Color.black, 2f);
+                });
+            
 
-            }, actionWatchLog: "WinBox");
+            } );
         }    
       
 
@@ -73,9 +79,10 @@ public class Winbox : BaseBox
         if (!lockBtn)
         {
             lockBtn = true;
+            nextButton.gameObject.SetActive(false);
             valueGacha = gachaBar.ValueReward;
             gachaBar.HandleOnClickStop();
-            GameController.Instance.admobAds.ShowVideoReward(delegate { ClaimReward(); }, delegate
+            GameController.Instance.admobAds.ShowRewardedAd(delegate { ClaimReward(); }, delegate
             {
                 GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp_UI
                 (
@@ -85,7 +92,7 @@ public class Winbox : BaseBox
                     Color.white,
                     isSpawnItemPlayer: true
                 );
-            }, delegate { }, ActionWatchVideo.RewardEndGame, UseProfile.CurrentLevel.ToString());
+            } , ActionWatchVideo.RewardEndGame );
         }
     }
     void ClaimReward()

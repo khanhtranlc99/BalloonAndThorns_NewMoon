@@ -237,7 +237,7 @@ public class FirebaseConfig
     public const string LEVEL_UNLOCK_PREMIUM_PACK = "level_unlock_premium_pack"; //25
     public const string TIME_LIFE_STARTER_PACK = "time_life_starter_pack"; // 3DAY
     public const string TIME_LIFE_PREMIUM_PACK = "time_life_premium_pack"; // 2DAY
-    public const string TIME_LIFE_SALE_PACK = "time_life_premium_pack"; // 1DAY
+    public const string TIME_OFF_NATIVE_FULL = "time_off_native_full"; // 1DAY
     public const string TIME_LIFE_BIG_REMOVE_ADS_PACK = "time_life_big_remove_ads_pack"; // 3h
 
     public const string NUMBER_OF_ADS_IN_DAY_TO_SHOW_PACK = "number_of_ads_in_day_to_show_pack"; //5ADS

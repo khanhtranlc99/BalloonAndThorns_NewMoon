@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     public UseProfile useProfile;
     public DataContain dataContain;
     public MusicManagerGameBase musicManager;
-    public AdmobAds admobAds;
+    public AdmobAdsGoogle admobAds;
 
     public AnalyticsController AnalyticsController;
     public IapController iapController;
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     public GameObject startLoadingPanel;
     public GameObject adsStarLoadingAdsPanel;
     public bool initFirebaseOk;
+
 
     protected void Awake()
     {
@@ -69,8 +70,19 @@ public class GameController : MonoBehaviour
         admobAds.Init();
         if (Application.internetReachability != NetworkReachability.NotReachable)
         {
-          
-            StartCoroutine(Helper.StartAction(delegate { HandleWaitInterAds(); }, () => initFirebaseOk == true));
+            if(UseProfile.FirstShowOpenAds == false)
+            {
+                UseProfile.FirstShowOpenAds = true;
+                HandleWaitInterAds();
+            }
+            else
+            {
+                startLoadingPanel.gameObject.SetActive(true);
+                adsStarLoadingAdsPanel.gameObject.SetActive(false);
+                SetUp();
+                startLoading.Init();
+            }
+           
         }
         else
         {
@@ -83,23 +95,12 @@ public class GameController : MonoBehaviour
     }
     private void HandleWaitInterAds()
     {
-         if( RemoteConfigController.GetBoolConfig(FirebaseConfig.SPAM_COMBO_ADS, false))
-        {
-            startLoadingPanel.gameObject.SetActive(false);
-            adsStarLoadingAdsPanel.gameObject.SetActive(true);
-            SetUp();
-            adsStarLoadingAds.Init();
-            Debug.LogError("SPAM_COMBO_ADS");
-        }
-         else
-        {
-            startLoadingPanel.gameObject.SetActive(true);
-            adsStarLoadingAdsPanel.gameObject.SetActive(false);
-            SetUp();
-            startLoading.Init();
-            Debug.LogError("No_Spam");
-        }
-   
+        startLoadingPanel.gameObject.SetActive(false);
+        adsStarLoadingAdsPanel.gameObject.SetActive(true);
+        SetUp();
+        adsStarLoadingAds.Init();
+     
+
     }    
   
 

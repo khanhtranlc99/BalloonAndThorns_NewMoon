@@ -68,38 +68,7 @@ public class HeartBox : BaseBox
     public void ClickByAdsHeart()
     {
         GameController.Instance.musicManager.PlayClickSound();
-        GameController.Instance.admobAds.ShowVideoReward(
-                     actionReward: () =>
-                     {
-                         
-
-                         UseProfile.NumbWatchCloneBall -= 1;
-                         tvCountHeart.text = UseProfile.NumbWatchCloneBall.ToString() + "/3";
-                         if (UseProfile.NumbWatchCloneBall <= 0)
-                         {
-                             UseProfile.NumbWatchCloneBall = 3;
-                             UseProfile.Heart++;
-                             checkHeart();
-                             InitState();
-                             List<GiftRewardShow> giftRewardShows = new List<GiftRewardShow>();
-                             giftRewardShows.Add(new GiftRewardShow() { amount = 1, type = GiftType.CLONE_BALLS_BOOSTER });
-                             PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { });
-                         }
-
-                     },
-                     actionNotLoadedVideo: () =>
-                     {
-                         GameController.Instance.moneyEffectController.SpawnEffectText_FlyUp_UI
-                          (btnADS.transform,
-                          btnADS.transform.position,
-                          "No video at the moment!",
-                          Color.white,
-                          isSpawnItemPlayer: true
-                          );
-                     },
-                     actionClose: null,
-                     ActionWatchVideo.HeartInHearPopup,
-                     UseProfile.CurrentLevel.ToString());
+     
     }
     private void OnclickBtnBuy()
     {

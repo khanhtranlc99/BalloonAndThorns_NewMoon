@@ -179,13 +179,17 @@ public class SettingBox : BaseBox
     private void OnClickButtonClose()
     {
         GameController.Instance.musicManager.PlayClickSound();
-        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "BtnCloseSettingBox");
+      
+         GameController.Instance.admobAds.ShowInterstitialAd(  actionIniterClose: () => { Next(); } );
 
         void Next()
         {
-             
-        
-            Close();
+            GamePlayController.Instance.nativeAds_Box.HandleShowNativeGamePlay(delegate {
+
+                Close();
+            });
+
+
 
         }
   
@@ -212,11 +216,16 @@ public class SettingBox : BaseBox
     }
     public void HandleBtnRestart()
     {
-        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "Restart");
+      
+        GameController.Instance.admobAds.ShowInterstitialAd( actionIniterClose: () => { Next(); } );
         void Next()
         {
-            GameController.Instance.musicManager.PlayClickSound();
-            Initiate.Fade("GamePlay", Color.black, 2f);
+            GamePlayController.Instance.nativeAds_Box.HandleShowNativeGamePlay(delegate {
+
+                GameController.Instance.musicManager.PlayClickSound();
+                Initiate.Fade("GamePlay", Color.black, 2f);
+            });
+
         }
         Close();
 

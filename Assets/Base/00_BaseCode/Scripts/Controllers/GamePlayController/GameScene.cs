@@ -127,7 +127,7 @@ public class GameScene : BaseScene
 
         GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
 
-        GameController.Instance.admobAds.ShowVideoReward(
+        GameController.Instance.admobAds.ShowRewardedAd(
                 actionReward: () =>
                 {
 
@@ -140,7 +140,9 @@ public class GameScene : BaseScene
                     }
                     PopupRewardBase.Setup(false).Show(giftRewardShows, delegate { GamePlayController.Instance.playerContain.levelData.inputThone.enabled = true;  });
 
-                },
+                }
+        
+                ,
                 actionNotLoadedVideo: () =>
                 {
 
@@ -154,9 +156,8 @@ public class GameScene : BaseScene
                      isSpawnItemPlayer: true
                      );
                 },
-                actionClose: null,
-                ActionWatchVideo.Skip_level,
-                UseProfile.CurrentLevel.ToString());
+                       ActionWatchVideo.Skip_level
+               );
     }
 
     public void HandleSubtrackBallon()
@@ -185,11 +186,16 @@ public class GameScene : BaseScene
     }    
     private void OnReset()
     {
-        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "Restart");
+        GameController.Instance.admobAds.ShowInterstitialAd(  actionIniterClose: () => { Next(); } );
         void Next()
         {
-            GameController.Instance.musicManager.PlayClickSound();
-            Initiate.Fade("GamePlay", Color.black, 2f);
+            
+            GamePlayController.Instance.nativeAds_Box.HandleShowNativeGamePlay(delegate {
+
+                GameController.Instance.musicManager.PlayClickSound();
+                Initiate.Fade("GamePlay", Color.black, 2f);
+            });
+         
         }
     }
     public void OnPanelTools()

@@ -7,35 +7,57 @@ public class AdsStarLoadingAds : MonoBehaviour
 {
     public GameObject iconLoad;
     bool wasLoad = false;
-    public AdmobAds admobAds;
+    public AdmobAdsGoogle admobAds;
     public void Init()
     {
      
         wasLoad = true;
-        StartCoroutine(Helper.StartAction(delegate { HandleSpamInter(); }, () => admobAds.IsLoadedInterstitial() == true));
-     //   HandleSpamInter();
+        StartCoroutine(HandleSpamInter());
+    //    StartCoroutine(Helper.StartAction(delegate { HandleSpamInter(); }, () => admobAds.IsLoadedInterstitial() == true));
+    //   HandleSpamInter();
     }
 
-    private void HandleSpamInter()
+    private IEnumerator HandleSpamInter()
     {
-        admobAds.ShowInterstitial(false, actionIniterClose: () => {
+ 
+        yield return new WaitForSeconds(4);
+       
+        if (admobAds.admobSplash.IsLoadedAOA())
+        {
+            admobAds.admobSplash.ShowOpenAppAdsReady(actionIniterClose: () => {
 
+                StartCoroutine(ChangeScene());
+
+            });
+        }
+        else if (admobAds.admobSplash.IsLoadedInterstitial())
+        {
+            admobAds.admobSplash.ShowInterstitialAd(actionIniterClose: () => {
+
+                StartCoroutine(ChangeScene());
+
+            });
+         
+        }
+        if( !admobAds.admobSplash.IsLoadedAOA() && !admobAds.admobSplash.IsLoadedInterstitial())
+        {
             StartCoroutine(ChangeScene());
-
-        }, actionWatchLog: "AdsStarLoadingAds");
+        }
+     
+        
     }
 
 
     private void Update()
     {
       
-            iconLoad.transform.localEulerAngles -= new Vector3(0, 0, 50)*Time.deltaTime;
+            iconLoad.transform.localEulerAngles -= new Vector3(0, 0, 100)*Time.deltaTime;
      
     }
 
     private IEnumerator ChangeScene()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneName.SELECT_LANGUAGE);
     }
 }

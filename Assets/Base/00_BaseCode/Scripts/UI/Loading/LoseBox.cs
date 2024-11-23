@@ -45,16 +45,21 @@ public class LoseBox : BaseBox
     }
     private void HandleRetry()
     {
-        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => {
+     
+        GameController.Instance.admobAds.ShowInterstitialAd( actionIniterClose: () => {
 
-            Initiate.Fade("GamePlay", Color.black, 2f);
+            GamePlayController.Instance.nativeAds_Box.HandleShowNativeGamePlay(delegate {
 
-        }, actionWatchLog: "LoseBox");
+                Initiate.Fade("GamePlay", Color.black, 2f);
+            });
+     
+
+        } );
     }    
    
     private void HandleSkip()
     {
-        GameController.Instance.admobAds.ShowVideoReward(
+        GameController.Instance.admobAds.ShowRewardedAd(
                 actionReward: () =>
                 {
 
@@ -74,8 +79,8 @@ public class LoseBox : BaseBox
                      isSpawnItemPlayer: true
                      );
                 },
-                actionClose: null,
-                ActionWatchVideo.Skip_level,
-                UseProfile.CurrentLevel.ToString());
+           
+                ActionWatchVideo.Skip_level
+           );
     }
 }

@@ -7,12 +7,33 @@ public class BroadContry : MonoBehaviour
 {
     public List<LabelContry> lsLabelContries;
     public Button btnChangeScene;
+    public RawImageNativeAds rawImageNativeAds;
+    public RawImageNativeAds rawImageNativeAds_2;
+    bool click;
 
     public void Start()
     {
-        GameController.Instance.admobAds.HandleShowMerec();
+        click = false;
         Init();
         btnChangeScene.onClick.AddListener(HandleChangeScene);
+        if(GameController.Instance.admobAds.nativeGoogleAdsMobe_1.isLoadNativeOK)
+        {
+            rawImageNativeAds.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_1.nativeAd);
+        }
+        else
+        {
+            rawImageNativeAds.gameObject.SetActive(false);
+        }
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_2.isLoadNativeOK)
+        {
+            rawImageNativeAds_2.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_2.nativeAd);
+        }
+        else
+        {
+            rawImageNativeAds_2.gameObject.SetActive(false);
+        }
+     
+        GameController.Instance.admobAds.admobSplash.HideBanner();
     }
 
     public void Init()
@@ -29,13 +50,32 @@ public class BroadContry : MonoBehaviour
         {
             item.HandleOff();
         }
+        HandleClickLeangue();
     }
 
     public void HandleChangeScene()
     {
         SceneManager.LoadScene(SceneName.SCENE_TUTORIAL);
-        GameController.Instance.admobAds.HandleHideMerec();
-    }
 
+    }
+    public void HandleClickLeangue()
+    {
+ 
+        btnChangeScene.gameObject.SetActive(true);
+        if (!click)
+        {
+            rawImageNativeAds.gameObject.SetActive(false);
+            if (GameController.Instance.admobAds.nativeGoogleAdsMobe_2.isLoadNativeOK)
+            {
+                rawImageNativeAds_2.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_2.nativeAd);
+                rawImageNativeAds_2.gameObject.SetActive(true);
+            }
+            else
+            {
+                rawImageNativeAds_2.gameObject.SetActive(false);
+            }    
+            click = true;
+        }
+    }    
 
 }

@@ -10,7 +10,7 @@ using static MaxSdkBase;
 
 public class AdmobAds : MonoBehaviour
 {
-    public GoogleAdsMobe googleAdsMobe;
+    public NativeGoogleAdsMobe googleAdsMobe;
     public bool offBanner;
 
     public float countdownAds;
