@@ -16,28 +16,36 @@ public class RawImageNativeAdsFullAds : MonoBehaviour
     public Text tvButton;
     public GameObject btnShowAds;
     public bool isFullAds = false;
-
-    public void Init(NativeAd nativeAd)
+    Action callBack;
+    public bool wasInit = false;
+    public void Init(NativeAd nativeAd, Action paramCallback)
     {
-        rawimageIcon.texture = nativeAd.GetIconTexture();
-        rawimageAdChoice.texture = nativeAd.GetAdChoicesLogoTexture();
-        if (nativeAd.GetImageTextures().Count > 0)
+        if(!wasInit )
         {
-            List<Texture2D> goList = nativeAd.GetImageTextures();
-            rawimageBody.texture = goList[0];
-            List<GameObject> list = new List<GameObject>();
-            list.Add(rawimageBody.gameObject);
-            nativeAd.RegisterImageGameObjects(list);
-        }
-        tvTiler.text = nativeAd.GetHeadlineText(); // Tiêu đề
-        tvContent.text = nativeAd.GetBodyText(); // Mô tả
-        tvButton.text = nativeAd.GetCallToActionText(); // Nút kêu gọi    
-        nativeAd.RegisterCallToActionGameObject(btnShowAds);
-        GameController.Instance.admobAds.nativeGoogleAdsMobe_6.adLoader.OnNativeAdClosed += HandleAdNativeAdClicked;
+            wasInit = true;
+            callBack = paramCallback;
+            rawimageIcon.texture = nativeAd.GetIconTexture();
+            rawimageAdChoice.texture = nativeAd.GetAdChoicesLogoTexture();
+            if (nativeAd.GetImageTextures().Count > 0)
+            {
+                List<Texture2D> goList = nativeAd.GetImageTextures();
+                rawimageBody.texture = goList[0];
+                List<GameObject> list = new List<GameObject>();
+                list.Add(rawimageBody.gameObject);
+                nativeAd.RegisterImageGameObjects(list);
+            }
+            tvTiler.text = nativeAd.GetHeadlineText(); // Tiêu đề
+            tvContent.text = nativeAd.GetBodyText(); // Mô tả
+            tvButton.text = nativeAd.GetCallToActionText(); // Nút kêu gọi    
+            nativeAd.RegisterCallToActionGameObject(btnShowAds);
+            GameController.Instance.admobAds.nativeGoogleAdsMobe_6.adLoader.OnNativeAdClosed += HandleAdNativeAdClicked;
+        }    
+    
     }
     private void HandleAdNativeAdClicked(object sender, EventArgs args)
     {
+        callBack?.Invoke();
         this.gameObject.SetActive(false);
-
+    
     }
 }

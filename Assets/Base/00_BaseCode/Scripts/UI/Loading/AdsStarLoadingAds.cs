@@ -20,10 +20,11 @@ public class AdsStarLoadingAds : MonoBehaviour
     private IEnumerator HandleSpamInter()
     {
  
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5.5f);
        
         if (admobAds.admobSplash.IsLoadedAOA())
         {
+            admobAds.admobSplash.HideBanner();
             admobAds.admobSplash.ShowOpenAppAdsReady(actionIniterClose: () => {
 
                 StartCoroutine(ChangeScene());
@@ -32,6 +33,7 @@ public class AdsStarLoadingAds : MonoBehaviour
         }
         else if (admobAds.admobSplash.IsLoadedInterstitial())
         {
+            admobAds.admobSplash.HideBanner();
             admobAds.admobSplash.ShowInterstitialAd(actionIniterClose: () => {
 
                 StartCoroutine(ChangeScene());

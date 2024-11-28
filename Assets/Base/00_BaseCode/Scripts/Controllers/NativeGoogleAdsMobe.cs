@@ -36,6 +36,7 @@ public class NativeGoogleAdsMobe : MonoBehaviour
         adLoader.OnAdFailedToLoad += this.HandleAdFailedToLoad;
         adLoader.OnNativeAdClicked += this.HandleAdNativeAdClicked;
         adLoader.OnNativeAdImpression += this.HandleOnNativeAdImpression;
+      
         adLoader.LoadAd(new AdRequest());
      
     }
@@ -94,6 +95,6 @@ public class NativeGoogleAdsMobe : MonoBehaviour
             nativeAd = null;
         }
         Init();    
-    }    
-
+    }
+   
 }

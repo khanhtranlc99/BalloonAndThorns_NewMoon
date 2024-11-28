@@ -15,6 +15,7 @@ public class RawImageNativeAdsFullAdsGamePlay : MonoBehaviour
     public GameObject btnShowAds;
     public bool isFullAds = false;
     Action callbackClose;
+    bool isOn = false;
     public void Init(Action callBack)
     {
         callbackClose = callBack;
@@ -38,9 +39,27 @@ public class RawImageNativeAdsFullAdsGamePlay : MonoBehaviour
     private void HandleAdNativeAdClicked(object sender, EventArgs args)
     {
         callbackClose?.Invoke();
-        GameController.Instance.admobAds.ShowBanner();
         this.gameObject.SetActive(false);
 
     }
-    
+
+    private void OnEnable()
+    {
+        isOn = true;
+    }
+    private void OnDisable()
+    {
+        isOn = false;
+        GameController.Instance.admobAds.ShowBanner();
+
+
+    }
+    private void Update()
+    {
+        if(isOn)
+        {
+            GameController.Instance.admobAds.HideBanner();
+        }
+  
+    }
 }

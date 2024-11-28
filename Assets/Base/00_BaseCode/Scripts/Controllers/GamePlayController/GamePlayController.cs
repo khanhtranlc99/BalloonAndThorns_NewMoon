@@ -150,6 +150,10 @@ public class GamePlayController : Singleton<GamePlayController>
         }
       
     }
+    public void OnApplicationPause(bool pause)
+    {
+        GameController.Instance.admobAds.ShowOpenAppAdsReady(delegate { });
+    }
 
     public void TestMrec()
     {

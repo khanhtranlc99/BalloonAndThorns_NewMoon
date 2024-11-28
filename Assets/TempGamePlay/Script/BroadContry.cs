@@ -32,8 +32,12 @@ public class BroadContry : MonoBehaviour
         {
             rawImageNativeAds_2.gameObject.SetActive(false);
         }
-     
-        GameController.Instance.admobAds.admobSplash.HideBanner();
+
+       GameController.Instance.admobAds.nativeGoogleAdsMobe_3.Init();
+       GameController.Instance.admobAds.nativeGoogleAdsMobe_4.Init();
+       GameController.Instance.admobAds.nativeGoogleAdsMobe_5.Init();
+       GameController.Instance.admobAds.nativeGoogleAdsMobe_6.Init();
+  
     }
 
     public void Init()
@@ -76,6 +80,10 @@ public class BroadContry : MonoBehaviour
             }    
             click = true;
         }
-    }    
+    }
 
+    private void Update()
+    {
+        GameController.Instance.admobAds.admobSplash.HideBanner();
+    }
 }

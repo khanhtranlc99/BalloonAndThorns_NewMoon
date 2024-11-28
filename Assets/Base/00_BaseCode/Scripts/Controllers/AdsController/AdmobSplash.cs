@@ -5,6 +5,7 @@ using GoogleMobileAds.Api;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 
 public class AdmobSplash : MonoBehaviour
@@ -76,13 +77,9 @@ public class AdmobSplash : MonoBehaviour
         interstitialAd.OnAdPaid += (AdValue adValue) =>
         {
 
-            OnAdRevenuePaidEvent(InterstitialAdUnitId, "ADMOB_INTER_SPLASH", interstitialAd.GetResponseInfo(), adValue);
+          
         };
-        // Raised when an impression is recorded for an ad.
-        interstitialAd.OnAdImpressionRecorded += () =>
-        {
-
-        };
+     
         // Raised when a click is recorded for an ad.
         interstitialAd.OnAdClicked += () =>
         {
@@ -102,19 +99,20 @@ public class AdmobSplash : MonoBehaviour
         interstitialAd.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Interstitial Ad full screen content closed.");
-            evtInterDone?.Invoke();
-            // Reload the ad so that we can show another as soon as possible.
-            Invoke(nameof(InitInterstitial), 3);
+            StartCoroutine(HandleInterOnAdFullScreenContentClosed());
         };
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Debug.LogError("Interstitial ad failed to open full screen content " +
-                           "with error : " + error);
-
-            // Reload the ad so that we can show another as soon as possible.
-            Invoke(nameof(InitInterstitial), 3);
+            StartCoroutine(LoadInter());
+            Debug.LogError("LoadAOAFail");
         };
+    }
+
+    public IEnumerator LoadInter()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitInterstitial), 3);
     }
     public void ShowInterstitialAd(Action actionIniterClose)
     {
@@ -134,6 +132,12 @@ public class AdmobSplash : MonoBehaviour
         }
     }
 
+    private IEnumerator HandleInterOnAdFullScreenContentClosed()
+    {
+        yield return null;
+        evtInterDone?.Invoke();
+  
+    }
 
 
     #endregion
@@ -200,30 +204,23 @@ public class AdmobSplash : MonoBehaviour
         // Raised when an ad is loaded into the banner view.
         _banner.OnBannerAdLoaded += () =>
         {
-      
-            try
-            {
-                ShowBanner();
-            }
-            catch
-            {
 
-            }
+            StartCoroutine(ShowBannerTip());
 
         };
         // Raised when an ad fails to load into the banner view.
         _banner.OnBannerAdLoadFailed += (LoadAdError error) =>
         {
-     
 
-            Invoke(nameof(InitializeBannerAds), 3);
+            Debug.LogError("LoadBannerFail");
+            StartCoroutine(LoadBaner());
 
         };
         // Raised when the ad is estimated to have earned money.
         _banner.OnAdPaid += (AdValue adValue) =>
         {
 
-            OnAdRevenuePaidEvent(BanerAdUnitId, "COLLAPSIBLE_BANNER", _banner.GetResponseInfo(), adValue);
+        
         };
         // Raised when an impression is recorded for an ad.
         _banner.OnAdImpressionRecorded += () =>
@@ -246,7 +243,18 @@ public class AdmobSplash : MonoBehaviour
 
         };
     }
+    public IEnumerator ShowBannerTip()
+    {
+        yield return new WaitForEndOfFrame();
+        ShowBanner();
+    }
 
+
+    public IEnumerator LoadBaner()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitializeBannerAds), 3);
+    }    
     public void ShowBanner()
     {
         if (GameController.Instance.useProfile.IsRemoveAds)
@@ -274,10 +282,7 @@ public class AdmobSplash : MonoBehaviour
 
     public void HideBanner()
     {
-        if (GameController.Instance.useProfile.IsRemoveAds)
-        {
-            return;
-        }
+       
         if (bannerView != null)
         {
             bannerView.Hide();
@@ -321,7 +326,7 @@ public class AdmobSplash : MonoBehaviour
         ad.OnAdPaid += (AdValue adValue) =>
         {
 
-            OnAdRevenuePaidEvent(AppOpenId, "ADMOB_AOA", ad.GetResponseInfo(), adValue);
+             
         };
         // Raised when an impression is recorded for an ad.
         ad.OnAdImpressionRecorded += () =>
@@ -343,15 +348,28 @@ public class AdmobSplash : MonoBehaviour
         ad.OnAdFullScreenContentClosed += () =>
         {
 
-            evtAppOpenAdDone?.Invoke();
+            StartCoroutine(HandleAOAOnAdFullScreenContentClosed());
+
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Invoke(nameof(InitializeOpenAppAds), 3);
+            Debug.LogError("LoadAOAFail");
+            StartCoroutine(HandleAOAOnAdFullScreenContentFailed());
 
         };
     }
+    public IEnumerator HandleAOAOnAdFullScreenContentClosed()
+    {
+        yield return new WaitForEndOfFrame();
+        evtAppOpenAdDone?.Invoke();
+    }
+    public IEnumerator HandleAOAOnAdFullScreenContentFailed()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitializeOpenAppAds),3);
+    }
+
     public void ShowOpenAppAdsReady(Action actionIniterClose)
     {
         evtAppOpenAdDone = actionIniterClose;
@@ -388,18 +406,20 @@ public class AdmobSplash : MonoBehaviour
     {
 
 
-        // AppsflyerManager.Instance.SendEvent("af_ad_revenue");
-        var impressionParameters = new[] {
-            new Firebase.Analytics.Parameter("ad_platform", "Admob"),
-            new Firebase.Analytics.Parameter("ad_source", "Google Admob"),
-            new Firebase.Analytics.Parameter("ad_unit_name", adUnitId),
-            new Firebase.Analytics.Parameter("ad_format", type),
-            new Firebase.Analytics.Parameter("value", value.Value),
-            new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
-        };
+        //var impressionParameters = new[] {
+        //    new Firebase.Analytics.Parameter("ad_platform", "Admob"),
+        //    new Firebase.Analytics.Parameter("ad_source", "Google Admob"),
+        //    new Firebase.Analytics.Parameter("ad_unit_name", adUnitId),
+        //    new Firebase.Analytics.Parameter("ad_format", type),
+        //    new Firebase.Analytics.Parameter("value", value.Value),
+        //    new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
+        //};
 
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_max", impressionParameters);
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
    
+        //Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
+ 
+
+
+
     }
 }

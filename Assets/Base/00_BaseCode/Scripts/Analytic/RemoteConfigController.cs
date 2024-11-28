@@ -322,12 +322,12 @@ public class RemoteConfigController : MonoBehaviour
                 {
 
                     firebaseRemoteKeys.Add(key);
-                    Debug.LogError(key);
+                   
 
                 }
                 AnalyticsController.firebaseInitialized = true;
                 GameController.Instance.initFirebaseOk = true;
-                Debug.LogError("Success");
+            
             }
         });
 

@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     public GameObject startLoadingPanel;
     public GameObject adsStarLoadingAdsPanel;
     public bool initFirebaseOk;
-
+ 
 
     protected void Awake()
     {
@@ -67,30 +67,32 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         Application.targetFrameRate = 60;
-        admobAds.Init();
-        if (Application.internetReachability != NetworkReachability.NotReachable)
+
+        Main();
+
+
+        void Main()
         {
-            if(UseProfile.FirstShowOpenAds == false)
-            {
-                UseProfile.FirstShowOpenAds = true;
-                HandleWaitInterAds();
-            }
-            else
-            {
-                startLoadingPanel.gameObject.SetActive(true);
-                adsStarLoadingAdsPanel.gameObject.SetActive(false);
-                SetUp();
-                startLoading.Init();
-            }
-           
+
+            admobAds.Init();
+
+               if (UseProfile.FirstShowOpenAds == false)
+                {
+                  
+                    HandleWaitInterAds();
+                    Debug.LogWarning("------------11111");
+                }
+                else
+                {
+                    startLoadingPanel.gameObject.SetActive(true);
+                    adsStarLoadingAdsPanel.gameObject.SetActive(false);
+                    SetUp();
+                    startLoading.Init();
+                    Debug.LogWarning("------------22222");
+                }
+ 
         }
-        else
-        {
-            startLoadingPanel.gameObject.SetActive(true);
-            adsStarLoadingAdsPanel.gameObject.SetActive(false);
-            SetUp();
-            startLoading.Init();
-        }
+    
       
     }
     private void HandleWaitInterAds()

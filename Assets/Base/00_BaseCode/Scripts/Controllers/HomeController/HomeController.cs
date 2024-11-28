@@ -26,7 +26,46 @@ public class HomeController : Singleton<HomeController>
         btnNext.onClick.AddListener(HandleNextButton);
         btnStartGame.onClick.AddListener(HandleStartButton);
 
-        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_3.isLoadNativeOK  )
+        UseProfile.FirstShowOpenAds = true;
+
+
+
+    }
+
+ 
+    private void Update()
+    {
+        for (int i = 0; i < lsImage.Count; i++)
+        {
+            if (i <= scrollSnap.CurrentPage)
+            {
+                lsImage[i].color = Color.yellow;
+            }
+            else
+            {
+                lsImage[i].color = Color.white;
+            }
+        }
+
+      
+        if (scrollSnap.CurrentPage == 3)
+        {
+            panelNext.SetActive(false);
+            panelStart.SetActive(true);
+        }
+        else
+        {
+            panelNext.SetActive(true);
+            panelStart.SetActive(false);
+        }
+        if (scrollSnap.CurrentPage == 2)
+        {
+            panelNext.SetActive(false);
+
+        }
+        GameController.Instance.admobAds.admobSplash.HideBanner();
+
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_3.isLoadNativeOK)
         {
             ads_navitve.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_3.nativeAd);
         }
@@ -52,51 +91,13 @@ public class HomeController : Singleton<HomeController>
         }
         if (GameController.Instance.admobAds.nativeGoogleAdsMobe_6.isLoadNativeOK)
         {
-            ads_navitve_Full.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_6.nativeAd);
+            ads_navitve_Full.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_6.nativeAd, delegate { HandleChangeScene(); });
         }
         else
         {
             ads_navitve_Full.gameObject.SetActive(false);
         }
-        GameController.Instance.admobAds.admobSplash.HideBanner();
 
-
-    }
-
- 
-    private void Update()
-    {
-        for (int i = 0; i < lsImage.Count; i++)
-        {
-            if (i <= scrollSnap.CurrentPage)
-            {
-                lsImage[i].color = Color.yellow;
-            }
-            else
-            {
-                lsImage[i].color = Color.white;
-            }
-        }
-        if (scrollSnap.CurrentPage == 3)
-        {
-            panelNext.SetActive(false);
-            panelStart.SetActive(true);
-            //if (!isOpen)
-            //{
-            //    isOpen = true;
-            //    if (GameController.Instance.admobAds.nativeGoogleAdsMobe_6.isLoadNativeOK)
-            //    {
-            //        ads_navitve_Full.gameObject.SetActive(true);
-            //    }
-
-            //}
-
-        }
-        else
-        {
-            panelNext.SetActive(true);
-            panelStart.SetActive(false);
-        }
 
 
     }
@@ -105,16 +106,8 @@ public class HomeController : Singleton<HomeController>
         scrollSnap.NextScreen();
     }
     private void HandleStartButton()
-    {
-        if (GameController.Instance.admobAds.IsLoadedAOA())
-        {
-            GameController.Instance.admobAds.ShowOpenAppAdsReady(actionIniterClose: () => {
-
-                bg.DOFade(1, 0.5f).OnComplete(delegate { SceneManager.LoadSceneAsync(SceneName.GAME_PLAY); });
-
-            });
-        }
-        else if (GameController.Instance.admobAds.IsLoadedInterstitial())
+    { 
+        if (GameController.Instance.admobAds.IsLoadedInterstitial())
         {
             GameController.Instance.admobAds.ShowInterstitialAd(actionIniterClose: () => {
 
@@ -122,15 +115,17 @@ public class HomeController : Singleton<HomeController>
 
             });
         }
-
-
-        if (!GameController.Instance.admobAds.IsLoadedAOA() && !GameController.Instance.admobAds.IsLoadedInterstitial())
+         else
         {
             bg.DOFade(1, 0.5f).OnComplete(delegate { SceneManager.LoadSceneAsync(SceneName.GAME_PLAY); });
         }
-      
 
+
+    
     }
  
-
+    private void HandleChangeScene()
+    {
+        scrollSnap.ChangePage(3);
+    }
 }

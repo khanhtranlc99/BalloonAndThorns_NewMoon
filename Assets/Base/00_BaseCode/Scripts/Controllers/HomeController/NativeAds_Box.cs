@@ -20,13 +20,14 @@ public class NativeAds_Box : MonoBehaviour
     public void HandleShowNativeGamePlay(Action CallBack)
     {
         callBackAds = CallBack;
-        GameController.Instance.admobAds.HideBanner();
+      
         btnClose.gameObject.SetActive(false);
         btnCountDown.gameObject.SetActive(true);
+        rawImageNativeAds.gameObject.SetActive(true);
         if (GameController.Instance.admobAds.nativeFullGameplay.isLoadNativeOK)
         {
          
-            rawImageNativeAds.gameObject.SetActive(true);
+       
             rawImageNativeAds.Init(CallBack);
             StartCoroutine(countTime());
         }    

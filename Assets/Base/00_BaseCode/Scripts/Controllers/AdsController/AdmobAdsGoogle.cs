@@ -5,6 +5,7 @@ using GoogleMobileAds.Api;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Threading;
 
 public class AdmobAdsGoogle : MonoBehaviour
 {
@@ -47,15 +48,15 @@ public class AdmobAdsGoogle : MonoBehaviour
         MobileAds.RaiseAdEventsOnUnityMainThread = true;
         MobileAds.Initialize(initStatus =>
         {
-            admobSplash.InitializeOpenAppAds();
-            admobSplash.InitInterstitial();
-            admobSplash.InitializeBannerAds();
-            nativeGoogleAdsMobe_1.Init();
-            nativeGoogleAdsMobe_2.Init();
-            nativeGoogleAdsMobe_3.Init();
-            nativeGoogleAdsMobe_4.Init();
-            nativeGoogleAdsMobe_5.Init();
-            nativeGoogleAdsMobe_6.Init();
+
+            if (!UseProfile.FirstShowOpenAds  )
+            {
+                admobSplash.InitializeBannerAds();
+                admobSplash.InitializeOpenAppAds();
+                admobSplash.InitInterstitial();
+                nativeGoogleAdsMobe_1.Init();
+                nativeGoogleAdsMobe_2.Init();
+            }      
             InitializeBannerAds();
             InitializeOpenAppAds();
             InitInterstitial();
@@ -63,6 +64,10 @@ public class AdmobAdsGoogle : MonoBehaviour
 
         });
     }
+
+
+  
+
     private void  Update()
     {
         countdownAds += Time.unscaledDeltaTime;
@@ -130,15 +135,13 @@ public class AdmobAdsGoogle : MonoBehaviour
         _banner.OnBannerAdLoaded += () =>
         {
             bannerAvailable = true;
-            
+            Debug.LogError("BannerNative_____ok");
         };
         // Raised when an ad fails to load into the banner view.
         _banner.OnBannerAdLoadFailed += (LoadAdError error) =>
         {
-            bannerAvailable = false;
-        
-            Invoke(nameof(InitializeBannerAds), 3);
-
+            Debug.LogError("BannerNativeFalse" + error);
+            StartCoroutine(HandleOnBannerAdLoadFailed());
         };
         // Raised when the ad is estimated to have earned money.
         _banner.OnAdPaid += (AdValue adValue) =>
@@ -167,7 +170,15 @@ public class AdmobAdsGoogle : MonoBehaviour
        
         };
     }
-  
+    private IEnumerator HandleOnBannerAdLoadFailed()
+    {
+        yield return new WaitForEndOfFrame();
+
+        bannerAvailable = false;
+
+        Invoke(nameof(InitializeBannerAds), 3);
+    }
+
     public void ShowBanner()
     {
         if (GameController.Instance.useProfile.IsRemoveAds)
@@ -207,6 +218,7 @@ public class AdmobAdsGoogle : MonoBehaviour
 
     #region Interstitial
     Action evtInterDone;
+    bool showingInter = false;
     private void InitInterstitial()
     {
         // Clean up the old ad before loading a new one.
@@ -215,8 +227,8 @@ public class AdmobAdsGoogle : MonoBehaviour
             _interstitialAd.Destroy();
             _interstitialAd = null;
         }
+        showingInter = false;
 
-    
 
         // create our request used to load the ad.
         var adRequest = new AdRequest();
@@ -275,18 +287,19 @@ public class AdmobAdsGoogle : MonoBehaviour
         interstitialAd.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Interstitial Ad full screen content closed.");
-            evtInterDone?.Invoke();
+
             // Reload the ad so that we can show another as soon as possible.
-            Invoke(nameof(InitInterstitial), 3); 
+       
+            StartCoroutine(HandleActionInter());
         };
         // Raised when the ad failed to open full screen content.
         interstitialAd.OnAdFullScreenContentFailed += (AdError error) =>
         {
             Debug.LogError("Interstitial ad failed to open full screen content " +
                            "with error : " + error);
-
+            StartCoroutine(OnAdFullInterScreenContentFailed());
             // Reload the ad so that we can show another as soon as possible.
-            Invoke(nameof(InitInterstitial), 3);
+
         };
     }
     public void ShowInterstitialAd(Action actionIniterClose)
@@ -303,6 +316,7 @@ public class AdmobAdsGoogle : MonoBehaviour
             {
                 if (countdownAds > RemoteConfigController.GetFloatConfig(FirebaseConfig.DELAY_SHOW_INITSTIALL, 90))
                 {
+                    showingInter = true;
                     _interstitialAd.Show();
                 }
                 else
@@ -321,13 +335,25 @@ public class AdmobAdsGoogle : MonoBehaviour
         }
     }
 
+    private IEnumerator HandleActionInter()
+    {
+        yield return new WaitForEndOfFrame();
+        evtInterDone?.Invoke();
+        showingInter = false;
+        Invoke(nameof(InitInterstitial), 3);
+    }
+    private IEnumerator OnAdFullInterScreenContentFailed()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitInterstitial), 3);
+    }
 
-  
     #endregion
 
     #region RewardedAd
     private RewardedAd _rewardedAd;
     Action evtRewardedClose;
+    bool showingReward = false;
     public void InitializeRewardedAds()
     {
         if (_rewardedAd != null)
@@ -335,7 +361,7 @@ public class AdmobAdsGoogle : MonoBehaviour
             _rewardedAd.Destroy();
             _rewardedAd = null;
         }
-
+        showingReward = false;
         Debug.Log("Loading the rewarded ad.");
 
         // create our request used to load the ad.
@@ -389,26 +415,41 @@ public class AdmobAdsGoogle : MonoBehaviour
         ad.OnAdFullScreenContentClosed += () =>
         {
             Debug.Log("Rewarded ad full screen content closed.");
-            Invoke(nameof(InitializeRewardedAds), 10); 
-            evtRewardedClose?.Invoke();
+            StartCoroutine(HandleClaimReward());
+         
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Invoke(nameof(InitializeRewardedAds), 10);
 
+            StartCoroutine(OnAdFullScreenContentFailed());
         };
     }
+
+    private IEnumerator HandleClaimReward()
+    {
+        yield return new WaitForEndOfFrame();
+        evtRewardedClose?.Invoke();
+        Invoke(nameof(InitializeRewardedAds), 10);
+        showingReward = false;
+    }   
+    private IEnumerator OnAdFullScreenContentFailed()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitializeRewardedAds), 10);
+    }
+
     public void ShowRewardedAd(Action actionReward, UnityAction actionNotLoadedVideo, ActionWatchVideo actionType)
     {
         evtRewardedClose = actionReward;
      
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
+            showingReward = true;
             _rewardedAd.Show((Reward reward) =>
             {
-         
-           
+
+          
             });
         }
         else
@@ -419,6 +460,22 @@ public class AdmobAdsGoogle : MonoBehaviour
     #endregion
 
     #region AppOpenAd
+
+    public bool noAdsToShowAOA
+    {
+        get 
+        {
+            if(showingInter || showingReward)
+            {
+                return false;
+            }
+            if (showingInter && showingReward)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 
     private AppOpenAd appOpenAd = null;
     Action evtAppOpenAdDone;
@@ -474,14 +531,14 @@ public class AdmobAdsGoogle : MonoBehaviour
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
-
-            evtAppOpenAdDone?.Invoke();
+            StartCoroutine(HandleOnAdFullScreenContentClosed());
+         
         };
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
-            Invoke(nameof(InitializeOpenAppAds), 3);
-       
+            StartCoroutine(HandleOnAdAOAFullScreenContentFailed());
+
         };
     }
     public void ShowOpenAppAdsReady(Action actionIniterClose)
@@ -492,51 +549,35 @@ public class AdmobAdsGoogle : MonoBehaviour
             return;
         }
 
-        //if (!UseProfile.FirstShowOpenAds)
-        //{
-
-        //    UseProfile.FirstShowOpenAds = true;
-        //}
-        //else
-        //{
-            //if (RemoteConfigController.GetBoolConfig(FirebaseConfig.SHOW_OPEN_ADS, true))
-      //      {
-                if (appOpenAd != null && appOpenAd.CanShowAd())
+ 
+                if (appOpenAd != null && appOpenAd.CanShowAd() && noAdsToShowAOA)
                 {
                     appOpenAd.Show();
                     Debug.LogError("SHOW_OPEN_ADS");
                 }
-    
-     //       }
-        //    Debug.LogError("FirstShowOpenAds_2");
-        //}
-
+ 
 
 
     }
+    private IEnumerator HandleOnAdFullScreenContentClosed()
+    {
+        yield return new WaitForEndOfFrame();
+        evtAppOpenAdDone?.Invoke();
+    }
 
+    private IEnumerator HandleOnAdAOAFullScreenContentFailed()
+    {
+        yield return new WaitForEndOfFrame();
+        Invoke(nameof(InitializeOpenAppAds), 3);
+    }
     #endregion
 
-  
+
 
 
 
     private void OnAdRevenuePaidEvent(string adUnitId, string type, ResponseInfo info, AdValue value)
     {
-
-
-        // AppsflyerManager.Instance.SendEvent("af_ad_revenue");
-        var impressionParameters = new[] {
-            new Firebase.Analytics.Parameter("ad_platform", "Admob"),
-            new Firebase.Analytics.Parameter("ad_source", "Google Admob"),
-            new Firebase.Analytics.Parameter("ad_unit_name", adUnitId),
-            new Firebase.Analytics.Parameter("ad_format", type),
-            new Firebase.Analytics.Parameter("value", value.Value),
-            new Firebase.Analytics.Parameter("currency", "USD"), // All AppLovin revenue is sent in USD
-        };
-
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_max", impressionParameters);
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("ad_impression", impressionParameters);
         Firebase.Analytics.FirebaseAnalytics.LogEvent("main_activity");
     }
 }
