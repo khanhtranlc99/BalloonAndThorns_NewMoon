@@ -14,6 +14,7 @@ public class AdmobAdsGoogle : MonoBehaviour
     private const string RewardedAdUnitId = "ca-app-pub-8564251890453142/8846366065";
     private const string BanerAdUnitId = "ca-app-pub-8564251890453142/9636703553";
     private const string AppOpenId = "ca-app-pub-8564251890453142/1291309672";
+    private const string testID = "ca-app-pub-8564251890453142/4558006382";
     public NativeGoogleAdsMobe nativeGoogleAdsMobe_1;
     public NativeGoogleAdsMobe nativeGoogleAdsMobe_2;
     public NativeGoogleAdsMobe nativeGoogleAdsMobe_3;
@@ -80,7 +81,9 @@ public class AdmobAdsGoogle : MonoBehaviour
         DestroyBannerView();
         bannerView = new BannerView(BanerAdUnitId, AdSize.Banner, AdPosition.Bottom);
         ListenToBannerEvent(bannerView);
-        var adRequest = new AdRequest();   
+        AdRequest request = new AdRequest();
+
+        var adRequest = new AdRequest();
         bannerView.LoadAd(adRequest);
         bannerView.Hide();
     }

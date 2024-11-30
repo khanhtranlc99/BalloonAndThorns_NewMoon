@@ -157,7 +157,13 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void TestMrec()
     {
-    
+        GameObject foundObject = GameObject.Find("BANNER(Clone)");
+
+        if (foundObject != null)
+        {
+            foundObject.SetActive(false);
+        }
+       
     }
     public void TestOpenAppAds()
     {
