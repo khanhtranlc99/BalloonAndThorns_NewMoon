@@ -17,9 +17,17 @@ public class HomeController : Singleton<HomeController>
     public RawImageNativeAds ads_navitve_1;
     public RawImageNativeAds ads_navitve_2;
     public RawImageNativeAdsFullAds ads_navitve_Full;
+    public bool can_show_ads_navitve;
+    public bool can_show_ads_navitve_1;
+    public bool can_show_ads_navitve_2;
+    public bool can_show_ads_navitve_Full;
 
     public Image bg;
     bool isOpen = false;
+    float timeCountDown;
+    public Text tvTime;
+    public Button btnClose;
+    public GameObject btnCountDown;
     public void Start()
     {
         isOpen = false;
@@ -28,11 +36,35 @@ public class HomeController : Singleton<HomeController>
 
         UseProfile.FirstShowOpenAds = true;
 
+        GameController.Instance.admobAds.HandleLoadAdsInGame();
+        timeCountDown = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_OFF_NATIVE_FULL, 3);
+        btnClose.onClick.AddListener(HandleChangeScene);
 
+        can_show_ads_navitve = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_ONBOARDING_1, true);
+        can_show_ads_navitve_1 = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_ONBOARDING_2, true);
+        can_show_ads_navitve_2 = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_ONBOARDING_3, true);
+        can_show_ads_navitve_Full = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_FULL, true);
+       
+    }
+    IEnumerator countTime()
+    {
+        tvTime.text = "" + timeCountDown;
+        yield return new WaitForSeconds(1);
+        timeCountDown -= 1;
+        tvTime.text = "" + timeCountDown;
+        if (timeCountDown > 0)
+        {
+            StartCoroutine(countTime());
+        }
+        else
+        {
 
+            StopAllCoroutines();
+            btnClose.gameObject.SetActive(true);
+            btnCountDown.gameObject.SetActive(false);
+        }
     }
 
- 
     private void Update()
     {
         for (int i = 0; i < lsImage.Count; i++)
@@ -61,11 +93,11 @@ public class HomeController : Singleton<HomeController>
         if (scrollSnap.CurrentPage == 2)
         {
             panelNext.SetActive(false);
-
+            StartCoroutine(countTime());
         }
         GameController.Instance.admobAds.admobSplash.HideBanner();
 
-        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_3.isLoadNativeOK)
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_3.isLoadNativeOK && can_show_ads_navitve)
         {
             ads_navitve.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_3.nativeAd);
         }
@@ -73,7 +105,7 @@ public class HomeController : Singleton<HomeController>
         {
             ads_navitve.gameObject.SetActive(false);
         }
-        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_4.isLoadNativeOK)
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_4.isLoadNativeOK && can_show_ads_navitve_1)
         {
             ads_navitve_1.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_4.nativeAd);
         }
@@ -81,7 +113,7 @@ public class HomeController : Singleton<HomeController>
         {
             ads_navitve_1.gameObject.SetActive(false);
         }
-        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_5.isLoadNativeOK)
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_5.isLoadNativeOK && can_show_ads_navitve_2)
         {
             ads_navitve_2.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_5.nativeAd);
         }
@@ -89,7 +121,7 @@ public class HomeController : Singleton<HomeController>
         {
             ads_navitve_2.gameObject.SetActive(false);
         }
-        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_6.isLoadNativeOK)
+        if (GameController.Instance.admobAds.nativeGoogleAdsMobe_6.isLoadNativeOK && can_show_ads_navitve_Full)
         {
             ads_navitve_Full.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_6.nativeAd, delegate { HandleChangeScene(); });
         }

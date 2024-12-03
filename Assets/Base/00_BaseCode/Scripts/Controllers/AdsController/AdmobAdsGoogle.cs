@@ -58,15 +58,26 @@ public class AdmobAdsGoogle : MonoBehaviour
                 nativeGoogleAdsMobe_1.Init();
                 nativeGoogleAdsMobe_2.Init();
             }      
-            InitializeBannerAds();
-            InitializeOpenAppAds();
-            InitInterstitial();
-            InitializeRewardedAds();
+            else
+            {
+                InitializeBannerAds();
+                InitializeOpenAppAds();
+                InitInterstitial();
+                InitializeRewardedAds();
+            }    
+    
 
         });
     }
+ 
 
-
+    public void HandleLoadAdsInGame()
+    {
+        InitializeBannerAds();
+        InitializeOpenAppAds();
+        InitInterstitial();
+        InitializeRewardedAds();
+    }    
   
 
     private void  Update()
@@ -188,9 +199,18 @@ public class AdmobAdsGoogle : MonoBehaviour
         {
             return;
         }
+
         if(bannerView != null)
         {
-            bannerView.Show();
+            if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_BANNER, true))
+            {
+
+            }   
+            else
+            {
+                bannerView.Show();
+            }    
+             
         }    
       
     }
@@ -309,6 +329,11 @@ public class AdmobAdsGoogle : MonoBehaviour
     {
         evtInterDone = actionIniterClose;
         if (GameController.Instance.useProfile.IsRemoveAds)
+        {
+            evtInterDone?.Invoke();
+            return;
+        }
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_INTER, true))
         {
             evtInterDone?.Invoke();
             return;
@@ -445,7 +470,11 @@ public class AdmobAdsGoogle : MonoBehaviour
     public void ShowRewardedAd(Action actionReward, UnityAction actionNotLoadedVideo, ActionWatchVideo actionType)
     {
         evtRewardedClose = actionReward;
-     
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_REWARD, true))
+        {
+            evtRewardedClose?.Invoke();
+            return;
+        }
         if (_rewardedAd != null && _rewardedAd.CanShowAd())
         {
             showingReward = true;
@@ -547,6 +576,11 @@ public class AdmobAdsGoogle : MonoBehaviour
     public void ShowOpenAppAdsReady(Action actionIniterClose)
     {
         evtAppOpenAdDone = actionIniterClose;
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_OPEN_RESUME, true))
+        {
+            evtAppOpenAdDone?.Invoke();
+            return;
+        }
         if (GameController.Instance.useProfile.IsRemoveAds)
         {
             return;

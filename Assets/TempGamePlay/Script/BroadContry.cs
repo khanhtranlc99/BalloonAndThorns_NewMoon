@@ -10,7 +10,8 @@ public class BroadContry : MonoBehaviour
     public RawImageNativeAds rawImageNativeAds;
     public RawImageNativeAds rawImageNativeAds_2;
     bool click;
-
+    bool isNative_lg_1;
+    bool isNative_lg_2;
     public void Start()
     {
         click = false;
@@ -37,7 +38,17 @@ public class BroadContry : MonoBehaviour
        GameController.Instance.admobAds.nativeGoogleAdsMobe_4.Init();
        GameController.Instance.admobAds.nativeGoogleAdsMobe_5.Init();
        GameController.Instance.admobAds.nativeGoogleAdsMobe_6.Init();
-  
+       isNative_lg_1 = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_LANGUAGE_1_1, true);
+       isNative_lg_2 = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_LANGUAGE_1_2, true);
+
+        if(!isNative_lg_1)
+        {
+            rawImageNativeAds.gameObject.SetActive(false);
+        }
+        if (!isNative_lg_2)
+        {
+            rawImageNativeAds_2.gameObject.SetActive(false);
+        }
     }
 
     public void Init()
@@ -72,7 +83,10 @@ public class BroadContry : MonoBehaviour
             if (GameController.Instance.admobAds.nativeGoogleAdsMobe_2.isLoadNativeOK)
             {
                 rawImageNativeAds_2.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_2.nativeAd);
-                rawImageNativeAds_2.gameObject.SetActive(true);
+                if(isNative_lg_2)
+                {
+                    rawImageNativeAds_2.gameObject.SetActive(true);
+                }     
             }
             else
             {

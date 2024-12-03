@@ -117,6 +117,12 @@ public class AdmobSplash : MonoBehaviour
     public void ShowInterstitialAd(Action actionIniterClose)
     {
         evtInterDone = actionIniterClose;
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_INTER_SPLASH, true))
+        {
+            evtInterDone?.Invoke();
+            return;
+        }    
+     
         if (GameController.Instance.useProfile.IsRemoveAds)
         {
             evtInterDone?.Invoke();
@@ -247,6 +253,8 @@ public class AdmobSplash : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         ShowBanner();
+        
+       
     }
 
 
@@ -261,9 +269,19 @@ public class AdmobSplash : MonoBehaviour
         {
             return;
         }
+    
         if (bannerView != null)
         {
-            bannerView.Show();
+            if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_BANNER_SPLASH, true))
+            {
+
+
+            }
+            else
+            {
+                bannerView.Show();
+            }    
+         
         }
 
     }
@@ -375,6 +393,12 @@ public class AdmobSplash : MonoBehaviour
         evtAppOpenAdDone = actionIniterClose;
         if (GameController.Instance.useProfile.IsRemoveAds)
         {
+            return;
+        }
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_APPOPEN_SPLASH, true))
+        {
+
+            evtAppOpenAdDone?.Invoke();
             return;
         }
 

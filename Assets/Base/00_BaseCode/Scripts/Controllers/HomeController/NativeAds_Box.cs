@@ -11,10 +11,12 @@ public class NativeAds_Box : MonoBehaviour
     public RawImageNativeAdsFullAdsGamePlay rawImageNativeAds;
     float timeCountDown;
     Action callBackAds;
+    bool isShowNative_Box;
     public void Init()
     {
         btnClose.onClick.AddListener(delegate { rawImageNativeAds.gameObject.SetActive(false); callBackAds?.Invoke(); });
-        timeCountDown  = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_OFF_NATIVE_FULL,3);
+        timeCountDown  = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_OFF_NATIVE_FULL_IAP,3);
+        isShowNative_Box = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_FULL_INAPP, true);
     }    
 
     public void HandleShowNativeGamePlay(Action CallBack)
@@ -24,10 +26,10 @@ public class NativeAds_Box : MonoBehaviour
         btnClose.gameObject.SetActive(false);
         btnCountDown.gameObject.SetActive(true);
         rawImageNativeAds.gameObject.SetActive(true);
-        if (GameController.Instance.admobAds.nativeFullGameplay.isLoadNativeOK)
+        if (GameController.Instance.admobAds.nativeFullGameplay.isLoadNativeOK && isShowNative_Box)
         {
          
-       
+         
             rawImageNativeAds.Init(CallBack);
             StartCoroutine(countTime());
         }    

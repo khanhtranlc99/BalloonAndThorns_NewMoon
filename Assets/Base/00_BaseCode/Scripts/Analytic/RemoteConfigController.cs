@@ -277,7 +277,7 @@ public class RemoteConfigController : MonoBehaviour
                 Debug.LogError("Latest Fetch call still pending.");
                 break;
         }
-
+       
         //AdmobAds.Instance.Init();
     }
 
@@ -310,7 +310,7 @@ public class RemoteConfigController : MonoBehaviour
         InitSuccess = true;
 
 
-        TimeSpan time = new TimeSpan(0, 0, 10);
+        TimeSpan time = new TimeSpan(0, 0, 5);
         FirebaseRemoteConfig.DefaultInstance.FetchAsync(time).ContinueWithOnMainThread(task =>
         {
             var info = FirebaseRemoteConfig.DefaultInstance.Info;
@@ -326,9 +326,10 @@ public class RemoteConfigController : MonoBehaviour
 
                 }
                 AnalyticsController.firebaseInitialized = true;
-                GameController.Instance.initFirebaseOk = true;
+              
             
             }
+            GameController.Instance.initFirebaseOk = true;
         });
 
 

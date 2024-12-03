@@ -8,13 +8,15 @@ public class AdsStarLoadingAds : MonoBehaviour
     public GameObject iconLoad;
     bool wasLoad = false;
     public AdmobAdsGoogle admobAds;
+    public Text txtLoading;
     public void Init()
     {
      
         wasLoad = true;
         StartCoroutine(HandleSpamInter());
-    //    StartCoroutine(Helper.StartAction(delegate { HandleSpamInter(); }, () => admobAds.IsLoadedInterstitial() == true));
-    //   HandleSpamInter();
+        //    StartCoroutine(Helper.StartAction(delegate { HandleSpamInter(); }, () => admobAds.IsLoadedInterstitial() == true));
+        //   HandleSpamInter();
+        StartCoroutine(LoadingText());
     }
 
     private IEnumerator HandleSpamInter()
@@ -62,4 +64,21 @@ public class AdsStarLoadingAds : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(SceneName.SELECT_LANGUAGE);
     }
+    IEnumerator LoadingText()
+    {
+        var wait = new WaitForSeconds(1f);
+        while (true)
+        {
+            txtLoading.text = "This action constain ads.";
+            yield return wait;
+
+            txtLoading.text = "This action constain ads..";
+            yield return wait;
+
+            txtLoading.text = "This action constain ads...";
+            yield return wait;
+
+        }
+    }
+
 }

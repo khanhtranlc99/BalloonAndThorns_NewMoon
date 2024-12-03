@@ -238,7 +238,23 @@ public class FirebaseConfig
     public const string TIME_LIFE_STARTER_PACK = "time_life_starter_pack"; // 3DAY
     public const string TIME_LIFE_PREMIUM_PACK = "time_life_premium_pack"; // 2DAY
     public const string TIME_OFF_NATIVE_FULL = "time_off_native_full"; // 1DAY
+    public const string TIME_OFF_NATIVE_FULL_IAP = "time_off_native_full_iap"; // 1DAY
     public const string TIME_LIFE_BIG_REMOVE_ADS_PACK = "time_life_big_remove_ads_pack"; // 3h
+
+    public const string IS_SHOW_BANNER_SPLASH = "is_show_banner_splash";
+    public const string IS_SHOW_APPOPEN_SPLASH = "is_show_appopen_splash";
+    public const string IS_SHOW_INTER_SPLASH = "is_show_inter_splash";
+    public const string IS_SHOW_NATIVE_LANGUAGE_1_1= "is_show_native_language_1_1";
+    public const string IS_SHOW_NATIVE_LANGUAGE_1_2 = "is_show_native_language_1_2";
+    public const string IS_SHOW_NATIVE_ONBOARDING_1 = "is_show_native_onboarding_1";
+    public const string IS_SHOW_NATIVE_ONBOARDING_2 = "is_show_native_onboarding_2";
+    public const string IS_SHOW_NATIVE_FULL = "is_show_native_full";
+    public const string IS_SHOW_NATIVE_ONBOARDING_3 = "is_show_native_onboarding_3";
+    public const string IS_SHOW_INTER = "is_show_inter";
+    public const string IS_SHOW_BANNER = "is_show_banner";
+    public const string IS_SHOW_REWARD = "is_show_reward";
+    public const string IS_SHOW_OPEN_RESUME = "is_show_open_resume";
+    public const string IS_SHOW_NATIVE_FULL_INAPP = "is_show_native_full_inapp";
 
     public const string NUMBER_OF_ADS_IN_DAY_TO_SHOW_PACK = "number_of_ads_in_day_to_show_pack"; //5ADS
     public const string NUMBER_OF_ADS_IN_PLAY_TO_SHOW_PACK = "number_of_ads_in_play_to_show_pack"; //3ADS

@@ -1,4 +1,4 @@
-using MoreMountains.NiceVibrations;
+﻿using MoreMountains.NiceVibrations;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +6,8 @@ using UnityEngine;
 using System;
 using System.Security.Cryptography;
 using System.Text;
+ 
+using GoogleMobileAds.Ump.Api;
 #if UNITY_IOS
 using Unity.Advertisement.IosSupport;
 #endif
@@ -68,19 +70,28 @@ public class GameController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        Main();
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Main();
+        }
+        else
+        {
+            StartCoroutine(Helper.StartAction(delegate { Main(); }, () => initFirebaseOk));
+        }    
 
+     
 
         void Main()
         {
-
+      
+         
             admobAds.Init();
 
                if (UseProfile.FirstShowOpenAds == false)
                 {
                   
                     HandleWaitInterAds();
-                    Debug.LogWarning("------------11111");
+        
                 }
                 else
                 {
@@ -88,9 +99,9 @@ public class GameController : MonoBehaviour
                     adsStarLoadingAdsPanel.gameObject.SetActive(false);
                     SetUp();
                     startLoading.Init();
-                    Debug.LogWarning("------------22222");
+                
                 }
- 
+   
         }
     
       
@@ -101,7 +112,7 @@ public class GameController : MonoBehaviour
         adsStarLoadingAdsPanel.gameObject.SetActive(true);
         SetUp();
         adsStarLoadingAds.Init();
-     
+ 
 
     }    
   
