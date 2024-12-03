@@ -459,6 +459,10 @@
       <HintPath>Assets\Plugins\Ionic.Zip.Unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Firebase.Analytics">
+      <HintPath>Library\PackageCache\com.google.firebase.analytics@bfb9748fc1af\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="GoogleMobileAds.Common">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
       <Private>False</Private>
@@ -475,12 +479,24 @@
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.App.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Demigiant\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.RemoteConfig">
+      <HintPath>Library\PackageCache\com.google.firebase.remote-config@7fa267c722e1\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Core">
@@ -511,6 +527,10 @@
       <HintPath>Assets\Plugins\Google.MiniJson.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Firebase.Crashlytics">
+      <HintPath>Library\PackageCache\com.google.firebase.crashlytics@ca6b4e081871\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="GoogleMobileAdsNative.Common">
       <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll</HintPath>
       <Private>False</Private>
@@ -527,36 +547,16 @@
       <HintPath>Assets\Base\3Party\Joker2X\FileHelpers.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Firebase.Platform">
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.Platform.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="GoogleMobileAds.Android">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Ump.Android">
       <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.App.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.Platform">
-      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.Platform.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.Analytics">
-      <HintPath>Library\PackageCache\com.google.firebase.analytics@bfb9748fc1af\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.RemoteConfig">
-      <HintPath>Library\PackageCache\com.google.firebase.remote-config@7fa267c722e1\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.Crashlytics">
-      <HintPath>Library\PackageCache\com.google.firebase.crashlytics@ca6b4e081871\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

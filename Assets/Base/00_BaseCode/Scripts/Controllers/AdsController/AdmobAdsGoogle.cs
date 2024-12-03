@@ -46,13 +46,13 @@ public class AdmobAdsGoogle : MonoBehaviour
     public void Init()
     {
         countdownAds = 10000;
-        MobileAds.RaiseAdEventsOnUnityMainThread = true;
+        MobileAds.RaiseAdEventsOnUnityMainThread = false;
         MobileAds.Initialize(initStatus =>
         {
 
             if (!UseProfile.FirstShowOpenAds  )
             {
-                admobSplash.InitializeBannerAds();
+            
                 admobSplash.InitializeOpenAppAds();
                 admobSplash.InitInterstitial();
                 nativeGoogleAdsMobe_1.Init();
@@ -69,6 +69,7 @@ public class AdmobAdsGoogle : MonoBehaviour
 
         });
     }
+     
  
 
     public void HandleLoadAdsInGame()
