@@ -1379,8 +1379,8 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Base\3Party\NiceVibrations\OlderVersions\v1.7\NiceVibrations-v-1-7-readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-9.1.0_manifest.txt" />
     <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-9.1.1_manifest.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Utilities.dll" />
     <None Include="Assets\Demigiant\DOTween.XML" />
@@ -1745,16 +1745,8 @@
       <HintPath>D:\Unity2020.3.15f2\2022.3.20f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Firebase.Messaging">
-      <HintPath>Library\PackageCache\com.google.firebase.messaging@ccc90086471d\Firebase\Plugins\Firebase.Messaging.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Ionic.Zip.Unity">
       <HintPath>Assets\Plugins\Ionic.Zip.Unity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.Analytics">
-      <HintPath>Library\PackageCache\com.google.firebase.analytics@be65f0d504f2\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Common">
@@ -1773,10 +1765,6 @@
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Firebase.App">
-      <HintPath>Library\PackageCache\com.google.firebase.app@8979614a75c6\Firebase\Plugins\Firebase.App.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Demigiant\DOTween.dll</HintPath>
       <Private>False</Private>
@@ -1787,14 +1775,6 @@
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Editor">
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.RemoteConfig">
-      <HintPath>Library\PackageCache\com.google.firebase.remote-config@295b55d382a6\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Firebase.TaskExtension">
-      <HintPath>Library\PackageCache\com.google.firebase.app@8979614a75c6\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GoogleMobileAds.Core">
@@ -1829,10 +1809,6 @@
       <HintPath>Assets\Plugins\Google.MiniJson.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Firebase.Crashlytics">
-      <HintPath>Library\PackageCache\com.google.firebase.crashlytics@bce38837bbb8\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="GoogleMobileAdsNative.Common">
       <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll</HintPath>
       <Private>False</Private>
@@ -1857,8 +1833,28 @@
       <HintPath>Assets\Base\3Party\Joker2X\FileHelpers.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Firebase.App">
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.App.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.TaskExtension">
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Firebase.Platform">
-      <HintPath>Library\PackageCache\com.google.firebase.app@8979614a75c6\Firebase\Plugins\Firebase.Platform.dll</HintPath>
+      <HintPath>Library\PackageCache\com.google.firebase.app@a95b3e2dfcca\Firebase\Plugins\Firebase.Platform.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.Analytics">
+      <HintPath>Library\PackageCache\com.google.firebase.analytics@bfb9748fc1af\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.RemoteConfig">
+      <HintPath>Library\PackageCache\com.google.firebase.remote-config@7fa267c722e1\Firebase\Plugins\Firebase.RemoteConfig.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Firebase.Crashlytics">
+      <HintPath>Library\PackageCache\com.google.firebase.crashlytics@ca6b4e081871\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
@@ -2367,10 +2363,6 @@
     </Reference>
     <Reference Include="System.Xml.Serialization">
       <HintPath>D:\Unity2020.3.15f2\2022.3.20f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="FirebaseMessagingActivityGenerator">
-      <HintPath>Library\ScriptAssemblies\FirebaseMessagingActivityGenerator.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

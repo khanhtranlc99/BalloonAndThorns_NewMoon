@@ -1,5 +1,5 @@
 using Firebase;
-using Firebase.Messaging;
+//using Firebase.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -158,8 +158,8 @@ public class GameServices : SingletonClass<GameServices>, IService
     private void InitializeFirebase()
     {
 #if UNITY_ANDROID
-        FirebaseMessaging.TokenReceived += OnTokenReceived;
-        FirebaseMessaging.MessageReceived += OnMessageReceived;
+        //FirebaseMessaging.TokenReceived += OnTokenReceived;
+        //FirebaseMessaging.MessageReceived += OnMessageReceived;
 #endif
 #if UNITY_IOS
        // didInitFireBase = true;
@@ -189,25 +189,25 @@ public class GameServices : SingletonClass<GameServices>, IService
     #region Private Methods
 
     private bool SendToken = false;
-    private void OnTokenReceived(object sender, TokenReceivedEventArgs token)
-    {
-        Debug.LogError("Received Registration Token: " + token.Token);
-#if UNITY_ANDROID
-        //AppsFlyerAndroid.updateServerUninstallToken(token.Token);
-#endif
-        if (!SendToken)
-        {
-            SendToken = true;
-        }
+//    private void OnTokenReceived(object sender, TokenReceivedEventArgs token)
+//    {
+//        Debug.LogError("Received Registration Token: " + token.Token);
+//#if UNITY_ANDROID
+//        //AppsFlyerAndroid.updateServerUninstallToken(token.Token);
+//#endif
+//        if (!SendToken)
+//        {
+//            SendToken = true;
+//        }
 
-        //Adjust.setDeviceToken(token.Token);
-    }
+//        //Adjust.setDeviceToken(token.Token);
+//    }
 
 
-    public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
-    {
-        Debug.LogError("Received a new message");
-    }
+//    public void OnMessageReceived(object sender, MessageReceivedEventArgs e)
+//    {
+//        Debug.LogError("Received a new message");
+//    }
 
     #endregion
 
