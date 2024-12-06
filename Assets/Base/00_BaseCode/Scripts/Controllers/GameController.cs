@@ -47,15 +47,11 @@ public class GameController : MonoBehaviour
 
 
 #if UNITY_IOS
-
     if(ATTrackingStatusBinding.GetAuthorizationTrackingStatus() == 
     ATTrackingStatusBinding.AuthorizationTrackingStatus.NOT_DETERMINED)
     {
-
         ATTrackingStatusBinding.RequestAuthorizationTracking();
-
     }
-
 #endif
 
     }
@@ -69,42 +65,24 @@ public class GameController : MonoBehaviour
     public void Init()
     {
         Application.targetFrameRate = 60;
-
-        if (Application.internetReachability == NetworkReachability.NotReachable)
+        StartCoroutine(Main());
+    }
+    IEnumerator Main()
+    {
+        admobAds.Init();
+        yield return new WaitForSeconds(3.5f);  
+        if (UseProfile.FirstShowOpenAds == false)
         {
-            Main();
+            HandleWaitInterAds();
         }
         else
         {
-            StartCoroutine(Helper.StartAction(delegate { Main(); }, () => initFirebaseOk));
-        }    
+            startLoadingPanel.gameObject.SetActive(true);
+            adsStarLoadingAdsPanel.gameObject.SetActive(false);
+            SetUp();
+            startLoading.Init();
 
-     
-
-        void Main()
-        {
-      
-         
-            admobAds.Init();
-
-               if (UseProfile.FirstShowOpenAds == false)
-                {
-                  
-                    HandleWaitInterAds();
-        
-                }
-                else
-                {
-                    startLoadingPanel.gameObject.SetActive(true);
-                    adsStarLoadingAdsPanel.gameObject.SetActive(false);
-                    SetUp();
-                    startLoading.Init();
-                
-                }
-   
         }
-    
-      
     }
     private void HandleWaitInterAds()
     {
@@ -112,8 +90,6 @@ public class GameController : MonoBehaviour
         adsStarLoadingAdsPanel.gameObject.SetActive(true);
         SetUp();
         adsStarLoadingAds.Init();
- 
-
     }    
   
 

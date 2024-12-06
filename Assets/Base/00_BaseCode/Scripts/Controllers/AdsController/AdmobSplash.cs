@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
@@ -10,6 +10,9 @@ using UnityEngine.Rendering.Universal;
 
 public class AdmobSplash : MonoBehaviour
 {
+  
+
+
     private const string BanerAdUnitId = "ca-app-pub-8564251890453142/6735208049";
 
     private const string InterstitialAdUnitId = "ca-app-pub-8564251890453142/6543636355";
@@ -32,9 +35,16 @@ public class AdmobSplash : MonoBehaviour
         }
         return appOpenAd.CanShowAd();
     }
+
+
+    public void Init()
+    {
+      
+    }
     #region Interstitial
     Action evtInterDone;
     InterstitialAd _interstitialAd;
+    
     public void InitInterstitial()
     {
         // Clean up the old ad before loading a new one.
@@ -117,7 +127,7 @@ public class AdmobSplash : MonoBehaviour
     public void ShowInterstitialAd(Action actionIniterClose)
     {
         evtInterDone = actionIniterClose;
-        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_INTER_SPLASH, true))
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_INTER_SPLASH, false))
         {
             evtInterDone?.Invoke();
             return;
@@ -272,7 +282,7 @@ public class AdmobSplash : MonoBehaviour
     
         if (bannerView != null)
         {
-            if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_BANNER_SPLASH, true))
+            if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_BANNER_SPLASH, false))
             {
 
 
@@ -395,7 +405,7 @@ public class AdmobSplash : MonoBehaviour
         {
             return;
         }
-        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_APPOPEN_SPLASH, true))
+        if (!RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_APPOPEN_SPLASH, false))
         {
 
             evtAppOpenAdDone?.Invoke();

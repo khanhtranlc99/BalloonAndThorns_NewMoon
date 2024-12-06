@@ -78,7 +78,7 @@ public class GamePlayController : Singleton<GamePlayController>
         GameController.Instance.admobAds.admobSplash.HideBanner();
         GameController.Instance.admobAds.ShowBanner();
         nativeAds_Box.Init();
-        GameController.Instance.admobAds.nativeFullGameplay.Init();
+        GameController.Instance.admobAds.nativeFullGameplay.Init(delegate { });
     }
    
     public void HandleWin()

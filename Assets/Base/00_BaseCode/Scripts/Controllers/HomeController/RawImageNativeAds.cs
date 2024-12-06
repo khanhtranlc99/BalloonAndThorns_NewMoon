@@ -20,7 +20,16 @@ public class RawImageNativeAds : MonoBehaviour
         if(!wasInit)
         {
             wasInit = true;
-            rawimageIcon.texture = nativeAd.GetIconTexture();
+            if(nativeAd.GetIconTexture() != null)
+            {
+                rawimageIcon.texture = nativeAd.GetIconTexture();
+                rawimageIcon.transform.parent.gameObject.SetActive(true);
+            }    
+            else
+            {
+                rawimageIcon.transform.parent.gameObject.SetActive(false);
+            }    
+         
             rawimageAdChoice.texture = nativeAd.GetAdChoicesLogoTexture();
             if (nativeAd.GetImageTextures().Count > 0)
             {

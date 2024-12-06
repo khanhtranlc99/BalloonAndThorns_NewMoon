@@ -52,11 +52,9 @@ public class AdmobAdsGoogle : MonoBehaviour
 
             if (!UseProfile.FirstShowOpenAds  )
             {
-            
+                admobSplash.InitializeBannerAds();
                 admobSplash.InitializeOpenAppAds();
                 admobSplash.InitInterstitial();
-                nativeGoogleAdsMobe_1.Init();
-                nativeGoogleAdsMobe_2.Init();
             }      
             else
             {
@@ -65,8 +63,6 @@ public class AdmobAdsGoogle : MonoBehaviour
                 InitInterstitial();
                 InitializeRewardedAds();
             }    
-    
-
         });
     }
      

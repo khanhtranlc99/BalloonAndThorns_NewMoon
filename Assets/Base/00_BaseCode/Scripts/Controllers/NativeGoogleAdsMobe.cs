@@ -23,13 +23,14 @@ public class NativeGoogleAdsMobe : MonoBehaviour
     public NativeAd nativeAd;
     public bool isLoadNativeOK;  
     public AdLoader adLoader;
-     
+    Action callBackNative;
     
 
 
  
-    public void Init()
+    public void Init(Action callBack)
     {
+        callBackNative = callBack;
         isLoadNativeOK = false;
         adLoader = new AdLoader.Builder(NativeID).ForNativeAd().Build();
         adLoader.OnNativeAdLoaded += this.HandleNativeAdLoaded;
@@ -38,7 +39,7 @@ public class NativeGoogleAdsMobe : MonoBehaviour
         adLoader.OnNativeAdImpression += this.HandleOnNativeAdImpression;
       
         adLoader.LoadAd(new AdRequest());
-     
+         
     }
 
     private void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
@@ -54,7 +55,7 @@ public class NativeGoogleAdsMobe : MonoBehaviour
         Debug.LogError("Native ad loaded.");
         this.nativeAd = args.nativeAd;
         isLoadNativeOK = true;
-
+        callBackNative?.Invoke();
 
     }
     private void HandleOnNativeAdImpression(object sender, EventArgs args)
@@ -94,7 +95,7 @@ public class NativeGoogleAdsMobe : MonoBehaviour
             nativeAd.Destroy();
             nativeAd = null;
         }
-        Init();    
+       
     }
    
 }

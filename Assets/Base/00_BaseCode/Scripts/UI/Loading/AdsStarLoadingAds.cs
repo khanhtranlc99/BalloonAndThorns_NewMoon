@@ -62,7 +62,8 @@ public class AdsStarLoadingAds : MonoBehaviour
     private IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(SceneName.SELECT_LANGUAGE);
+        Initiate.Fade(SceneName.SELECT_LANGUAGE, Color.black, 2f);
+        // SceneManager.LoadScene(SceneName.SELECT_LANGUAGE);
     }
     IEnumerator LoadingText()
     {
