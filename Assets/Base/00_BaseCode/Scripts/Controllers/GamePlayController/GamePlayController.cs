@@ -79,6 +79,7 @@ public class GamePlayController : Singleton<GamePlayController>
         GameController.Instance.admobAds.ShowBanner();
         nativeAds_Box.Init();
         GameController.Instance.admobAds.nativeFullGameplay.Init(delegate { });
+        Firebase.Analytics.FirebaseAnalytics.LogEvent("main_activity");
     }
    
     public void HandleWin()

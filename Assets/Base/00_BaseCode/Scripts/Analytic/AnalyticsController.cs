@@ -239,7 +239,10 @@ public class AnalyticsController : MonoBehaviour
         }
         catch
         {
-
+            FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventPurchase, new Parameter[] {
+    new Parameter(FirebaseAnalytics.ParameterCurrency, "HKD"),  // Đơn vị tiền tệ HKD
+ 
+});
         }
 
 

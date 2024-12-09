@@ -60,27 +60,27 @@ public class NativeGoogleAdsMobe : MonoBehaviour
     }
     private void HandleOnNativeAdImpression(object sender, EventArgs args)
     {
-        switch(nativeName)
-        {
-            case NativeName.language_scr:
-                FirebaseAnalytics.LogEvent("language_scr");
-                break;
-            case NativeName.onboarding_scr_1:
-                FirebaseAnalytics.LogEvent("onboarding_scr_1");
-                break;
-            case NativeName.onboarding_scr_2:
-                FirebaseAnalytics.LogEvent("onboarding_scr_2");
-                break;
-            case NativeName.native_full_scr:
-                FirebaseAnalytics.LogEvent("native_full_scr");
-                break;
-            case NativeName.onboarding_scr_3:
-                FirebaseAnalytics.LogEvent("onboarding_scr_3");
-                break;
-            case NativeName.main_activity:
-                FirebaseAnalytics.LogEvent("main_activity");
-                break;
-        }    
+        //switch(nativeName)
+        //{
+        //    case NativeName.language_scr:
+        //        FirebaseAnalytics.LogEvent("language_scr");
+        //        break;
+        //    case NativeName.onboarding_scr_1:
+        //        FirebaseAnalytics.LogEvent("onboarding_scr_1");
+        //        break;
+        //    case NativeName.onboarding_scr_2:
+        //        FirebaseAnalytics.LogEvent("onboarding_scr_2");
+        //        break;
+        //    case NativeName.native_full_scr:
+        //        FirebaseAnalytics.LogEvent("native_full_scr");
+        //        break;
+        //    case NativeName.onboarding_scr_3:
+        //        FirebaseAnalytics.LogEvent("onboarding_scr_3");
+        //        break;
+        //    case NativeName.main_activity:
+        //        FirebaseAnalytics.LogEvent("main_activity");
+        //        break;
+        //}    
 
     }
     private void HandleAdNativeAdClicked(object sender, EventArgs args)

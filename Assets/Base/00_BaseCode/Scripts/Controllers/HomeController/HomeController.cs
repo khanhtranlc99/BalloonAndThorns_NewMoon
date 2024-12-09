@@ -6,6 +6,7 @@ using UnityEngine.UI.Extensions;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Runtime.InteropServices;
+using Firebase.Analytics;
 public class HomeController : Singleton<HomeController>
 {
     public Button btnNext;
@@ -53,9 +54,18 @@ public class HomeController : Singleton<HomeController>
             }
             return true;
         }
-    }    
+    }
+
+    public bool can_post_event_ads_navitve_1;
+    public bool can_post_event_ads_navitve_2;
+    public bool can_post_event_ads_navitve_Full;
+
     public void Start()
     {
+        can_post_event_ads_navitve_1 = false;
+        can_post_event_ads_navitve_2 = false;
+        can_post_event_ads_navitve_Full = false;
+
         ads_navitve.gameObject.SetActive(false);
         ads_navitve_1.gameObject.SetActive(false);
         ads_navitve_2.gameObject.SetActive(false);
@@ -82,6 +92,7 @@ public class HomeController : Singleton<HomeController>
         GameController.Instance.admobAds.nativeGoogleAdsMobe_6.Init(delegate { Native_6(); });
         blinPanel.DOFade(0, 10).OnComplete(delegate { blinPanel.gameObject.SetActive(false); });
         StartCoroutine(ShowText());
+        FirebaseAnalytics.LogEvent("onboarding_scr_1");
     }
     public IEnumerator ShowText()
     {
@@ -185,8 +196,33 @@ public class HomeController : Singleton<HomeController>
                 blinPanel.gameObject.SetActive(false);
             }
         }
-
-
+        if(scrollSnap.CurrentPage == 1)
+        {
+            if(!can_post_event_ads_navitve_1)
+            {
+                can_post_event_ads_navitve_1 = true;
+                FirebaseAnalytics.LogEvent("onboarding_scr_2");
+            }    
+          
+        }
+        if (scrollSnap.CurrentPage == 2)
+        {
+            if (!can_post_event_ads_navitve_Full)
+            {
+                can_post_event_ads_navitve_Full = true;
+                FirebaseAnalytics.LogEvent("native_full_scr");
+            }
+         
+        }
+        if (scrollSnap.CurrentPage == 3)
+        {
+            if (!can_post_event_ads_navitve_2)
+            {
+                can_post_event_ads_navitve_2 = true;
+                FirebaseAnalytics.LogEvent("onboarding_scr_3");
+            }
+       
+        }
 
     }
     private void HandleNextButton()

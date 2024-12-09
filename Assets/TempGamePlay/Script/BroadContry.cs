@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Firebase.Analytics;
 public class BroadContry : MonoBehaviour
 {
     public List<LabelContry> lsLabelContries;
@@ -29,6 +30,7 @@ public class BroadContry : MonoBehaviour
         GameController.Instance.admobAds.nativeGoogleAdsMobe_2.Init(delegate { ShowNative_2(); });
         blind.DOFade(0, 10).OnComplete(delegate { blind.gameObject.SetActive(false); });
         StartCoroutine(ShowText());
+        FirebaseAnalytics.LogEvent("language_scr");
     }
     public IEnumerator ShowText()
     {

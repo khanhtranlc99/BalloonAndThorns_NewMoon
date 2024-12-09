@@ -64,6 +64,7 @@ public class AdmobAdsGoogle : MonoBehaviour
                 InitializeRewardedAds();
             }    
         });
+       
     }
      
  
@@ -612,6 +613,6 @@ public class AdmobAdsGoogle : MonoBehaviour
 
     private void OnAdRevenuePaidEvent(string adUnitId, string type, ResponseInfo info, AdValue value)
     {
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("main_activity");
+       
     }
 }

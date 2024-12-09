@@ -1,4 +1,4 @@
-using Firebase;
+﻿using Firebase;
 //using Firebase.Messaging;
 using System;
 using System.Collections.Generic;
@@ -152,7 +152,22 @@ public class GameServices : SingletonClass<GameServices>, IService
     private async Task<bool> CheckAndFixDependenciesAsync()
     {
         var check = await FirebaseApp.CheckAndFixDependenciesAsync();
-        return check == DependencyStatus.Available;
+
+        if (check == DependencyStatus.Available)
+        {
+            Debug.Log("Firebase dependencies are available!");
+
+            // Bật thu thập dữ liệu Firebase Analytics
+            FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
+            Debug.Log("Firebase Analytics collection enabled.");
+
+            return true;
+        }
+        else
+        {
+            Debug.LogError($"Firebase dependencies not available: {check}");
+            return false;
+        }
     }
 
     private void InitializeFirebase()
