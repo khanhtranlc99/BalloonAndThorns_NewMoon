@@ -22,6 +22,7 @@ public class AdmobAdsGoogle : MonoBehaviour
     public NativeGoogleAdsMobe nativeGoogleAdsMobe_5;
     public NativeGoogleAdsMobe nativeGoogleAdsMobe_6;
     public NativeGoogleAdsMobe nativeFullGameplay;
+    public NativeGoogleAdsMobe nativeWinBox;
     BannerView bannerView;
     InterstitialAd _interstitialAd;
     public AdmobSplash admobSplash;

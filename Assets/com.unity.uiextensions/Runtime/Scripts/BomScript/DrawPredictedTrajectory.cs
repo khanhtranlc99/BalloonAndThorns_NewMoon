@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿ 
+using UnityEngine;
+using UnityEngine.UI;
 
 public class DrawPredictedTrajectory : MonoBehaviour
 {
@@ -12,6 +14,23 @@ public class DrawPredictedTrajectory : MonoBehaviour
     public float timeBetweenPoints = 0.1f; // Khoảng thời gian giữa các điểm
     public LayerMask collisionMask;
     public float distanceStartEnd;
+
+    public Button button;
+
+
+
+    public void Start()
+    {
+        //button.onClick.AddListener(HandleOnClickBtn);
+    }
+
+
+    public void HandleOnClickBtn()
+    {
+        Debug.LogError("123456789");
+    }    
+
+
 
     public void Init()
     {

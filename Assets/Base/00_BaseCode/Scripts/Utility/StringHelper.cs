@@ -263,6 +263,9 @@ public class FirebaseConfig
 
 
     public const string REVIEW_IAP_VERSION = "review_iap_version"; // 6H
+
+    public const string TIME_SHOW_BTN_NEXT_WIN_BOX = "time_show_btn_next_win_box";
+
 }
 public class GameData
 {

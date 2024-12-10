@@ -26,6 +26,7 @@ public class Winbox : BaseBox
     [SerializeField] private GachaBar gachaBar;
     public CoinHeartBar coinHeartBar;
     bool lockBtn;
+    public RawImageNativeAds rawImageNativeAds;
     public void Init()
     {
         lockBtn = false;
@@ -33,17 +34,26 @@ public class Winbox : BaseBox
         nextButton.onClick.AddListener(delegate { HandleNext();    });
         gachaBar.Init();
         GameController.Instance.musicManager.PlayWinSound();
-
         claimDoubleCoinButton.onClick.AddListener(delegate { HandleOnClickBtnReward(); });
         tvScore.text = "+" + GamePlayController.Instance.playerContain.levelData.numbTarget;
     }   
     public void InitState()
     {
+        float timeShowNextButton = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_SHOW_BTN_NEXT_WIN_BOX, 2);
         nextButton.gameObject.transform.localScale = Vector3.zero;
-        nextButton.transform.DOScale(new Vector3(1,1,1), 0.5f).SetDelay(2);
+        nextButton.transform.DOScale(new Vector3(1,1,1), 0.5f).SetDelay(timeShowNextButton);
         GamePlayController.Instance.playerContain.levelData.inputThone.enabled = false;
         GameController.Instance.AnalyticsController.WinLevel(UseProfile.CurrentLevel);
-
+        if(GameController.Instance.admobAds.nativeWinBox.isLoadNativeOK)
+        {
+            rawImageNativeAds.gameObject.SetActive(true);
+            rawImageNativeAds.Init(GameController.Instance.admobAds.nativeWinBox.nativeAd);
+        }    
+        else
+        {
+            rawImageNativeAds.gameObject.SetActive(false);
+        }    
+      
     }    
     private void HandleNext()
     {

@@ -198,6 +198,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159011986}
   m_CullTransparentMesh: 1
+--- !u!1 &182481742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182481743}
+  - component: {fileID: 182481744}
+  m_Layer: 0
+  m_Name: Native_result_popup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &182481743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182481742}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573333643}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182481744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182481742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f478076883c9417478a2c0a18ab22d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nativeName: 5
+  NativeID: ca-app-pub-8564251890453142/7306643985
+  isLoadNativeOK: 0
 --- !u!1 &205014428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,6 +1827,7 @@ Transform:
   - {fileID: 376636373}
   - {fileID: 822280195}
   - {fileID: 1889454875}
+  - {fileID: 182481743}
   - {fileID: 538934461}
   m_Father: {fileID: 8893301430582999387}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1802,6 +1850,7 @@ MonoBehaviour:
   nativeGoogleAdsMobe_5: {fileID: 376636374}
   nativeGoogleAdsMobe_6: {fileID: 822280194}
   nativeFullGameplay: {fileID: 1889454876}
+  nativeWinBox: {fileID: 182481744}
   admobSplash: {fileID: 538934460}
   countdownAds: 0
 --- !u!4 &1678449366

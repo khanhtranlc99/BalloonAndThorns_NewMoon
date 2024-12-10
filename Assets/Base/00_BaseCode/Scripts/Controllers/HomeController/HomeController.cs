@@ -11,7 +11,7 @@ public class HomeController : Singleton<HomeController>
 {
     public Button btnNext;
     public Button btnStartGame;
-    public List<Image> lsImage;
+    public List<GameObject> lsImage;
     public HorizontalScrollSnap scrollSnap;
     public GameObject panelNext;
     public GameObject panelStart;
@@ -28,8 +28,8 @@ public class HomeController : Singleton<HomeController>
     bool isOpen = false;
     float timeCountDown;
     public Text tvTime;
-    public Button btnClose;
-    public GameObject btnCountDown;
+    //public Button btnClose;
+    //public GameObject btnCountDown;
     public Image blinPanel;
     public Text tvPanel;
     public bool offPanel
@@ -62,6 +62,7 @@ public class HomeController : Singleton<HomeController>
 
     public void Start()
     {
+        
         can_post_event_ads_navitve_1 = false;
         can_post_event_ads_navitve_2 = false;
         can_post_event_ads_navitve_Full = false;
@@ -78,8 +79,8 @@ public class HomeController : Singleton<HomeController>
         UseProfile.FirstShowOpenAds = true;
 
         GameController.Instance.admobAds.HandleLoadAdsInGame();
-        timeCountDown = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_OFF_NATIVE_FULL, 3);
-        btnClose.onClick.AddListener(HandleChangeScene);
+        //timeCountDown = RemoteConfigController.GetFloatConfig(FirebaseConfig.TIME_OFF_NATIVE_FULL, 3);
+        //btnClose.onClick.AddListener(HandleChangeScene);
 
      
         can_show_ads_navitve = RemoteConfigController.GetBoolConfig(FirebaseConfig.IS_SHOW_NATIVE_ONBOARDING_1, true);
@@ -137,36 +138,18 @@ public class HomeController : Singleton<HomeController>
         ads_navitve_Full.gameObject.SetActive(true);
         ads_navitve_Full.Init(GameController.Instance.admobAds.nativeGoogleAdsMobe_6.nativeAd, delegate { HandleChangeScene(); });
     }
-    IEnumerator countTime()
-    {
-        tvTime.text = "" + timeCountDown;
-        yield return new WaitForSeconds(1);
-        timeCountDown -= 1;
-        tvTime.text = "" + timeCountDown;
-        if (timeCountDown > 0)
-        {
-            StartCoroutine(countTime());
-        }
-        else
-        {
-
-            StopAllCoroutines();
-            btnClose.gameObject.SetActive(true);
-            btnCountDown.gameObject.SetActive(false);
-        }
-    }
-
+ 
     private void Update()
     {
         for (int i = 0; i < lsImage.Count; i++)
         {
-            if (i <= scrollSnap.CurrentPage)
+            if (i == scrollSnap.CurrentPage)
             {
-                lsImage[i].color = Color.yellow;
+                lsImage[i].SetActive(true);
             }
             else
             {
-                lsImage[i].color = Color.white;
+                lsImage[i].SetActive(false);
             }
         }
 
@@ -184,7 +167,7 @@ public class HomeController : Singleton<HomeController>
         if (scrollSnap.CurrentPage == 2)
         {
             panelNext.SetActive(false);
-            StartCoroutine(countTime());
+            
         }
         GameController.Instance.admobAds.admobSplash.HideBanner();
 
